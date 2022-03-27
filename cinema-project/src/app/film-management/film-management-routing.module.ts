@@ -6,6 +6,7 @@ import {FilmManagementCreateComponent} from "./film-management-create/film-manag
 import {FilmManagementDeleteComponent} from "./film-management-delete/film-management-delete.component";
 import {FilmManagementEditComponent} from "./film-management-edit/film-management-edit.component";
 import {FilmManagementListComponent} from "./film-management-list/film-management-list.component";
+import {ListFilmTestComponent} from './list-film-test/list-film-test.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   },
   {
     path: 'list-manager', component: FilmManagementListComponent
+  },
+  {
+    path:"list-film-test",
+    component:ListFilmTestComponent
   }
 ];
 

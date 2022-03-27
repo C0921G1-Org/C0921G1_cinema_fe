@@ -1,0 +1,12 @@
+.container-fluid{
+  background: #dee2e6;
+  /*background: -webkit-linear-gradient(left, #F27507, #F27507);*/
+  /*background: linear-gradient(to right, #F27507, #F27507);*/
+
+  font-family: 'Roboto', sans-serif;
+}
+/*body {*/
+/*  background: -webkit-linear-gradient(left, #25c481, #25b7c4);*/
+/*  background: linear-gradient(to right, #25c481, #25b7c4);*/
+/*  font-family: 'Roboto', sans-serif;*/
+/*}*/

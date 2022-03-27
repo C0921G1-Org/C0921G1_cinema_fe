@@ -1,0 +1,98 @@
+<!--<div class="container-fluid">-->
+<!--  <nav class="navbar">-->
+<!--    <div class="col-3 mt-2" >-->
+<!--      <input class="form-control"  type="search" placeholder="Search name" aria-label="Search" name="name" [(ngModel)]=""  (ngModelChange)="saerch()">-->
+<!--      &lt;!&ndash;        <button class="bg-success btn btn-outline-dark" type="submit" >Search</button>&ndash;&gt;-->
+<!--    </div>-->
+<!--  </nav>-->
+<!--</div>-->
+<div class="container-fluid">
+<div class="d-flex bd-highlight abc">
+  <div class="p-2 flex-fill bd-highlight">
+    <a class="bg-success btn btn-outline-dark" routerLink="/film/create" >
+      Add Film</a>
+  </div>
+  <div class="p-2 flex-fill bd-highlight">
+    <h1  style="margin-right: 250px">Table of Films</h1 ></div>
+
+</div>
+
+<div class="tbl-header">
+  <table cellpadding="0" cellspacing="0" border="0" class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th >Name</th>
+      <th>Start Day</th>
+      <th >End Day</th>
+      <th>Film Type</th>
+      <th>actor</th>
+      <th>Director</th>
+      <th>image</th>
+
+      <th >Edit</th>
+<!--      <th >Delete</th>-->
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let film of listFilm">
+      <td>{{film.id}}</td>
+      <td>{{film.name}}</td>
+      <td>{{film.startDate}}</td>
+      <td>{{film.endDate}}</td>
+      <td>{{film.filmType.name}}</td>
+      <td>{{film.actor}}</td>
+      <td>{{film.director}}</td>
+      <td>{{film.image}}</td>
+      <td>
+        <a class="bg-success btn btn-outline-dark" [routerLink]="['/edit',film.id]" >
+          Edit</a>
+      </td>
+
+<!--      <td>-->
+<!--        <button type="button" class="bg-danger btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"   (click)="findCustomerById(employee.id)">-->
+<!--          Delete-->
+<!--        </button>-->
+<!--      </td>-->
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!--  &lt;!&ndash; Modal &ndash;&gt;-->
+<!--  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--      <div class="modal-content bg-info">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+<!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--        </div>-->
+<!--        <div class="modal-body bg-info">-->
+<!--          <div>Do you wanna delete Employee:</div>-->
+<!--          <div>{{employeeObj.id}}</div>-->
+<!--          <div>{{employeeObj.name}}</div>-->
+<!--          <div>{{employeeObj.birthDay}}</div>-->
+<!--          <div>{{employeeObj.salary}}</div>-->
+<!--          <div>{{employeeObj.card}}</div>-->
+<!--          <div>{{employeeObj.phone}}</div>-->
+<!--          <div>{{employeeObj.mail}}</div>-->
+<!--          <div>{{employeeObj.address}}</div>-->
+<!--          <div>{{employeeObj.positionId.name}}</div>-->
+<!--          <div>{{employeeObj.educationId.name}}</div>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--          <button type="button" class="btn btn-danger"  data-bs-dismiss="modal" (click)="deleteEmployee(employeeObj.id)">Delete</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+
+
+
+
