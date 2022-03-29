@@ -40,10 +40,6 @@ export class MemberAccountRegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.cityService.getCityList().subscribe(city => {
       this.cityList = city;
-      this.districtService.getDistrictList().subscribe(district => {
-        this.districtList=district;
-        this.wardService.getWardList().subscribe(ward => {
-          this.wardList=ward;
           this.memberForm = new FormGroup({
             img: new FormControl(''),
             name: new FormControl(''),
@@ -64,8 +60,6 @@ export class MemberAccountRegistrationComponent implements OnInit {
             check: new FormControl('',[Validators.required,])
           })
         })
-      })
-    })
   }
 
 
@@ -74,6 +68,12 @@ export class MemberAccountRegistrationComponent implements OnInit {
     return (validate.password === validate.confirmPassword)? null : {notMatch: true};
   }
 
+  //get city NhanNT
+  getCityNhanNT(id: string): any{
+    return this.districtService.getDistrictList().subscribe(district => {
+      this.districtList = district;
+    })
+  }
 
   //create member NhanNT
   onSubmit(){

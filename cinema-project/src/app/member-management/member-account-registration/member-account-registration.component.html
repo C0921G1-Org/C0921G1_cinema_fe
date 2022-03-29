@@ -90,6 +90,7 @@
             <label>Tỉnh/Thành phố <span style="color: red">*</span></label>
             <select name="city" id="city" formControlName="city">
               <option selected disabled value="">Tỉnh / Thành phố</option>
+
               <option *ngFor="let city of cityList" [ngValue]="city">{{city.name}}</option>
 
             </select>
@@ -97,9 +98,11 @@
           </div>
           <div class="input_field select_option col_half">
             <label>Quận/Huyện <span style="color: red">*</span></label>
-            <select name="district" id="district" formControlName="district">
+            <select name="district" id="district" formControlName="district" >
               <option selected disabled value="">Quận / Huyện</option>
+
               <option *ngFor="let district of districtList" [ngValue]="district">{{district.name}}</option>
+
             </select>
 <!--            <div style="color: red">Bạn vui lòng chọn Quận / Huyện</div>-->
           </div>
@@ -114,6 +117,7 @@
             <label> Xã/Phường <span style="color: red">*</span></label>
             <select name="ward" id="ward" formControlName="ward">
               <option selected disabled value="">Xã / Phường</option>
+
               <option *ngFor="let ward of wardList" [ngValue]="ward">{{ward.name}}</option>
             </select>
 <!--            <div style="color: red">Bạn vui lòng chọn Xã / Phường</div>-->
