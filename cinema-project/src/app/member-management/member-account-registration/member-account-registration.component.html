@@ -1,1 +1,161 @@
-<p>member-account-registration works!</p>
+<div class="form_wrapper">
+  <div class="form_container">
+    <div class="title_container">
+      <h3>Đăng ký thành viên</h3>
+    </div>
+    <div class="row clearfix">
+
+      <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+        <!--img-->
+
+        <div class="input_field">
+          <label for="img" style="font-weight: 500">Thêm ảnh đại diện</label>
+          <input id="img" type="file" class="form-control-file" formControlName="img"/>
+<!--          <div style="color: red">Vui lòng thêm ảnh</div>-->
+        </div>
+
+        <!--name-->
+        <div class="input_field" >
+          <label>Họ và Tên <span style="color: red">*</span></label>
+
+          <input type="text" name="name" placeholder="Họ và Tên" formControlName="name" required/>
+
+<!--          <div style="color: red">Bạn vui lòng nhập tên theo đinh dạng: Nguyễn Văn A </div>-->
+<!--          <div style="color: red">Bạn vui lòng không để trống mục tên</div>-->
+        </div>
+
+
+        <!--phone & gender-->
+
+        <div class="row clearfix">
+          <div class="col_half">
+
+            <div class="input_field">
+              <label>Số điện thoại <span style="color: red">*</span></label>
+              <input type="text" name="phone" placeholder="Số điện thoại" formControlName="phone"/>
+            </div>
+<!--            <div style="color: red">Bạn vui lòng nhập số điện thoại theo đúng đinh dạng: +84-xxxxxxxxx</div>-->
+<!--            <div style="color: red">Bạn vui lòng không để trống mục số điện thoại</div>-->
+          </div>
+          <div class="input_field select_option col_half">
+            <label>Giới tính <span style="color: red">*</span></label>
+            <select>
+              <option>Giới tính</option>
+              <option formControlName="gender" value="1">Nam</option>
+              <option formControlName="gender" value="2">Nữ</option>
+            </select>
+<!--            <div style="color: red">Bạn vui lòng chọn giới tính</div>-->
+          </div>
+
+        </div>
+
+
+        <!--email-->
+
+        <div class="input_field">
+          <label>Email <span style="color: red">*</span></label>
+          <input type="email" name="email" placeholder="Email" formControlName="email" required/>
+<!--          <div style="color: red">Bạn vui lòng không để trống mục email</div>-->
+<!--          <div style="color: red">Bạn vui lòng theo định dạng: email@mail.com </div>-->
+        </div>
+
+        <!--password-->
+
+        <div class="row clearfix" formGroupName="passwordFormGroup">
+          <div class="col_half">
+            <div class="input_field">
+              <label>Mật khẩu <span style="color: red">*</span></label>
+              <input type="password" name="password" placeholder="Mật Khẩu" formControlName="password" required/>
+            </div>
+<!--            <div style="color: red">Bạn vui lòng không để trống mục mật khẩu</div>-->
+<!--            <div style="color: red">Vui lòng điền mật khẩu ít nhất 6 ký tự</div>-->
+          </div>
+          <div class="col_half">
+
+            <div class="input_field">
+              <label>Nhập lại mật khẩu <span style="color: red">*</span></label>
+              <input type="password" name="confirmPassword" placeholder="Nhập lại Mật Khẩu" formControlName="confirmPassword" required/>
+            </div>
+<!--            <div style="color: red">Bạn vui lòng không để trống mục nhập lại mật khẩu</div>-->
+            <div style="color: red" *ngIf="memberForm.hasError('notMatch',['passwordFormGroup']) && (memberForm.get('passwordFormGroup').get('confirmPassword').dirty) && (submitted)">Vui lòng nhập đúng mật khẩu </div>
+          </div>
+
+
+        </div>
+
+        <!--city+district-->
+
+        <div class="row clearfix">
+          <div class="input_field select_option col_half">
+            <label>Tỉnh/Thành phố <span style="color: red">*</span></label>
+            <select name="city" id="city" formControlName="city">
+              <option selected disabled value="">Tỉnh / Thành phố</option>
+              <option *ngFor="let city of cityList" [ngValue]="city">{{city.name}}</option>
+
+            </select>
+<!--            <div style="color: red">Bạn vui lòng chọn Tỉnh / Thành phố</div>-->
+          </div>
+          <div class="input_field select_option col_half">
+            <label>Quận/Huyện <span style="color: red">*</span></label>
+            <select name="district" id="district" formControlName="district">
+              <option selected disabled value="">Quận / Huyện</option>
+              <option *ngFor="let district of districtList" [ngValue]="district">{{district.name}}</option>
+            </select>
+<!--            <div style="color: red">Bạn vui lòng chọn Quận / Huyện</div>-->
+          </div>
+
+
+        </div>
+
+        <!--address + ward-->
+        <div class="row clearfix">
+
+          <div class="input_field select_option col_half">
+            <label> Xã/Phường <span style="color: red">*</span></label>
+            <select name="ward" id="ward" formControlName="ward">
+              <option selected disabled value="">Xã / Phường</option>
+              <option *ngFor="let ward of wardList" [ngValue]="ward">{{ward.name}}</option>
+            </select>
+<!--            <div style="color: red">Bạn vui lòng chọn Xã / Phường</div>-->
+          </div>
+          <div class="input_field col_half">
+            <label>Địa chỉ <span style="color: red">*</span></label>
+            <input type="email" name="email" placeholder="Địa chỉ" formControlName="address" required/>
+<!--            <div style="color: red">Vui lòng nhập địa chỉ</div>-->
+          </div>
+
+        </div>
+
+        <!--dayofbirth-->
+
+        <div class="input_field">
+          <label>Ngày Sinh <span style="color: red">*</span></label>
+          <input type="date" name="dayOfBirth" placeholder="" formControlName="dob" required/>
+<!--          <div style="color: red">Vui lòng chọn ngày sinh</div>-->
+<!--          <div style="color: red">Vui lòng chọn ngày sinh theo dạng (dd/mm/yyyy)</div>-->
+        </div>
+        <!-- xác nhận-->
+
+        <div class="input_field checkbox_option">
+
+          <label class="container" for="cb1">Tôi đã đọc và đồng ý với <a class="term" target="_blank"
+                                                                         href="https://www.galaxycine.vn/chinh-sach">Chính
+            sách</a> của chương trình<span style="color: red">*</span>
+            <input type="checkbox" id="cb1" formControlName="check">
+            <div style="color: red" *ngIf="memberForm.get('check').hasError('required') && submitted">Vui lòng xác nhận chính sách</div>
+            <span class="checkmark"></span>
+
+          </label>
+
+        </div>
+
+
+        <input class="button" type="submit" value="Đăng Ký"/>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+

@@ -6,6 +6,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './layout/home/home.component';
+import {MemberManagementModule} from "./member-management/member-management.module";
+import {HttpClientModule} from "@angular/common/http";
+import {environment} from "../environments/environment";
+import {AngularFireModule} from "@angular/fire";
+import {MemberAccountRegistrationComponent} from "./member-management/member-account-registration/member-account-registration.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -13,11 +20,17 @@ import { HomeComponent } from './layout/home/home.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    MemberManagementModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
