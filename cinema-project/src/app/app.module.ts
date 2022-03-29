@@ -9,6 +9,9 @@ import { HomeComponent } from './layout/home/home.component';
 import {LoadCssService} from "./loadCss/load-css-service.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {MatDialogModule} from "@angular/material/dialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule
   ],
   providers: [
     LoadCssService

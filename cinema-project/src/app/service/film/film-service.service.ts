@@ -18,5 +18,16 @@ export class FilmServiceService {
       '&statusFilm=' + statusFilm + '&typeFilm=' + typeFilm);
   }
 
+  public getListFilmManagement(page: number, name: string, startDate: string, endDate: string){
+    return this.httpClient.get<Film[]>(this.API_URL_LIST + '/list-management?page=' +
+    page + '&name=' + name + '&startDate=' + startDate + '&endDate=' + endDate);
+  }
 
+  public getFilmManagement(id: number): Observable<Film>{
+    return this.httpClient.get<Film>(this.API_URL_LIST + '/findById/' + id);
+  }
+
+  public deleteFilmManagement(id: number): Observable<void>{
+    return this.httpClient.get<void>(this.API_URL_LIST + '/delete/' + id);
+  }
 }

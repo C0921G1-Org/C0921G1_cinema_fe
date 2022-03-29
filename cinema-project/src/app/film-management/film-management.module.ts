@@ -6,13 +6,19 @@ import {FilmManagementListComponent} from './film-management-list/film-managemen
 import {FilmClientFilmDetailComponent} from './film-client-film-detail/film-client-film-detail.component';
 import {FilmManagementDeleteComponent} from './film-management-delete/film-management-delete.component';
 import {FilmManagementRoutingModule} from "./film-management-routing.module";
+import {FormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 @NgModule({
   declarations: [FilmManagementCreateComponent, FilmManagementEditComponent, FilmManagementListComponent, FilmClientFilmDetailComponent, FilmManagementDeleteComponent],
   imports: [
     CommonModule,
-    FilmManagementRoutingModule
+    FilmManagementRoutingModule,
+    FormsModule,
+    MatInputModule,
+    MatDatepickerModule
   ]
 })
 export class FilmManagementModule {
