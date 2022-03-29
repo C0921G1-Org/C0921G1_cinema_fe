@@ -4,8 +4,8 @@ import {BookingBookingTicketListComponent} from "./booking-booking-ticket-list/b
 import {BookingConfirmBookingTicketComponent} from "./booking-confirm-booking-ticket/booking-confirm-booking-ticket.component";
 import {BookingConfirmInformationBookingComponent} from "./booking-confirm-information-booking/booking-confirm-information-booking.component";
 import {BookingSeatSelectionComponent} from "./booking-seat-selection/booking-seat-selection.component";
-import {BookingFilmSelectionComponent} from "./booking-film-selection/booking-film-selection.component";
 import {BookingInformationBookingTicketComponent} from "./booking-information-booking-ticket/booking-information-booking-ticket.component";
+import {BookingTicketSelectionComponent} from "./booking-ticket-selection/booking-ticket-selection.component";
 
 
 const routes: Routes = [
@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'info-booking', component: BookingInformationBookingTicketComponent
   },
   {
-    path: 'film-select/:id', component: BookingFilmSelectionComponent
+    path: 'booking-ticket/:id', component: BookingTicketSelectionComponent
   },
   {
     path: 'seat-select', component: BookingSeatSelectionComponent
