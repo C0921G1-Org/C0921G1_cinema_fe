@@ -11,7 +11,8 @@ export class MemberService {
   constructor(private http:HttpClient) { }
 
   //create member NhanNT
-  createMember(member: Member): Observable<void> {
-    return this.http.post<void>(this.API_URL, member)
+  createMember(member: Member): Observable<Member> {
+    console.log(member);
+    return this.http.post<Member>(this.API_URL, member)
   }
 }

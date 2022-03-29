@@ -11,7 +11,7 @@ export class WardService {
   constructor(private http:HttpClient) { }
 
   //get ward list NhanNT
-  getWardList(): Observable<Ward[]>{
-    return this.http.get<Ward[]>(this.API_URL)
+  getWardList(id:any): Observable<Ward[]>{
+    return this.http.get<Ward[]>(this.API_URL+'/'+id)
   }
 }

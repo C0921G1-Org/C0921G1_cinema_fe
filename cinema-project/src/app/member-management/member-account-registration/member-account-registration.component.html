@@ -1,3 +1,4 @@
+
 <div class="form_wrapper">
   <div class="form_container">
     <div class="title_container">
@@ -9,8 +10,8 @@
         <!--img-->
 
         <div class="input_field">
-          <label for="img" style="font-weight: 500">Thêm ảnh đại diện</label>
-          <input id="img" type="file" class="form-control-file" formControlName="img"/>
+          <label for="image" style="font-weight: 500">Thêm ảnh đại diện</label>
+          <input id="image" type="text" class="form-control-file" formControlName="image"/>
 <!--          <div style="color: red">Vui lòng thêm ảnh</div>-->
         </div>
 
@@ -39,10 +40,10 @@
           </div>
           <div class="input_field select_option col_half">
             <label>Giới tính <span style="color: red">*</span></label>
-            <select>
+            <select formControlName="gender">
               <option>Giới tính</option>
-              <option formControlName="gender" value="1">Nam</option>
-              <option formControlName="gender" value="2">Nữ</option>
+              <option value="0">Nam</option>
+              <option value="1">Nữ</option>
             </select>
 <!--            <div style="color: red">Bạn vui lòng chọn giới tính</div>-->
           </div>
@@ -88,26 +89,24 @@
         <div class="row clearfix">
           <div class="input_field select_option col_half">
             <label>Tỉnh/Thành phố <span style="color: red">*</span></label>
-            <select name="city" id="city" formControlName="city">
+            <select name="city" id="city" formControlName="city" (change) ="getCityToDistrictNhanNT($event.target.value)" >
               <option selected disabled value="">Tỉnh / Thành phố</option>
 
-              <option *ngFor="let city of cityList" [ngValue]="city">{{city.name}}</option>
+              <option *ngFor="let city of cityList" [value]="city.id">{{city.name}}</option>
 
             </select>
 <!--            <div style="color: red">Bạn vui lòng chọn Tỉnh / Thành phố</div>-->
           </div>
           <div class="input_field select_option col_half">
             <label>Quận/Huyện <span style="color: red">*</span></label>
-            <select name="district" id="district" formControlName="district" >
+            <select name="district" id="district" formControlName="district" (change)="getDistrictToWardNhanNT($event.target.value)">
               <option selected disabled value="">Quận / Huyện</option>
 
-              <option *ngFor="let district of districtList" [ngValue]="district">{{district.name}}</option>
+              <option *ngFor="let district of districtList" [value]="district.id">{{district.name}}</option>
 
             </select>
 <!--            <div style="color: red">Bạn vui lòng chọn Quận / Huyện</div>-->
           </div>
-
-
         </div>
 
         <!--address + ward-->
@@ -117,14 +116,13 @@
             <label> Xã/Phường <span style="color: red">*</span></label>
             <select name="ward" id="ward" formControlName="ward">
               <option selected disabled value="">Xã / Phường</option>
-
               <option *ngFor="let ward of wardList" [ngValue]="ward">{{ward.name}}</option>
             </select>
 <!--            <div style="color: red">Bạn vui lòng chọn Xã / Phường</div>-->
           </div>
           <div class="input_field col_half">
             <label>Địa chỉ <span style="color: red">*</span></label>
-            <input type="email" name="email" placeholder="Địa chỉ" formControlName="address" required/>
+            <input type="text" name="address" placeholder="Địa chỉ" formControlName="address" required/>
 <!--            <div style="color: red">Vui lòng nhập địa chỉ</div>-->
           </div>
 
@@ -134,10 +132,28 @@
 
         <div class="input_field">
           <label>Ngày Sinh <span style="color: red">*</span></label>
-          <input type="date" name="dayOfBirth" placeholder="" formControlName="dob" required/>
+          <input type="date" name="dateOfBirth" placeholder="" formControlName="dateOfBirth" required/>
 <!--          <div style="color: red">Vui lòng chọn ngày sinh</div>-->
 <!--          <div style="color: red">Vui lòng chọn ngày sinh theo dạng (dd/mm/yyyy)</div>-->
         </div>
+
+        <div class="row clearfix">
+          <div class="input_field col_half">
+            <label>Ngày Sinh <span style="color: red">*</span></label>
+            <input type="date" name="dateOfBirth" placeholder="" formControlName="dateOfBirth" required/>
+            <!--          <div style="color: red">Vui lòng chọn ngày sinh</div>-->
+            <!--          <div style="color: red">Vui lòng chọn ngày sinh theo dạng (dd/mm/yyyy)</div>-->
+          </div>
+
+          <div class="input_field col_half">
+            <label>Chứng minh thư <span style="color: red">*</span></label>
+            <input type="text" name="identityNumber" placeholder="Chứng minh thư" formControlName="identityNumber" required/>
+            <!--            <div style="color: red">Vui lòng nhập địa chỉ</div>-->
+          </div>
+
+        </div>
+
+
         <!-- xác nhận-->
 
         <div class="input_field checkbox_option">
@@ -159,7 +175,5 @@
     </div>
   </div>
 </div>
-
-
 
 

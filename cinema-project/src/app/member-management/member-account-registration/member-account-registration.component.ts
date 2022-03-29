@@ -12,7 +12,8 @@ import {AngularFireModule} from "@angular/fire";
 import Swal from 'sweetalert2';
 import {finalize} from "rxjs/operators";
 import {formatDate} from '@angular/common';
-import {AngularFireStorage} from "@angular/fire/storage";
+import {AngularFireStorage} from '@angular/fire/storage';
+
 import {MemberService} from "../../service/member.service";
 
 @Component({
@@ -29,7 +30,8 @@ export class MemberAccountRegistrationComponent implements OnInit {
   wardList:Ward[] = [];
   memberForm:FormGroup;
   selectedImage:any = "";
-
+  cityObj:City;
+  districtObj:District;
   constructor(private cityService:CityService,
               private districtService:DistrictService,
               private wardService:WardService,
@@ -40,8 +42,9 @@ export class MemberAccountRegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.cityService.getCityList().subscribe(city => {
       this.cityList = city;
+      // console.log(city)
           this.memberForm = new FormGroup({
-            img: new FormControl(''),
+            image: new FormControl(''),
             name: new FormControl(''),
             phone: new FormControl(''),
             gender: new FormControl(''),
@@ -56,7 +59,8 @@ export class MemberAccountRegistrationComponent implements OnInit {
             district:  new FormControl(''),
             ward:  new FormControl(''),
             address: new FormControl(''),
-            dob:  new FormControl(''),
+            dateOfBirth:  new FormControl(''),
+            identityNumber: new FormControl(''),
             check: new FormControl('',[Validators.required,])
           })
         })
@@ -69,9 +73,19 @@ export class MemberAccountRegistrationComponent implements OnInit {
   }
 
   //get city NhanNT
-  getCityNhanNT(id: string): any{
-    return this.districtService.getDistrictList().subscribe(district => {
+  getCityToDistrictNhanNT(event: number): any{
+    // console.log(event)
+    // this.cityObj = event
+    return this.districtService.getDistrictList(event).subscribe(district => {
       this.districtList = district;
+    })
+  }
+  //get district  NhanNT
+  getDistrictToWardNhanNT(event2: number): any{
+    // console.log(event2)
+    // this.districtObj = event2
+    return this.wardService.getWardList(event2).subscribe(ward => {
+      this.wardList = ward;
     })
   }
 
@@ -79,19 +93,19 @@ export class MemberAccountRegistrationComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
 // img upload
-    const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
-    const fileRef = this.storage.ref(nameImg)
-
-    this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe((url) => {
-
-          this.memberForm.patchValue({img: url});
+//     const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
+//     const fileRef = this.storage.ref(nameImg)
+//
+//     this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
+//       finalize(() => {
+//         fileRef.getDownloadURL().subscribe((url) => {
+//
+//           this.memberForm.patchValue({img: url});
 
           // Call API to create vaccine
           if (this.memberForm.valid) {
             this.memberObj = Object.assign({}, this.memberForm.value);
-            // console.log(this.memberObj );
+              console.log(this.memberObj );
             this.memberService.createMember(this.memberObj).subscribe(()=>{
               Swal.fire(
                     'Create successfully!!!',
@@ -101,10 +115,10 @@ export class MemberAccountRegistrationComponent implements OnInit {
               this.router.navigateByUrl('');
             });
           }
-
-        });
-      })
-    ).subscribe();
+    //
+    //     });
+    //   })
+    // ).subscribe();
   }
   // img support NhanNT
   showPreview(event: any){

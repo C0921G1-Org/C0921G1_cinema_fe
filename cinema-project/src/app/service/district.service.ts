@@ -11,7 +11,7 @@ export class DistrictService {
   constructor(private http:HttpClient) { }
 
   //get district list NhanNT
-  getDistrictList(): Observable<District[]>{
-    return this.http.get<District[]>(this.API_URL)
+  getDistrictList(id:any): Observable<District[]>{
+    return this.http.get<District[]>(this.API_URL +'/'+id)
   }
 }

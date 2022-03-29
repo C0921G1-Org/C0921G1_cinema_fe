@@ -5,17 +5,16 @@ import {Ward} from "./ward";
 export interface Member {
 
  // id: string;
- img:string;
+ image:string;
  name:string;
  phone:string;
  gender:number;
  email:string;
  password:string;
  confirmPassword: string;
- city: City;
- district: District;
+ identityNumber: string;
  ward: Ward;
  address:string;
- dob: string;
+ dateOfBirth: string;
 
 }
