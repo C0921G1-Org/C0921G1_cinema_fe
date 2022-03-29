@@ -29,7 +29,7 @@
                class="custom-background-btn-bold btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft custom-border-none">Đặt
               Vé</a>
             <a href=""
-               class="custom-background-btn-white btn btn-light py-md-3 px-md-5 animated slideInRight" custom-border-none>Chi
+               class="custom-background-btn-white btn btn-light py-md-3 px-md-5 animated slideInRight custom-border-none">Chi
               Tiết</a>
           </div>
         </div>
@@ -71,11 +71,7 @@
         <div class="col-md-10">
           <div class="row g-2">
             <div class="col-md-3">
-              <div class="date" id="date2" data-target-input="nearest">
-                <input type="text" class="form-control datetimepicker-input"
-                       placeholder="Chọn Ngày Chiếu"
-                       data-target="#date2" data-toggle="datetimepicker" style="border-radius: 0; font-family: 'Heebo',sans-serif !important;" [(ngModel)]="startDate"/>
-              </div>
+              <input type="text" placeholder="Tên diễn viên" class="form-control" style="border-radius: 0; font-family: 'Heebo',sans-serif !important;" [(ngModel)]="actor">
             </div>
             <div class="col-md-3">
               <input type="text" placeholder="Nhập Tên Phim" class="form-control" style="border-radius: 0; font-family: 'Heebo',sans-serif !important;" [(ngModel)]="name">
@@ -83,8 +79,8 @@
             <div class="col-md-3">
               <select class="form-select" style="border-radius: 0; font-family: 'Heebo',sans-serif !important;" [(ngModel)]="statusFilm">
                 <option value="" selected disabled>Tình Trạng Phim</option>
-                <option value="1">Phim Đang Chiếu</option>
-                <option value="2">Phim Sắp Chiếu</option>
+                <option value="">Phim Đang Chiếu</option>
+                <option value="1">Phim Sắp Chiếu</option>
               </select>
             </div>
             <div class="col-md-3">
@@ -114,13 +110,13 @@
       <h1 class="mb-5 custom-font-family-h1">Phim <span class="custom-text-color1 custom-font-family-span">Đang Chiếu</span></h1>
     </div>
     <div class="row g-4">
-      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s" *ngFor="let film of filmClientList">
+      <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s" *ngFor="let film of filmClientList">
         <div class="room-item shadow rounded overflow-hidden">
           <div class="position-relative">
             <img class="custom-img-fluid custom-img-size" src="{{film.image}}" alt="">
           </div>
           <div class="p-4 mt-2">
-            <div class="d-flex justify-content-between mb-3">
+            <div class="d-flex justify-content-between mb-3 custom-film-name">
               <h5 class="mb-0 custom-font-family-h5 text-uppercase">{{film.name}}</h5>
             </div>
             <div class="d-flex mb-3">
@@ -136,15 +132,21 @@
               <div class="d-flex"><p class="mb-lg-0 fw-bold custom-font-family-p-list-film">Khởi chiếu: </p>
                 <p class="mb-lg-0 custom-w-space custom-font-family-p-list-film-1">{{film.startDate}}</p></div>
             </div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between" style="margin-top: 8px">
               <a class="btn btn-sm custom-background-btn-bold rounded py-2 px-4 custom-btn-detail" [routerLink]="['/booking/booking-ticket/'+film.id]" style="border-radius: 0 !important;">Đặt Vé</a>
-              <a class="btn btn-sm btn-dark rounded py-2 px-4 custom-btn-detail" [routerLink]="['/film/detail-client/'+film.id]" style="border-radius: 0 !important;">Chi Tiết</a>
+              <a class="btn btn-sm btn-dark rounded py-2 px-4 custom-btn-detail custom-detail-btn1" [routerLink]="['/film/detail-client/'+film.id]" style="border-radius: 0 !important;">Chi Tiết</a>
             </div>
           </div>
         </div>
       </div>
+
+<!--      case list isEmpty-->
+      <div *ngIf="flagMessageEmpty === true">
+        <h3 style="text-align: center; color: red">Phim bạn tìm kiếm không tìm thấy!</h3>
+        <div style="text-align: center"><a style="color: blue; font-size: 18px" href="http://localhost:4200/home"><i class="bi bi-arrow-left"></i> Quay Lại Danh Sách Phim</a></div>
+      </div>
     </div>
-    <div class="row custom-row-see-more">
+    <div class="row custom-row-see-more" *ngIf="!flagMessageEmpty || filmClientList.length === 0">
       <div class="col-lg-8 col-sm-9"></div>
       <div class="col-lg-4 col-sm-3">
         <button *ngIf="page != totalPage -1" class="btn custom-background-btn-bold text-white float-lg-end custom-border-none"
@@ -226,7 +228,7 @@
           </div>
           <div class="text-center p-4 mt-3">
             <h5 class="fw-bold mb-0 custom-font-family-h5">Tom Holland</h5>
-            <small>Diễn Viên</small>
+            <small style=" font-family: 'Heebo',sans-serif !important">Diễn Viên</small>
           </div>
         </div>
       </div>
@@ -245,7 +247,7 @@
           </div>
           <div class="text-center p-4 mt-3">
             <h5 class="fw-bold mb-0 custom-font-family-h5">Diệu Nhi</h5>
-            <small>Diễn Viên</small>
+            <small style=" font-family: 'Heebo',sans-serif !important">Diễn Viên</small>
           </div>
         </div>
       </div>
@@ -264,7 +266,7 @@
           </div>
           <div class="text-center p-4 mt-3">
             <h5 class="fw-bold mb-0 custom-font-family-h5">Robert Pattinson</h5>
-            <small>Diễn Viên</small>
+            <small style=" font-family: 'Heebo',sans-serif !important">Diễn Viên</small>
           </div>
         </div>
       </div>
@@ -283,7 +285,7 @@
           </div>
           <div class="text-center p-4 mt-3">
             <h5 class="fw-bold mb-0 custom-font-family-h5">Chris Evans</h5>
-            <small>Diễn Viên</small>
+            <small style=" font-family: 'Heebo',sans-serif !important">Diễn Viên</small>
           </div>
         </div>
       </div>
@@ -297,7 +299,7 @@
   <div class="container">
     <div class="owl-carousel testimonial-carousel py-5">
       <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-        <p>Tôi thật sự choáng ngợp trước không gian hoành tráng và công nghệ trình chiếu phim hiện đại của các bạn.
+        <p class="custom-text-service">Tôi thật sự choáng ngợp trước không gian hoành tráng và công nghệ trình chiếu phim hiện đại của các bạn.
           Tôi chắc chắn sẽ liên Hệ Đầu tư thêm 3000 tỷ đô để đưa C09 CINEMA trở thành rạp chiếu phim lớn nhất thế
           giới.</p>
         <div class="d-flex align-items-center">
@@ -305,13 +307,13 @@
                style="width: 45px; height: 45px;">
           <div class="ps-3">
             <h6 class="fw-bold mb-1">Phạm Nhật Vượng</h6>
-            <small>Tỉ Phú</small>
+            <small style=" font-family: 'Heebo',sans-serif !important">Tỉ Phú</small>
           </div>
         </div>
         <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
       </div>
       <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-        <p>Lần đầu tôi tới Việt Nam các bạn biết tôi làm gì không? Dẫn mấy đứa con tôi đến C09 CiNEMA xem phim
+        <p class="custom-text-service">Lần đầu tôi tới Việt Nam các bạn biết tôi làm gì không? Dẫn mấy đứa con tôi đến C09 CiNEMA xem phim
           SPIDER-MAN: NO WAY HOME
           chứ còn làm gì nữa haha. Nếu có dịp tôi mời các bạn đến nhà hát hài kịch xem tôi thi đấu nhé.</p>
         <div class="d-flex align-items-center">
@@ -319,13 +321,13 @@
                style="width: 45px; height: 45px;">
           <div class="ps-3">
             <h6 class="fw-bold mb-1">Cristiano Ronaldo</h6>
-            <small>Cầu Thủ Bóng Đá</small>
+            <small style=" font-family: 'Heebo',sans-serif !important">Cầu Thủ Bóng Đá</small>
           </div>
         </div>
         <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
       </div>
       <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-        <p>Các bạn biết đấy, tôi thì chỉ thích trà xanh thôi, còn lại không thích gì hết. À à à quên.... lúc trước tôi
+        <p class="custom-text-service">Các bạn biết đấy, tôi thì chỉ thích trà xanh thôi, còn lại không thích gì hết. À à à quên.... lúc trước tôi
           còn thích hát nhép nữa
           Nhưng mà từ khi xuất hiện C09CINEMA tôi bỏ mấy thứ kia để cày phim tại rạp này rồi đó.</p>
         <div class="d-flex align-items-center">
@@ -333,7 +335,7 @@
                style="width: 45px; height: 45px;">
           <div class="ps-3">
             <h6 class="fw-bold mb-1">Sơn Tùng M-TP</h6>
-            <small>Chủ Tịch Tập Đoàn M-TP Entertainment</small>
+            <small style=" font-family: 'Heebo',sans-serif !important">Chủ Tịch Tập Đoàn M-TP Entertainment</small>
           </div>
         </div>
         <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
@@ -350,7 +352,7 @@
       <div class="col-lg-6">
         <h6 class="section-title text-start custom-text-color1 custom-font-family-h6">Bản Tin</h6>
         <h1 class="mb-4 custom-font-family-h1">Welcome To <span class="custom-text-color1 custom-font-family-span">C09</span></h1>
-        <p class="mb-4">Một vài con số thống kê nho nhỏ, nhưng đáng tự hào của rạp C09 tạo nên.
+        <p class="mb-4 custom-text-service">Một vài con số thống kê nho nhỏ, nhưng đáng tự hào của rạp C09 tạo nên.
           Chúng tôi không ngừng phấn đấu để cải thiện dịch vụ và mang lại trải nghiệm tốt nhất cho người dùng. Bên phải
           là
           những bộ phim làm mưa làm gió tại C09 CINEMA.</p>
@@ -360,7 +362,7 @@
               <div class="border rounded text-center p-4">
                 <i class="fa fa-solid fa-couch fa-2x custom-text-color1 mb-2"></i>
                 <h2 class="mb-1" data-toggle="counter-up">159</h2>
-                <p class="mb-0">Phòng chiếu</p>
+                <p class="mb-0" style=" font-family: 'Heebo',sans-serif !important">Phòng chiếu</p>
               </div>
             </div>
           </div>
@@ -369,7 +371,7 @@
               <div class="border rounded text-center p-4">
                 <i class="fa fa-users-cog fa-2x custom-text-color1 mb-2"></i>
                 <h2 class="mb-1" data-toggle="counter-up">1400</h2>
-                <p class="mb-0">Nhân Viên</p>
+                <p class="mb-0" style=" font-family: 'Heebo',sans-serif !important">Nhân Viên</p>
               </div>
             </div>
           </div>
@@ -378,7 +380,7 @@
               <div class="border rounded text-center p-4">
                 <i class="fa fa-users fa-2x custom-text-color1 mb-2"></i>
                 <h2 class="mb-1" data-toggle="counter-up">9000</h2>
-                <p class="mb-0">Khách Hàng</p>
+                <p class="mb-0" style=" font-family: 'Heebo',sans-serif !important">Khách Hàng</p>
               </div>
             </div>
           </div>

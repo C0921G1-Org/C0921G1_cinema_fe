@@ -13,9 +13,9 @@ export class FilmServiceService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getListFilmClient(seeMore: number, page: number, startDate: string, name: string, statusFilm: string, typeFilm: string): Observable<Film[]> {
-    return this.httpClient.get<Film[]>(this.API_URL_LIST + '/list-client?seeMore=' + seeMore + '&page=' + page + '&startDate=' + startDate + '&name=' + name +
-      '&statusFilm=' + statusFilm + '&typeFilm=' + typeFilm);
+  public getListFilmClient(seeMore: number, page: number, actor: string, name: string, typeFilm: string, filmStatus: string): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL_LIST + '/list-client?seeMore=' + seeMore + '&page=' + page + '&actor='
+      + actor + '&name=' + name + '&typeFilm=' + typeFilm + '&filmStatus=' + filmStatus);
   }
 
 
