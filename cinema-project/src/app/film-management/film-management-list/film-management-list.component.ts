@@ -4,6 +4,7 @@ import {FilmServiceService} from "../../service/film/film-service.service";
 import {FilmManagementDeleteComponent} from "../film-management-delete/film-management-delete.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
+import {DateAdapter} from "@angular/material/core";
 
 @Component({
   selector: 'app-film-management-list',
@@ -18,19 +19,26 @@ export class FilmManagementListComponent implements OnInit {
   endDate= '';
   totalPagination: number;
   totalElement: number
+  startDateFormat='';
+  endDateFormat='';
   constructor(private filmServiceService: FilmServiceService,
-              private dialog: MatDialog, private router: Router) { }
+              private dialog: MatDialog, private router: Router,
+              private dateAdapter: DateAdapter<Date>) {
+      this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
+  }
 
   ngOnInit(): void {
     this.getFilmList();
   }
 
   public getFilmList(){
-    this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDate,this.endDate).subscribe(value => {
+      this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDateFormat,this.endDateFormat).subscribe(value => {
       this.films = value['content'];
       this.totalPagination = value['totalPages'];
       this.totalElement = value['totalElements'];
       this.page = 0;
+      console.log(this.startDateFormat);
+      console.log(this.startDate);
     });
   }
 
@@ -52,8 +60,9 @@ export class FilmManagementListComponent implements OnInit {
     if (this.page <= this.totalPagination) {
       this.page = this.page + 1;
     }
-    this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDate,this.endDate).subscribe(data => {
+    this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDateFormat,this.endDateFormat).subscribe(data => {
       this.films = data['content'];
+      this.page=0;
     });
   }
 
@@ -63,13 +72,25 @@ export class FilmManagementListComponent implements OnInit {
       this.page = 0;
       this.ngOnInit();
     } else {
-      this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDate,this.endDate).subscribe(data => {
+      this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDateFormat,this.endDateFormat).subscribe(data => {
         this.films = data['content'];
+        this.page=0;
       })
     }
   }
 
   search(){
+    if(this.startDate != null){
+      this.startDateFormat = new Date(this.startDate).toLocaleDateString('fr-CA');
+    }else {
+      this.startDateFormat = '';
+    }
+    if (this.endDate !=null){
+      this.endDateFormat = new Date(this.endDate).toLocaleDateString('fr-CA');
+    }else {
+      this.endDateFormat ='';
+    }
+
     this.getFilmList();
   }
 

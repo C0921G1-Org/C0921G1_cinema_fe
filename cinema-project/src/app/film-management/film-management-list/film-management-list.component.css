@@ -152,4 +152,8 @@ table td{
   font-size: 13px;
   margin-bottom: 114px;
 }
+mat-form-field{
+  background: white;
+  color: #212529;
+}
 

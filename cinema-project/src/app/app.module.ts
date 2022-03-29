@@ -31,7 +31,7 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatNativeDateModule
   ],
   providers: [
-    LoadCssService
+    LoadCssService,
   ],
   bootstrap: [AppComponent]
 })
