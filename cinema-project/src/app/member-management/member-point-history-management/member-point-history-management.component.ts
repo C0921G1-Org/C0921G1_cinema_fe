@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import firebase from "firebase";
+import Transaction = firebase.firestore.Transaction;
+import {MemberService} from "../../service/member.service";
 
 @Component({
   selector: 'app-member-point-history-management',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemberPointHistoryManagementComponent implements OnInit {
 
-  constructor() { }
+  p: number = 1;
+  transactionList: Transaction[];
+  transaction: Transaction;
+
+  constructor(private memberService: MemberService,) {
+  }
 
   ngOnInit(): void {
   }
-
 }

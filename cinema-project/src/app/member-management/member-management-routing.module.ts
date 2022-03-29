@@ -8,7 +8,6 @@ import {MemberListComponent} from "./member-list/member-list.component";
 import {MemberPointHistoryManagementComponent} from "./member-point-history-management/member-point-history-management.component";
 
 
-
 const routes: Routes = [
   {
     path: 'edit-account/:id', component: MemberAccountEditComponent
@@ -20,7 +19,7 @@ const routes: Routes = [
     path: 'Booking-ticket', component: MemberBookingTicketManagementComponent
   },
   {
-    path: 'info-member', component: MemberInformationManagementComponent
+    path: 'info-member/:id', component: MemberInformationManagementComponent
   },
   {
     path: 'list', component: MemberListComponent
