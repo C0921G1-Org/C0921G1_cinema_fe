@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from "./layout/home/home.component";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // router nhiều chỗ còn thiếu tham số, ai cần gì thì tự thêm vô rồi làm nhé(trong routing của module con ấy)
 const routes: Routes = [
@@ -31,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),FormsModule, ReactiveFormsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

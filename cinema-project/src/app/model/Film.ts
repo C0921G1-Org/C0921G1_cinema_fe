@@ -1,4 +1,5 @@
-import {FilmType} from "./film-type";
+import {FilmType} from "./Film-type";
+import {ShowTime} from './ShowTime';
 
 export class Film {
   id: number;
@@ -14,7 +15,7 @@ export class Film {
   version: string;
   flagDelete: number;
   filmType: FilmType;
-// showTimes: ShowTime;
+  showTime: ShowTime;
 
   constructor() {
   }

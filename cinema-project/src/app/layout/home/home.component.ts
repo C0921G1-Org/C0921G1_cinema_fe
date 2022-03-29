@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LoadCssService} from '../../loadCss/load-css-service.service';
-import {Film} from "../../model/film";
+import {Film} from "../../model/Film";
 import {FilmServiceService} from "../../service/film/film-service.service";
-import {FilmType} from "../../model/film-type";
+import {FilmType} from "../../model/Film-type";
 import {TypeFilmServiceService} from "../../service/film-type/type-film-service.service";
 
 @Component({

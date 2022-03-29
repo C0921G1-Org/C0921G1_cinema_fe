@@ -7,14 +7,19 @@ import { BookingBookingTicketListComponent } from './booking-booking-ticket-list
 import { BookingConfirmInformationBookingComponent } from './booking-confirm-information-booking/booking-confirm-information-booking.component';
 import {BookingManagementRoutingModule} from "./booking-management-routing.module";
 import { BookingTicketSelectionComponent } from './booking-ticket-selection/booking-ticket-selection.component';
+import {FormsModule} from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [BookingConfirmBookingTicketComponent, BookingInformationBookingTicketComponent, BookingSeatSelectionComponent, BookingBookingTicketListComponent, BookingConfirmInformationBookingComponent, BookingTicketSelectionComponent],
+    declarations: [BookingConfirmBookingTicketComponent, BookingInformationBookingTicketComponent, BookingSeatSelectionComponent, BookingBookingTicketListComponent, BookingConfirmInformationBookingComponent, BookingTicketSelectionComponent],
+    exports: [
+        BookingBookingTicketListComponent
+    ],
   imports: [
     CommonModule,
-    BookingManagementRoutingModule
+    BookingManagementRoutingModule,
+    FormsModule
   ]
 })
 export class BookingManagementModule { }
