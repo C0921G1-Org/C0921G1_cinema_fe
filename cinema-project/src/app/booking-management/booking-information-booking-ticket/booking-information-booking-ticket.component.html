@@ -71,20 +71,20 @@
     <!--                khhung chi tiết phim sắp được thanh toán có lưu giữ số tiền để thanh toán paypal-->
     <div class="col-md-3 col-lg-3 col-sm-3 khung_phim" >
       <div class="khung_phim1 col-md-12">
-        <img src="{{transaction.showTime.film.image}}" width="306px" height="220px">
-        <h3 style=" font-size: 15px;padding-left: 10px"><b>{{transaction.showTime.film.name}}</b></h3>
-        <h2 style=" font-size: 15px;padding-left: 10px">Đạo diễn:  {{transaction.showTime.film.director}}</h2>
-        <span class="test_phim">{{transaction.showTime.film.version}}</span><span style="font-size: 12px; color: red">(*)Phim chỉ dành cho khán giả trên 18 tuổi</span>
+        <img [src]="receiveObj?.showtime.film.image" width="306px" height="220px">
+        <h3 style=" font-size: 15px;padding-left: 10px"><b>{{receiveObj?.showtime.film.name}}</b></h3>
+        <h2 style=" font-size: 15px;padding-left: 10px">Đạo diễn:  {{receiveObj?.showtime.film.director}}</h2>
+        <span class="test_phim">{{receiveObj?.showtime.film.version}}</span><span style="font-size: 12px; color: red">(*)Phim chỉ dành cho khán giả trên 18 tuổi</span>
         <hr>
-        <span><b class="testH2">Thời Gian</b> : </span> <span>{{transaction.showTime.film.duration}}</span>
+        <span><b class="testH2">Thời Gian</b> : </span> <span>{{receiveObj?.showtime.film.duration}}</span>
         <hr>
-        <span><b class="testH2">Xuất Chiếu </b>: </span> <span>{{transaction.showTime.name}} | {{transaction.showTime.date}}</span>
+        <span><b class="testH2">Xuất Chiếu </b>: </span> <span>{{receiveObj?.showtime.name}} | {{receiveObj?.showtime.date}}</span>
         <hr>
-        <span><b class="testH2">Combo </b>: </span>
+        <span><b class="testH2">Combo </b>:chưa có </span>
         <hr>
-        <span><b class="testH2">Ghế </b> : </span> <span>G9 , G6</span>
+        <span><b class="testH2">Ghế </b> : </span> <span>{{receiveObj?.seatChoose}}</span>
         <hr>
-          <span><b class="testH2">Tổng </b>: </span> <span>140,000đ</span>
+          <span><b class="testH2">Tổng </b>: </span> <span>{{receiveObj?.totalPayment}}</span>
         <div *ngIf="check">
         <hr>
         <span><b class="testH2">Thanh Toán PayPal</b>: </span> <span>140,000đ</span>
