@@ -15,7 +15,7 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   currentShowTimeChooseObj: Showtime;
   selectedSeatList: SelectedSeat[] = [];
   seatList = [];
-  seatChoose: any;
+  // seatChoose: any;
   seatMapRow = 10;
   seatMapColumn = 5;
   totalSeat = this.seatMapRow * this.seatMapColumn;
@@ -26,12 +26,10 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
     'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'D10',
     'E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8', 'E9', 'E10'];
   totalPayment = 0;
-  orderDetailSeatNumber = 0;
   seatChoosenList = [];
   comboNumber = 0;
-
-  // transferObj: {showtime: Showtime, seatChoose: {}, totalPayment: {}};
-
+  orderDetailSeatNumber = 0;
+  count = 0;
 
   constructor(private sharingDataService: SharingDataService,
               private selectedSeatService: SelectedSeatService,
@@ -40,7 +38,6 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   }
 
   public showContent = false;
-  private flag: boolean;
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params.id;
@@ -51,6 +48,8 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
       this.updateSeat();
       console.log(this.selectedSeatList);
       console.log(this.seatList);
+    }, error => {
+      this.createSeat(this.totalSeat);
     });
     setTimeout(() => {
       this.showContent = true;
@@ -83,32 +82,35 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   }
 
   getSeat(seatObj: any) {
-    seatObj.active = !seatObj.active;
-    this.seatChoose = seatObj;
-    if (seatObj.active) {
-      this.seatChoosenList.push(seatObj.id);
-      if (seatObj.id <= 20) {
-        this.totalPayment += 65000;
-      }
-      if (seatObj.id > 20 && seatObj.id <= 40) {
-        this.totalPayment += 75000;
-      }
-      if (seatObj.id > 40 && seatObj.id <= 50) {
-        this.totalPayment += 85000;
-      }
-    } else {
-      this.seatChoosenList.splice(this.seatChoosenList.indexOf(seatObj.id), 1);
-      if (seatObj.id <= 20) {
-        this.totalPayment -= 65000;
-      }
-      if (seatObj.id > 20 && seatObj.id <= 40) {
-        this.totalPayment -= 75000;
-      }
-      if (seatObj.id > 40 && seatObj.id <= 50) {
-        this.totalPayment -= 85000;
-      }
+    console.log(this.count);
+    if (!seatObj.status) {
+        seatObj.active = !seatObj.active;
+        // this.seatChoose = seatObj;
+        if (seatObj.active) {
+          this.seatChoosenList.push(seatObj.id);
+          if (seatObj.id <= 20) {
+            this.totalPayment += 65000;
+          }
+          if (seatObj.id > 20 && seatObj.id <= 40) {
+            this.totalPayment += 75000;
+          }
+          if (seatObj.id > 40 && seatObj.id <= 50) {
+            this.totalPayment += 85000;
+          }
+        } else {
+          this.seatChoosenList.splice(this.seatChoosenList.indexOf(seatObj.id), 1);
+          if (seatObj.id <= 20) {
+            this.totalPayment -= 65000;
+          }
+          if (seatObj.id > 20 && seatObj.id <= 40) {
+            this.totalPayment -= 75000;
+          }
+          if (seatObj.id > 40 && seatObj.id <= 50) {
+            this.totalPayment -= 85000;
+          }
+        }
+        console.log(this.seatChoosenList);
     }
-    console.log(this.seatChoosenList);
   }
 
   plusTicket() {
@@ -139,6 +141,7 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
       seatChoose: this.seatChoosenList,
       totalPayment: this.totalPayment,
     };
+    console.log(transferObj.showtime);
     this.sharingDataService.getDataFromFirstComponent(transferObj);
     console.log(transferObj);
   }
