@@ -5,6 +5,7 @@ import {SelectedSeatService} from '../../service/buy-ticket/selected-seat.servic
 import {SelectedSeat} from '../../model/selected-seat';
 import {ActivatedRoute} from '@angular/router';
 import {ShowtimeService} from '../../service/buy-ticket/showtime.service';
+import {TokenStorageService} from '../../service/security/token-storage.service';
 
 @Component({
   selector: 'app-seat-selection',
@@ -30,16 +31,20 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   comboNumber = 0;
   orderDetailSeatNumber = 0;
   count = 0;
+  memberId: string;
 
   constructor(private sharingDataService: SharingDataService,
               private selectedSeatService: SelectedSeatService,
               private showtimeService: ShowtimeService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private tokenStorageService: TokenStorageService) {
   }
 
   public showContent = false;
 
   ngOnInit(): void {
+    this.memberId = this.tokenStorageService.getUser().member;
+    console.log(this.memberId);
     const id = this.activatedRoute.snapshot.params.id;
     this.showtimeService.findById(id).subscribe(value => this.currentShowTimeChooseObj = value);
     this.selectedSeatService.getAllSelectedSeatByShowTimeId(id).subscribe(value1 => {
@@ -84,36 +89,36 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   getSeat(seatObj: any) {
     console.log(this.count);
     if (!seatObj.status) {
-      if (this.count < this.orderDetailSeatNumber){}
-        seatObj.active = !seatObj.active;
-        this.count++;
-        if (seatObj.active) {
-          this.seatChoosenList.push(seatObj.id);
-          if (seatObj.id <= 20) {
-            this.totalPayment += 65000;
-          }
-          if (seatObj.id > 20 && seatObj.id <= 40) {
-            this.totalPayment += 75000;
-          }
-          if (seatObj.id > 40 && seatObj.id <= 50) {
-            this.totalPayment += 85000;
-          }
-        } else {
-          this.seatChoosenList.splice(this.seatChoosenList.indexOf(seatObj.id), 1);
-          if (seatObj.id <= 20) {
-            this.totalPayment -= 65000;
-          }
-          if (seatObj.id > 20 && seatObj.id <= 40) {
-            this.totalPayment -= 75000;
-          }
-          if (seatObj.id > 40 && seatObj.id <= 50) {
-            this.totalPayment -= 85000;
-          }
+      if (this.count < this.orderDetailSeatNumber) {
+      }
+      seatObj.active = !seatObj.active;
+      this.count++;
+      if (seatObj.active) {
+        this.seatChoosenList.push(seatObj.id);
+        if (seatObj.id <= 20) {
+          this.totalPayment += 65000;
         }
-        console.log(this.seatChoosenList);
+        if (seatObj.id > 20 && seatObj.id <= 40) {
+          this.totalPayment += 75000;
+        }
+        if (seatObj.id > 40 && seatObj.id <= 50) {
+          this.totalPayment += 85000;
+        }
+      } else {
+        this.seatChoosenList.splice(this.seatChoosenList.indexOf(seatObj.id), 1);
+        if (seatObj.id <= 20) {
+          this.totalPayment -= 65000;
+        }
+        if (seatObj.id > 20 && seatObj.id <= 40) {
+          this.totalPayment -= 75000;
+        }
+        if (seatObj.id > 40 && seatObj.id <= 50) {
+          this.totalPayment -= 85000;
+        }
+      }
+      console.log(this.seatChoosenList);
     }
   }
-
 
 
   // getSeat(seatObj: any) {
@@ -175,6 +180,7 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
       showtime: this.currentShowTimeChooseObj,
       seatChoose: this.seatChoosenList,
       totalPayment: this.totalPayment,
+      member: this.tokenStorageService.getUser().member
     };
     console.log(transferObj.showtime);
     this.sharingDataService.getDataFromFirstComponent(transferObj);

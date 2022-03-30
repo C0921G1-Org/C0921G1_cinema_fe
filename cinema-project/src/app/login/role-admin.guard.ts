@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import { Observable } from 'rxjs';
-import {TokenStorageService} from "../service/security/token-storage.service";
-import Swal from "sweetalert2";
+import {TokenStorageService} from '../service/security/token-storage.service';
+import Swal from 'sweetalert2';
+
 
 /**
  *  TuNK
@@ -13,7 +14,8 @@ import Swal from "sweetalert2";
 export class RoleAdminGuard implements CanActivate {
   private role: string;
 
-  constructor(private tokenStorageService:TokenStorageService,
+  constructor(private tokenStorageService: TokenStorageService,
+
               private router: Router,
               ) {
   }
@@ -41,7 +43,8 @@ export class RoleAdminGuard implements CanActivate {
       toast: true,
       showConfirmButton: false,
       timer: 3000,
-    })
+    });
+
 
     return false;
   }

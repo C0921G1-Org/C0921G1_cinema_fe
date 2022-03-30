@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {LoginComponent} from "../../login/login/login.component";
-import {TokenStorageService} from "../../service/security/token-storage.service";
-import {ShareService} from "../../service/security/share.service";
-import {Router} from "@angular/router";
+import {MatDialog} from '@angular/material/dialog';
+import {LoginComponent} from '../../login/login/login.component';
+import {TokenStorageService} from '../../service/security/token-storage.service';
+import {ShareService} from '../../service/security/share.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -15,16 +16,17 @@ export class HeaderComponent implements OnInit {
   idMember: number;
   currentUser: string;
   role: string;
-  isLoggedIn: boolean = false;
+  isLoggedIn = false;
 
   constructor(private dialog: MatDialog,
               private tokenStorageService: TokenStorageService,
-              private shareService : ShareService,
-              private router : Router
+              private shareService: ShareService,
+              private router: Router
   ) {
     this.shareService.getClickEvent().subscribe(() => {
       this.loadHeader();
-    })
+    });
+
   }
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.tokenStorageService.signOut();
     this.loadHeader();
+
     this.router.navigateByUrl("")
   }
 
