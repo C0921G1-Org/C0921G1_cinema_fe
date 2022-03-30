@@ -12,12 +12,13 @@ import {FormsModule} from "@angular/forms";
 import {NgxPayPalModule} from 'ngx-paypal';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
