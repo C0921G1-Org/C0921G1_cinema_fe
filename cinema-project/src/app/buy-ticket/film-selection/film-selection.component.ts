@@ -15,7 +15,7 @@ export class FilmSelectionComponent implements OnInit {
   showTimeList: Showtime[] = [];
   showTimeListNextDay: Showtime[] = [];
   showTimeListNextTwoDay: Showtime[] = [];
-  filmCurrentChoose: number;
+  filmCurrentChooseId: number;
   showTimeCurrentChoose: number;
   filmCurrentChooseObj: Film;
   showTimeCurrentChooseObj: Showtime;
@@ -68,7 +68,7 @@ export class FilmSelectionComponent implements OnInit {
   getFilmId(id: number) {
     this.filmServiceService.findById(id).subscribe(value => {
       this.filmCurrentChooseObj = value;
-      this.filmCurrentChoose = this.filmCurrentChooseObj.id;
+      this.filmCurrentChooseId = this.filmCurrentChooseObj.id;
     });
 
     /*Lấy showtime của film theo ngày thứ 1*/

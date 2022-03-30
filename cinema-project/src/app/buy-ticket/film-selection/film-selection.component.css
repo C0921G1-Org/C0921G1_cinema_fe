@@ -27,12 +27,12 @@ a {
   /*background-position: center;*/
 }
 
-
-/*Header Tittle*/
+/*Wrapper*/
 .DatTC_film_selection_wrapper {
   padding-bottom: 200px!important;
 }
 
+/*Header Tittle*/
 .DatTC_header_title {
   border-bottom: 1px solid #efefef;
   font-size: 24px;
@@ -164,6 +164,7 @@ a {
   border: 1px solid var(--pj-black);
   border-radius: 10px;
   padding: 10px;
+  cursor: pointer;
 }
 
 .DatTC_showtime_hour:hover a {
@@ -183,7 +184,7 @@ a {
   padding: 10px;
 }
 
-#DatTC_showtime_hour_active a {
+.DatTC_showtime_hour_active {
   color: white!important;
   background-color: var(--pj-bright-orange);
   padding: 10px;

@@ -73,7 +73,7 @@
             </ul>
           </div>
           <div class="col-11 col-lg-11 col-md-11 col-sm-11 p-0">
-            <ul class="row_title list-unstyled d-flex justify-content-evenly">
+            <ul class="row_title list-unstyled d-flex justify-content-evenly m-0">
               <li class="row_title_item text-center">
                 <div class="row_title_item_content">1</div>
               </li>
@@ -105,9 +105,10 @@
                 <div class="row_title_item_content">10</div>
               </li>
             </ul>
-            <ul *ngIf="showContent" class="row_title list-unstyled d-flex justify-content-evenly flex-wrap">
+<!--            <ul *ngIf="showContent" class="row_title list-unstyled d-flex justify-content-center flex-wrap">-->
+            <ul *ngIf="showContent" class="row_title list-unstyled d-flex flex-wrap justify-content-evenly">
               <li *ngFor="let seatObj of seatList" class="row_title_item text-center seat_item">
-                <div [ngClass]="{'selecting_seat': seatObj.active}" class="seat_icon economy_seat"
+                <div [ngClass]="{'selecting_seat': seatObj.active}" class="seat_icon economy_seat d-flex justify-content-center align-items-center"
                      [class.ordered_seat]="seatObj.status" (click)="getSeat(seatObj)"
                      [class.economy_seat]="seatObj.id <= 20"
                      [class.common_seat]="seatObj.id <=40 && seatObj.id > 20"

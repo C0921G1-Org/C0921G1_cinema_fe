@@ -58,9 +58,9 @@ a {
 }
 
 .column_title_item {
-  height: 80px;
+  height: 70px;
   width: 40px;
-  margin-top: 14px;
+  margin-top: 8px;
   margin-left: 20px;
 }
 
@@ -69,15 +69,19 @@ a {
   width: 40px;
   padding: 20px 0;
   font-weight: 700;
-
 }
 
 
 .row_title_item_content {
-  height: 40px;
+  height: 30px;
   width: 40px;
   margin: 20px 0;
   font-weight: 700;
+}
+
+.row_title_item {
+  flex: 0 0 10%;
+
 }
 
 .seat_icon {
@@ -90,7 +94,7 @@ a {
 }
 
 .seat_item {
-  flex: 1 0 10%;
+  flex: 0 0 10%;
 }
 
 /*Order Detail*/

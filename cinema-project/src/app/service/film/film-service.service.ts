@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class FilmServiceService {
   film: Film;
-  API_URL_LIST = 'http://localhost:8080/film';
+  API_URL_LIST = 'http://localhost:8080/c09/user/film';
 
   constructor(private httpClient: HttpClient) {
   }

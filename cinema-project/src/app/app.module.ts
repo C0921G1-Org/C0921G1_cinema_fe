@@ -10,6 +10,12 @@ import {LoadCssService} from "./loadCss/load-css-service.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {NgxPayPalModule} from 'ngx-paypal';
+import {LoadCssService} from './loadCss/load-css-service.service';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 
 
@@ -25,7 +31,10 @@ import {NgxPayPalModule} from 'ngx-paypal';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPayPalModule
+ NgxPayPalModule
+    MatDialogModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     LoadCssService

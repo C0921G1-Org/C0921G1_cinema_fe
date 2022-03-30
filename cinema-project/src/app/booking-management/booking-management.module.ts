@@ -10,13 +10,18 @@ import { BookingTicketSelectionComponent } from './booking-ticket-selection/book
 import {NgxPayPalModule} from 'ngx-paypal';
 
 
-
 @NgModule({
   declarations: [BookingConfirmBookingTicketComponent, BookingInformationBookingTicketComponent, BookingSeatSelectionComponent, BookingBookingTicketListComponent, BookingConfirmInformationBookingComponent, BookingTicketSelectionComponent],
+
     imports: [
         CommonModule,
         BookingManagementRoutingModule,
         NgxPayPalModule
     ]
+
+  imports: [
+    CommonModule,
+    BookingManagementRoutingModule,
+  ]
 })
 export class BookingManagementModule { }
