@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {SelectedSeat} from '../../model/selected-seat';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

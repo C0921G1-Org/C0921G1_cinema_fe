@@ -82,11 +82,42 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   }
 
   getSeat(seatObj: any) {
-    console.log(this.count);
+    console.log(seatObj.status);
     if (!seatObj.status) {
-      if (this.count < this.orderDetailSeatNumber){}
-        seatObj.active = !seatObj.active;
+      if (this.count < this.orderDetailSeatNumber) {
         this.count++;
+        seatObj.active = !seatObj.active;
+        if (seatObj.active) {
+          this.seatChoosenList.push(seatObj.id);
+          if (seatObj.id <= 20) {
+            this.totalPayment += 65000;
+          }
+          if (seatObj.id > 20 && seatObj.id <= 40) {
+            this.totalPayment += 75000;
+          }
+          if (seatObj.id > 40 && seatObj.id <= 50) {
+            this.totalPayment += 85000;
+          }
+        } else {
+          this.seatChoosenList.splice(this.seatChoosenList.indexOf(seatObj.id), 1);
+          if (seatObj.id <= 20) {
+            this.totalPayment -= 65000;
+          }
+          if (seatObj.id > 20 && seatObj.id <= 40) {
+            this.totalPayment -= 75000;
+          }
+          if (seatObj.id > 40 && seatObj.id <= 50) {
+            this.totalPayment -= 85000;
+          }
+        }
+        // console.log(this.seatChoosenList);
+      }
+    }else {
+      console.log(this.count);
+      console.log(this.orderDetailSeatNumber);
+      if (this.count < this.orderDetailSeatNumber) {
+        this.count--;
+        seatObj.active = !seatObj.active;
         if (seatObj.active) {
           this.seatChoosenList.push(seatObj.id);
           if (seatObj.id <= 20) {
@@ -111,9 +142,9 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
           }
         }
         console.log(this.seatChoosenList);
+      }
     }
   }
-
 
 
   // getSeat(seatObj: any) {
