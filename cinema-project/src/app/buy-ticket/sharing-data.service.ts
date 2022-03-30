@@ -5,15 +5,14 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class SharingDataService {
-  currentObj: number;
-  public subject = new Subject<number>();
-  getDataFromFirstComponent(x: number){
+  public subject = new Subject<any>();
+  obj = this.subject.asObservable();
+
+  getDataFromFirstComponent(x: any){
     this.subject.next(x);
   }
   sharedDataWithSecondComponent(){
-    this.subject.asObservable().subscribe(value => {
-      this.currentObj = value;
-    });
+    return this.subject.asObservable();
   }
 
   constructor() { }

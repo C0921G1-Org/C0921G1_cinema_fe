@@ -22,7 +22,9 @@ a {
   color: var(--pj-black) !important;
 }
 
-
+.seat_selection_wrapper {
+  padding-bottom: 160px;
+}
 /*Top Banner*/
 .carousel-item {
   max-height: 200px !important;
@@ -84,6 +86,11 @@ a {
   background-color: white;
   margin: 20px 0;
   border-radius: 2px 2px 10px 10px;
+  /*flex: 1 0 10%;*/
+}
+
+.seat_item {
+  flex: 1 0 10%;
 }
 
 /*Order Detail*/
