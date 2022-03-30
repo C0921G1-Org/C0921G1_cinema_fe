@@ -9,6 +9,7 @@ import { HomeComponent } from './layout/home/home.component';
 import {LoadCssService} from "./loadCss/load-css-service.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {NgxPayPalModule} from 'ngx-paypal';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPayPalModule
   ],
   providers: [
     LoadCssService
