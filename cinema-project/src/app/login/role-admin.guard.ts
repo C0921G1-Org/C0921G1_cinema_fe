@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {TokenStorageService} from '../service/security/token-storage.service';
 import Swal from 'sweetalert2';
 
+
 /**
  *  TuNK
  */
@@ -14,6 +15,7 @@ export class RoleAdminGuard implements CanActivate {
   private role: string;
 
   constructor(private tokenStorageService: TokenStorageService,
+
               private router: Router,
               ) {
   }
@@ -42,6 +44,7 @@ export class RoleAdminGuard implements CanActivate {
       showConfirmButton: false,
       timer: 3000,
     });
+
 
     return false;
   }
