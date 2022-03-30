@@ -15,5 +15,9 @@ export class SharingDataService {
     return this.subject.asObservable();
   }
 
+  sendObj(){
+    console.log(this.obj);
+    return this.obj;
+  }
   constructor() { }
 }
