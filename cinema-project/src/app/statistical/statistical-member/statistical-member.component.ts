@@ -184,6 +184,18 @@ export class StatisticalMemberComponent implements OnInit {
   clear() {
     this.quarter = undefined;
     this.year = undefined;
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+    })
+    Toast.fire({
+      icon: 'success',
+      title: 'Bạn đang xem Top thống kê' +
+        ' thành viên đầy đủ'
+    })
     this.ngOnInit()
   }
 }

@@ -19,17 +19,19 @@ export class StatisticalCommonManagementComponent implements OnInit {
   private totalTicketMember: number[] = [];
   private totalMoneyMember: number[] = [];
   private pointMember: number[] = [];
+  private date: string[] = [];
+  private totelMoneyRevenue: number[] = [];
   quarter: string = "";
   year: string = "";
   constructor(private statisticalCommonService: StatisticalCommonService,) {
   }
 
   ngOnInit(): void {
-    this.statisticalCommonService.getInforAdmin("TV001").subscribe(value => {
-      this.imgAdmin = value.img;
-      this.nameAdmin = value.name;
-      this.emailAdmin = value.email;
-    })
+    // this.statisticalCommonService.getInforAdmin("TV001").subscribe(value => {
+    //   this.imgAdmin = value.img;
+    //   this.nameAdmin = value.name;
+    //   this.emailAdmin = value.email;
+    // })
     this.statisticalCommonService.getAllTopFilm().subscribe(value => {
       for (let i = 0; i < value.length; i++) {
         this.nameFilm[i] = value[i].name
@@ -170,6 +172,54 @@ export class StatisticalCommonManagementComponent implements OnInit {
         ],
       };
       Highcharts.chart('member', this.options);
+      this.statisticalCommonService.getRevenueByMonth().subscribe(value2 => {
+        for (let i = 0; i < value2.length; i++) {
+          this.date[i] = value2[i].date
+          console.log(value2[i])
+          this.totelMoneyRevenue[i] = Number(value2[i].totalMoney)
+        }
+        this.options = {
+          chart: {
+            height: 500,
+            type: 'spline',
+          },
+          credits: {
+            enabled: false,
+          },
+          title: {
+            text: 'Doanh thu tháng 3',
+          },
+          yAxis: {
+            lineColor: '#fff',
+            title: {
+              text: 'VND đồng'
+            }
+          },
+          legend: {
+            enabled: false,
+          },
+          xAxis: {
+            lineColor: 'rgb(145, 232, 225)',
+            categories: this.date,
+          },
+
+          plotOptions: {
+            series: {
+              borderRadius: 5,
+            } as any,
+          },
+
+          series: [
+            {
+              name: 'Doanh thu',
+              type: 'spline',
+              color: 'rgb(145, 232, 225)',
+              data: this.totelMoneyRevenue,
+            },
+          ],
+        }
+        Highcharts.chart('revenue', this.options);
+      })
     }, error => {
       Swal.fire({
         icon: 'error',
@@ -178,54 +228,4 @@ export class StatisticalCommonManagementComponent implements OnInit {
       })
     })
   }
-
-  list = ['01/03/2022', '03/03/2022', '9/03/2022', '12/03/2022', '15/03/2022', '18/03/2022',
-    '21/03/2022', '24/03/2022', '27/03/2022', '30/03/2022'];
-  Highcharts: typeof Highcharts = Highcharts;
-
-  chartOptions: Highcharts.Options = {
-    chart: {
-      type: 'spline',
-    },
-    credits: {
-      enabled: false,
-    },
-    title: {
-      text: 'Doanh thu tháng 3',
-    },
-    yAxis: {
-      lineColor: '#fff',
-    },
-    legend: {
-      enabled: false,
-    },
-    xAxis: {
-      lineColor: 'rgb(145, 232, 225)',
-      categories: this.list,
-    },
-
-    plotOptions: {
-      series: {
-        borderRadius: 5,
-      } as any,
-    },
-
-    series: [
-      {
-        name: 'Doanh thu',
-        type: 'spline',
-        color: 'rgb(145, 232, 225)',
-        data: [
-          {y: 20000000},
-          {y: 30000000},
-          {y: 40000000},
-          {y: 10000000},
-          {y: 20000000},
-          {y: 5000000},
-          {y: 65000000},
-          {y: 80000000},
-        ],
-      },
-    ],
-  };
 }

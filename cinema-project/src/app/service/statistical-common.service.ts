@@ -22,7 +22,7 @@ export class StatisticalCommonService {
   getAllTopMember(quarter: string, year: string): Observable<any> {
     if (quarter == undefined && year == undefined) {
       console.log("trả về list đầy đủ")
-      return this.httpClient.get<any>(this.API_URL)
+      return this.httpClient.get<any>(this.API_URL+'/member')
     } else if (quarter == undefined && year != undefined) {
       console.log("tìm theo year")
       return this.httpClient.get<any>(this.API_URL + '/member' + '?&year=' + year)
@@ -38,5 +38,7 @@ export class StatisticalCommonService {
   getInforAdmin(id: string): Observable<any> {
     return this.httpClient.get<any>(this.API_URL + '/common/'+id)
   }
-
+  getRevenueByMonth(): Observable<any> {
+    return this.httpClient.get<any>(this.API_URL + '/common/revenue')
+  }
 }
