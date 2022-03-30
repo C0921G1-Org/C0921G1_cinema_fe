@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '', component: FilmSelectionComponent
   },
   {
-    path: 'seat-selection', component: SeatSelectionComponent
+    path: 'seat-selection/:id', component: SeatSelectionComponent
   }
 ];
 
