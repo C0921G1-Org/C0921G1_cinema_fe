@@ -27,6 +27,7 @@ export class MemberListComponent implements OnInit {
 
   getAllMembers() {
     this.memberManagementService.getAllMembers(this.currentPage).subscribe(value => {
+      //set values for those variables
       this.members = value['content'];
       this.totalPage = value['totalPages']
       this.currentPage = value['number'];
@@ -41,11 +42,13 @@ export class MemberListComponent implements OnInit {
     })
   }
 
+  //move to previous page - KhanhLDQ
   moveToPreviousPage() {
     this.currentPage -= 1;
     this.ngOnInit();
   }
 
+  //move to next page - KhanhLDQ
   moveToNextPage() {
     this.currentPage += 1;
     this.ngOnInit();

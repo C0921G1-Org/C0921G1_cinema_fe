@@ -4,20 +4,21 @@
 </div>
 
 <div class="container">
-  <form action="">
+  <form [formGroup]="memberUpdateForm" (ngSubmit)="updateMember()">
 
     <div class="row mt-3" style="margin-left: 250px">
+
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="username" class="col-form-label fw-bold">Tài khoản: </label>
+            <label for="id" class="col-form-label fw-bold">Mã thành viên: </label>
           </div>
         </div>
       </div>
 
       <div class="col-lg-6 col-xl-6">
         <div class="col-auto">
-          <input type="text" id="username" class="form-control" value="IamCr7" disabled>
+          <input type="text" id="id" name="id" class="form-control" formControlName="id" [attr.disabled]="true">
         </div>
       </div>
 
@@ -27,6 +28,7 @@
     </div>
 
     <div class="row mt-3" style="margin-left: 250px">
+
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
@@ -37,54 +39,17 @@
 
       <div class="col-lg-6 col-xl-6">
         <div class="col-auto">
-          <input type="text" id="name" class="form-control" value="Cristiano Ronaldo">
+          <input type="text" id="name" name="name" class="form-control" formControlName="name">
         </div>
       </div>
 
       <div class="col-lg-4 col-xl-4">
       </div>
+
     </div>
 
     <div class="row mt-3" style="margin-left: 250px">
-      <div class="col-lg-2 col-xl-2">
-        <div class="row">
-          <div class="col-lg-12 col-xl-12">
-            <label for="password" class="col-form-label fw-bold">Mật khẩu (*): </label>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-lg-6 col-xl-6">
-        <div class="col-auto">
-          <input type="password" id="password" class="form-control" value="khanh12345">
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-xl-4">
-      </div>
-    </div>
-
-    <div class="row mt-3" style="margin-left: 250px">
-      <div class="col-lg-2 col-xl-2">
-        <div class="row">
-          <div class="col-lg-12 col-xl-12">
-            <label for="dateOfBirth" class="col-form-label fw-bold">Ngày sinh (*): </label>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 col-xl-6">
-        <div class="col-auto">
-          <input type="date" id="dateOfBirth" class="form-control">
-          <p class="text-danger mt-2">Bạn chưa chọn ngày sinh! Vui lòng chọn ngày tháng năm sinh!</p>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-xl-4">
-      </div>
-    </div>
-
-    <div class="row mt-3" style="margin-left: 250px">
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
@@ -94,79 +59,70 @@
       </div>
 
       <div class="col-lg-6 mt-2 col-xl-6">
+
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="male" checked>
+          <input class="form-check-input" type="radio" name="gender" id="inlineRadio1"
+                 value="male" formControlName="gender">
           <label class="form-check-label" for="inlineRadio1">Nam</label>
         </div>
+
         <div class="form-check form-check-inline ms-3">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="female">
+          <input class="form-check-input" type="radio" name="gender" id="inlineRadio2"
+                 value="female" formControlName="gender">
           <label class="form-check-label" for="inlineRadio2">Nữ</label>
         </div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4">
       </div>
+
     </div>
 
     <div class="row mt-3" style="margin-left: 250px">
+
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="email" class="col-form-label fw-bold">Email: </label>
+            <label for="phone" class="col-form-label fw-bold">Số điện thoại (*): </label>
           </div>
         </div>
       </div>
 
       <div class="col-lg-6 col-xl-6">
         <div class="col-auto">
-          <input type="text" id="email" class="form-control" value="cr7_ManchesterUnited">
-          <p class="text-danger mt-2">Bạn chưa nhập đúng định dạng email! Vui lòng nhập lại!</p>
+          <input type="text" id="phone" name="phone" class="form-control" formControlName="phone">
         </div>
       </div>
 
       <div class="col-lg-4 col-xl-4">
       </div>
+
     </div>
 
     <div class="row mt-3" style="margin-left: 250px">
+
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="identityNumber" class="col-form-label fw-bold">Số CMND (*): </label>
+            <label for="email" class="col-form-label fw-bold">Email (*): </label>
           </div>
         </div>
       </div>
 
       <div class="col-lg-6 col-xl-6">
         <div class="col-auto">
-          <input type="text" id="identityNumber" class="form-control" value="202303404" disabled>
+          <input type="text" id="email" name="email" class="form-control" formControlName="email">
         </div>
       </div>
 
       <div class="col-lg-4 col-xl-4">
       </div>
+
     </div>
 
     <div class="row mt-3" style="margin-left: 250px">
-      <div class="col-lg-2 col-xl-2">
-        <div class="row">
-          <div class="col-lg-12 col-xl-12">
-            <label for="phoneNumber" class="col-form-label fw-bold">Số điện thoại (*): </label>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-lg-6 col-xl-6">
-        <div class="col-auto">
-          <input type="text" id="phoneNumber" class="form-control" value="0907770654">
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-xl-4">
-      </div>
-    </div>
-
-    <div class="row mt-3" style="margin-left: 250px">
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
@@ -177,13 +133,222 @@
 
       <div class="col-lg-6 col-xl-6">
         <div class="col-auto">
-          <input type="text" id="address" class="form-control" value="Bồ Đào Nha">
+          <input type="text" id="address" name="address" class="form-control" formControlName="address">
         </div>
       </div>
 
       <div class="col-lg-4 col-xl-4">
       </div>
+
     </div>
+
+    <div class="row mt-3" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="point" class="col-form-label fw-bold">Điểm thưởng (*): </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="text" id="point" name="point" class="form-control" formControlName="point" [attr.disabled]="true">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row mt-3" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="image" class="col-form-label fw-bold">Ảnh đại diện: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="text" id="image" name="image" class="form-control" formControlName="image">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row mt-3" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="dateOfBirth" class="col-form-label fw-bold">Ngày sinh (*): </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" formControlName="dateOfBirth">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row mt-3" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="identityNumber" class="col-form-label fw-bold">Số CMND (*): </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="text" id="identityNumber" name="identityNumber" class="form-control" formControlName="identityNumber">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row mt-3" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="city" class="col-form-label fw-bold">Thành phố (*): </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <select id="city" name="city" formControlName="city">
+<!--            <option [selected]="true">&#45;&#45;Chọn thành phố&#45;&#45;</option>-->
+            <option *ngFor="let city of cities" [ngValue]="city">{{memberUpdateForm.controls.city.value.id}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+
+<!--    <div class="row mt-3" style="margin-left: 250px">-->
+<!--      <div class="col-lg-2 col-xl-2">-->
+<!--        <div class="row">-->
+<!--          <div class="col-lg-12 col-xl-12">-->
+<!--            <label for="dateOfBirth" class="col-form-label fw-bold">Ngày sinh (*): </label>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-6 col-xl-6">-->
+<!--        <div class="col-auto">-->
+<!--          <input type="date" id="dateOfBirth" class="form-control">-->
+<!--          <p class="text-danger mt-2">Bạn chưa chọn ngày sinh! Vui lòng chọn ngày tháng năm sinh!</p>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-4 col-xl-4">-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+
+<!--    <div class="row mt-3" style="margin-left: 250px">-->
+<!--      <div class="col-lg-2 col-xl-2">-->
+<!--        <div class="row">-->
+<!--          <div class="col-lg-12 col-xl-12">-->
+<!--            <label for="email" class="col-form-label fw-bold">Email: </label>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-6 col-xl-6">-->
+<!--        <div class="col-auto">-->
+<!--          <input type="text" id="email" class="form-control" value="cr7_ManchesterUnited">-->
+<!--          <p class="text-danger mt-2">Bạn chưa nhập đúng định dạng email! Vui lòng nhập lại!</p>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-4 col-xl-4">-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="row mt-3" style="margin-left: 250px">-->
+<!--      <div class="col-lg-2 col-xl-2">-->
+<!--        <div class="row">-->
+<!--          <div class="col-lg-12 col-xl-12">-->
+<!--            <label for="identityNumber" class="col-form-label fw-bold">Số CMND (*): </label>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-6 col-xl-6">-->
+<!--        <div class="col-auto">-->
+<!--          <input type="text" id="identityNumber" class="form-control" value="202303404" disabled>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-4 col-xl-4">-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="row mt-3" style="margin-left: 250px">-->
+<!--      <div class="col-lg-2 col-xl-2">-->
+<!--        <div class="row">-->
+<!--          <div class="col-lg-12 col-xl-12">-->
+<!--            <label for="phoneNumber" class="col-form-label fw-bold">Số điện thoại (*): </label>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-6 col-xl-6">-->
+<!--        <div class="col-auto">-->
+<!--          <input type="text" id="phoneNumber" class="form-control" value="0907770654">-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-4 col-xl-4">-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="row mt-3" style="margin-left: 250px">-->
+<!--      <div class="col-lg-2 col-xl-2">-->
+<!--        <div class="row">-->
+<!--          <div class="col-lg-12 col-xl-12">-->
+<!--            <label for="address" class="col-form-label fw-bold">Địa chỉ: </label>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-6 col-xl-6">-->
+<!--        <div class="col-auto">-->
+<!--          <input type="text" id="address" class="form-control" value="Bồ Đào Nha">-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-4 col-xl-4">-->
+<!--      </div>-->
+<!--    </div>-->
 
     <div class="row mt-3" style="margin-left: 250px">
       <div class="col-lg-2 col-xl-2">

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {City} from "../../model/city";
 import {MemberManagementService} from "../../service/member-management/member-management.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {CityService} from "../../service/member-management/city.service";
 
 @Component({
   selector: 'app-member-account-edit',
@@ -11,7 +12,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class MemberAccountEditComponent implements OnInit {
 
-  memberForm: FormGroup = new FormGroup({
+  memberUpdateForm: FormGroup = new FormGroup({
     id: new FormControl(),
     name: new FormControl(),
     gender: new FormControl(),
@@ -30,11 +31,35 @@ export class MemberAccountEditComponent implements OnInit {
 
   constructor(
     private memberManagementService: MemberManagementService,
+    private cityService: CityService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.cityService.getAllCities().subscribe(value => {
+      this.cities = value;
+      console.log(value);
+
+      this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+        this.id = paramMap.get('id');
+        this.getMemberById(this.id);
+      })
+    })
+  }
+
+  //get member by id - KhanhLDQ
+  getMemberById(id: string) {
+    return this.memberManagementService.getMemberById(id).subscribe(value => {
+      this.memberUpdateForm.setValue(value);
+      console.log(value);
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  updateMember() {
+
   }
 
 }
