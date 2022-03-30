@@ -7,7 +7,7 @@ import {Showtime} from '../../model/showtime';
   providedIn: 'root'
 })
 export class ShowtimeService {
-  API_URL = 'http://localhost:8080/';
+  API_URL = 'http://localhost:8080/c09/user/';
   constructor(private httpClient: HttpClient) { }
 
   public getShowTimeByFilmId(filmId: number, date: string): Observable<Showtime[]> {

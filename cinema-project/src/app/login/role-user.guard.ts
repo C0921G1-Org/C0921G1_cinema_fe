@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import { Observable } from 'rxjs';
-import {TokenStorageService} from "../service/security/token-storage.service";
-import Swal from "sweetalert2";
+import {TokenStorageService} from '../service/security/token-storage.service';
+import Swal from 'sweetalert2';
+
 
 /**
  *  TuNK
@@ -13,7 +14,7 @@ import Swal from "sweetalert2";
 export class RoleUserGuard implements CanActivate {
   private role: string;
 
-  constructor(private tokenStorageService:TokenStorageService,
+  constructor(private tokenStorageService: TokenStorageService,
               private router: Router) {
   }
   canActivate(
@@ -24,6 +25,7 @@ export class RoleUserGuard implements CanActivate {
     }
 
     // this.router.navigateByUrl("/")
+
     this.router.navigate(['/'], {
       queryParams: { returnUrl: state.url }});
 
@@ -39,7 +41,8 @@ export class RoleUserGuard implements CanActivate {
       toast: true,
       showConfirmButton: false,
       timer: 3000,
-    })
+    });
+
     return false;
   }
 
