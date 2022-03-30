@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Film} from "../../model/film";
-import {Observable} from "rxjs";
+import {HttpClient} from '@angular/common/http';
+import {Film} from '../../model/film';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,12 @@ export class FilmServiceService {
       '&statusFilm=' + statusFilm + '&typeFilm=' + typeFilm);
   }
 
+  public getAllFilmList(): Observable<Film[]> {
+    return this.httpClient.get<Film[]>(this.API_URL_LIST + '/filmList');
+  }
+
+  public findById(id: number): Observable<Film> {
+    return this.httpClient.get<Film>(this.API_URL_LIST + '/filmList/' + id);
+  }
 
 }
