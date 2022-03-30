@@ -28,11 +28,11 @@
                   <div class="input-group">
                     <div style="display: flex">
                       <div class="mx-1">
-                        <input [(ngModel)]="name" type="text" class="form-control" placeholder="Tên phim" name="name"
-                               style="height: 38px; width: 200px;">
+                        <input [(ngModel)]="name" type="text" class="name" placeholder="Tên phim" name="name"
+                               style="height: 65px; width: 237px;">
                       </div>
 
-                      <div class="mx-1">
+                      <div class="mx-1 pb-1">
                         <mat-form-field appearance="fill">
                           <mat-label>Ngày khởi chiếu</mat-label>
                           <input matInput [matDatepicker]="picker" [(ngModel)]="startDate" name="startDate">
@@ -44,9 +44,9 @@
                       <div class="mx-1">
                         <mat-form-field appearance="fill">
                           <mat-label>Ngày kết thúc</mat-label>
-                          <input matInput [matDatepicker]="picker" [(ngModel)]="startDate" name="endDate">
-                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                          <mat-datepicker #picker></mat-datepicker>
+                          <input matInput [matDatepicker]="picker1" [(ngModel)]="endDate" name="endDate">
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
                         </mat-form-field>
                       </div>
 

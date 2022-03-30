@@ -156,4 +156,7 @@ mat-form-field{
   background: white;
   color: #212529;
 }
+.name{
+  border: none;
+}
 

@@ -15,8 +15,8 @@ export class FilmManagementListComponent implements OnInit {
   films: Film[];
   page = 0;
   name = '';
-  startDate='';
-  endDate= '';
+  startDate: string;
+  endDate: string;
   totalPagination: number;
   totalElement: number
   startDateFormat='';
@@ -33,13 +33,19 @@ export class FilmManagementListComponent implements OnInit {
 
   public getFilmList(){
       this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDateFormat,this.endDateFormat).subscribe(value => {
-      this.films = value['content'];
-      this.totalPagination = value['totalPages'];
-      this.totalElement = value['totalElements'];
-      this.page = 0;
-      console.log(this.startDateFormat);
-      console.log(this.startDate);
-    });
+      if (value !=null){
+        this.films = value['content'];
+        this.totalPagination = value['totalPages'];
+        this.totalElement = value['totalElements'];
+        this.page = 0;
+      }else {
+        this.films = [];
+        this.totalElement=0;
+        this.totalPagination=0;
+      }
+    },error => {
+        console.log(error)
+      });
   }
 
   public openDialog(id: number): void{
@@ -79,19 +85,18 @@ export class FilmManagementListComponent implements OnInit {
     }
   }
 
-  search(){
-    if(this.startDate != null){
+  search() {
+    if(this.startDate !=null || this.startDate != undefined){
       this.startDateFormat = new Date(this.startDate).toLocaleDateString('fr-CA');
     }else {
       this.startDateFormat = '';
     }
-    if (this.endDate !=null){
+    if (this.endDate !=null || this.endDate != undefined) {
       this.endDateFormat = new Date(this.endDate).toLocaleDateString('fr-CA');
-    }else {
-      this.endDateFormat ='';
+    } else {
+      this.endDateFormat = '';
     }
-
     this.getFilmList();
-  }
 
+  }
 }
