@@ -8,7 +8,7 @@ import {catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SelectedSeatService {
-  API_URL = 'http://localhost:8080/selectedSeat';
+  API_URL = 'http://localhost:8080/c09/user/selectedSeat';
 
   constructor(private httpClient: HttpClient) {
   }
