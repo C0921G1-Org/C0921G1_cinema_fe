@@ -9,12 +9,11 @@ import {BookingManagementRoutingModule} from "./booking-management-routing.modul
 import { BookingTicketSelectionComponent } from './booking-ticket-selection/booking-ticket-selection.component';
 
 
-
 @NgModule({
   declarations: [BookingConfirmBookingTicketComponent, BookingInformationBookingTicketComponent, BookingSeatSelectionComponent, BookingBookingTicketListComponent, BookingConfirmInformationBookingComponent, BookingTicketSelectionComponent],
   imports: [
     CommonModule,
-    BookingManagementRoutingModule
+    BookingManagementRoutingModule,
   ]
 })
 export class BookingManagementModule { }
