@@ -10,6 +10,10 @@ import {LoadCssService} from "./loadCss/load-css-service.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {BuyTicketModule} from './buy-ticket/buy-ticket.module';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatDialogModule} from "@angular/material/dialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
 
 
 @NgModule({
@@ -24,6 +28,9 @@ import {BuyTicketModule} from './buy-ticket/buy-ticket.module';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     LoadCssService

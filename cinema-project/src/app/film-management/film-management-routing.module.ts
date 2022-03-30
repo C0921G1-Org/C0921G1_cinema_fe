@@ -5,12 +5,14 @@ import {FilmManagementCreateComponent} from "./film-management-create/film-manag
 import {FilmManagementDeleteComponent} from "./film-management-delete/film-management-delete.component";
 import {FilmManagementEditComponent} from "./film-management-edit/film-management-edit.component";
 import {FilmManagementListComponent} from "./film-management-list/film-management-list.component";
+import {AuthGuard} from "../login/auth.guard";
 
 
 const routes: Routes = [
   {
-    path: 'detail-client/:id', component: FilmClientFilmDetailComponent
+    path: 'detail-client/:id', component: FilmClientFilmDetailComponent,
   },
+
   {
     path: 'create', component: FilmManagementCreateComponent
   },
