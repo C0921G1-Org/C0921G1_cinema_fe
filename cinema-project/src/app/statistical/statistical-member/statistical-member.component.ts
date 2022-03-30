@@ -26,8 +26,8 @@ ExportData(Highcharts);
 
 const Accessibility = require('highcharts/modules/accessibility');
 Accessibility(Highcharts);
-import {StatisticalMemberService} from "../../service/statistical-member.service";
 import {Router} from "@angular/router";
+import {StatisticalCommonService} from "../../service/statistical-common.service";
 
 @Component({
   selector: 'app-statistical-member',
@@ -45,18 +45,18 @@ export class StatisticalMemberComponent implements OnInit {
   yearList: any = [];
   quarterList: any = [1, 2, 3, 4];
 
-  constructor(private statisticalMemberService: StatisticalMemberService,
+  constructor(private statisticalCommonService: StatisticalCommonService,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.statisticalMemberService.getYear().subscribe(value1 => {
+    this.statisticalCommonService.getYear().subscribe(value1 => {
       this.yearList = value1;
       this.name = [];
       this.totalTicket = [];
       this.totalMoney = [];
       this.point = [];
-      this.statisticalMemberService.getAllTopMember(this.quarter, this.year).subscribe(value => {
+      this.statisticalCommonService.getAllTopMember(this.quarter, this.year).subscribe(value => {
         for (let i = 0; i < value.length; i++) {
           this.name[i] = value[i].id + ' - ' + value[i].name
           this.totalTicket[i] = Number(value[i].totalTicket)

@@ -25,7 +25,7 @@ ExportData(Highcharts);
 
 const Accessibility = require('highcharts/modules/accessibility');
 Accessibility(Highcharts);
-import {StatisticalFilmService} from "../../service/statistical-film.service";
+import {StatisticalCommonService} from "../../service/statistical-common.service";
 
 @Component({
   selector: 'app-statistical-film',
@@ -38,11 +38,11 @@ export class StatisticalFilmComponent implements OnInit {
   private totalMoney: number[] = [];
   private options: any;
 
-  constructor(private statisticalFilmService: StatisticalFilmService) {
+  constructor(private statisticalCommonService: StatisticalCommonService) {
   }
 
   ngOnInit(): void {
-    this.statisticalFilmService.getAllTopFilm().subscribe(value => {
+    this.statisticalCommonService.getAllTopFilm().subscribe(value => {
       for (let i = 0; i < value.length; i++) {
         this.name[i] = value[i].name
         this.totalTicket[i] = Number(value[i].totalTicket)

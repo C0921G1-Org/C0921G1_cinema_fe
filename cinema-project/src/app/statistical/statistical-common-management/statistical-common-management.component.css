@@ -11,9 +11,7 @@
   color: dimgrey;
 }
 .bar{
-  background: rgb(255,115,0);
-  position: fixed;
-  height: 100%;
+  height: 1000px;
 }
 .data{
   position: absolute ;

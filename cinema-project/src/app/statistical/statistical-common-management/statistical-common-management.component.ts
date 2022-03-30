@@ -1,14 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import * as Highcharts from 'highcharts';
-import {StatisticalFilmService} from "../../service/statistical-film.service";
+import {StatisticalCommonService} from "../../service/statistical-common.service";
 import Swal from "sweetalert2";
-import {StatisticalMemberService} from "../../service/statistical-member.service";
 @Component({
   selector: 'app-statistical-common-management',
   templateUrl: './statistical-common-management.component.html',
   styleUrls: ['./statistical-common-management.component.css']
 })
 export class StatisticalCommonManagementComponent implements OnInit {
+  private imgAdmin: string;
+  private nameAdmin: string;
+  private emailAdmin: string;
   public nameFilm: string[] = [];
   private totalTicketFilm: number[] = [];
   private totalMoneyFilm: number[] = [];
@@ -19,12 +21,16 @@ export class StatisticalCommonManagementComponent implements OnInit {
   private pointMember: number[] = [];
   quarter: string = "";
   year: string = "";
-  constructor(private statisticalFilmService: StatisticalFilmService,
-              private statisticalMemberService: StatisticalMemberService) {
+  constructor(private statisticalCommonService: StatisticalCommonService,) {
   }
 
   ngOnInit(): void {
-    this.statisticalFilmService.getAllTopFilm().subscribe(value => {
+    this.statisticalCommonService.getInforAdmin("TV001").subscribe(value => {
+      this.imgAdmin = value.img;
+      this.nameAdmin = value.name;
+      this.emailAdmin = value.email;
+    })
+    this.statisticalCommonService.getAllTopFilm().subscribe(value => {
       for (let i = 0; i < value.length; i++) {
         this.nameFilm[i] = value[i].name
         this.totalMoneyFilm[i] = Number(value[i].totalTicket)
@@ -90,7 +96,7 @@ export class StatisticalCommonManagementComponent implements OnInit {
       };
       Highcharts.chart('film', this.options);
     })
-    this.statisticalMemberService.getAllTopMember(this.quarter, this.year).subscribe(value => {
+    this.statisticalCommonService.getAllTopMember(this.quarter, this.year).subscribe(value => {
       for (let i = 0; i < value.length; i++) {
         this.nameMember[i] = value[i].id + ' - ' + value[i].name
         this.totalTicketMember[i] = Number(value[i].totalTicket)
