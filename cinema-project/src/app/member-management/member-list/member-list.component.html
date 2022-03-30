@@ -19,12 +19,23 @@
               </div>
 
               <div style="display: flex">
-                <input type="search" class="form-control rounded" placeholder="Tìm kiếm..." aria-label="Search" aria-describedby="search-addon">
-                <button type="submit" class="input-group-text border-0" id="search-addon">
+<!--                if we blank data input so the value = ""-->
+                <input [(ngModel)]="memberName" id="memberName" name="memberName" type="search" class="form-control rounded" placeholder="Tìm kiếm theo tên..." aria-label="Search" aria-describedby="search-addon">
+
+                <select class="form-select" id="pointRange" name="pointRange" [(ngModel)]="pointRange">
+<!--                  <option value="" [selected]="true">Chọn khoảng điểm</option>-->
+                  <option>0-999</option>
+                  <option>1000-1999</option>
+                  <option>2000-4999</option>
+                  <option>5000-9999</option>
+                </select>
+
+                <button type="submit" class="input-group-text border-0" id="search-addon" (click)="searchMembers()">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                   </svg>
                 </button>
+
               </div>
 
             </div>
@@ -42,7 +53,9 @@
               <th>Mã thành viên</th>
               <th>Họ và tên</th>
               <th>Số điện thoại</th>
+              <th>Giới tính</th>
               <th>Địa chỉ</th>
+<!--              <th>Thành phố</th>-->
               <th>Số CMND</th>
               <th>Email</th>
               <th>Điểm thưởng</th>
@@ -57,7 +70,12 @@
               <td>{{member.id}}</td>
               <td>{{member.name}}</td>
               <td>{{member.phone}}</td>
+
+              <td *ngIf="member.gender == 0">Nam</td>
+              <td *ngIf="member.gender == 1">Nữ</td>
+
               <td>{{member.address}}</td>
+<!--              <td>{{member.city.name}}</td>-->
               <td>{{member.identityNumber}}</td>
               <td>{{member.email}}</td>
               <td>{{member.point}}</td>
@@ -77,16 +95,36 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="!buttonSearchFlag">
         <div class="col-lg-12 col-xl-12">
           <div class="hint-text">Hiển thị <b>{{currentMember}}</b> trên tổng số <b>{{totalMember}}</b> thành viên</div>
 
           <ul class="pagination">
             <li class="page-item"><a class="page-link" *ngIf="currentPage > 0"
                                      (click)="moveToPreviousPage()">Trước</a></li>
+
             <li class="page-item active"><a class="page-link">{{currentPage+1}} / {{totalPage}}</a></li>
+
             <li class="page-item"><a class="page-link" *ngIf="currentPage < totalPage - 1"
                                      (click)="moveToNextPage()">Sau</a></li>
+
+          </ul>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="buttonSearchFlag">
+        <div class="col-lg-12 col-xl-12">
+          <div class="hint-text">Hiển thị <b>{{currentMemberSearch}}</b> trên tổng số <b>{{totalMemberSearch}}</b> thành viên</div>
+
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" *ngIf="currentPageSearch > 0"
+                                     (click)="moveToPreviousPageSearch()">Trước</a></li>
+
+            <li class="page-item active"><a class="page-link">{{currentPageSearch+1}} / {{totalPageSearch}}</a></li>
+
+            <li class="page-item"><a class="page-link" *ngIf="currentPageSearch < totalPageSearch - 1"
+                                     (click)="moveToNextPageSearch()">Sau</a></li>
+
           </ul>
         </div>
       </div>

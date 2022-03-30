@@ -32,7 +32,7 @@
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="name" class="col-form-label fw-bold">Họ và tên (*): </label>
+            <label for="name" class="col-form-label fw-bold">Họ và tên: </label>
           </div>
         </div>
       </div>
@@ -48,12 +48,57 @@
 
     </div>
 
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('name').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('name').hasError('pattern') && buttonFLag">
+          Dữ liệu không hợp lệ! Tên không bao gồm số hoặc kí tự đặc biệt!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('name').hasError('minlength') && buttonFLag">
+          Dữ liệu không hợp lệ! Tên ít nhất bao gồm 8 kí tự!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
     <div class="row mt-3" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label class="col-form-label fw-bold">Giới tính (*): </label>
+            <label class="col-form-label fw-bold">Giới tính: </label>
           </div>
         </div>
       </div>
@@ -62,13 +107,13 @@
 
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="gender" id="inlineRadio1"
-                 value="male" formControlName="gender">
+                 value="0" formControlName="gender" [checked]="memberUpdateForm.controls.gender.value == 0">
           <label class="form-check-label" for="inlineRadio1">Nam</label>
         </div>
 
         <div class="form-check form-check-inline ms-3">
           <input class="form-check-input" type="radio" name="gender" id="inlineRadio2"
-                 value="female" formControlName="gender">
+                 value="1" formControlName="gender" [checked]="memberUpdateForm.controls.gender.value == 1">
           <label class="form-check-label" for="inlineRadio2">Nữ</label>
         </div>
 
@@ -84,7 +129,7 @@
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="phone" class="col-form-label fw-bold">Số điện thoại (*): </label>
+            <label for="phone" class="col-form-label fw-bold">Số điện thoại: </label>
           </div>
         </div>
       </div>
@@ -100,12 +145,42 @@
 
     </div>
 
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('phone').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('phone').hasError('pattern') && buttonFLag">
+          Dữ liệu không hợp lệ! Số điện thoại phải tuân theo chuẩn của Việt Nam
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
     <div class="row mt-3" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="email" class="col-form-label fw-bold">Email (*): </label>
+            <label for="email" class="col-form-label fw-bold">Email: </label>
           </div>
         </div>
       </div>
@@ -118,6 +193,36 @@
 
       <div class="col-lg-4 col-xl-4">
       </div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('email').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('email').hasError('email') && buttonFLag">
+          Dữ liệu không hợp lệ! Email phải tuân theo chuẩn quy ước
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
 
     </div>
 
@@ -142,12 +247,27 @@
 
     </div>
 
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('address').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
     <div class="row mt-3" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="point" class="col-form-label fw-bold">Điểm thưởng (*): </label>
+            <label for="point" class="col-form-label fw-bold">Điểm thưởng: </label>
           </div>
         </div>
       </div>
@@ -189,7 +309,7 @@
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="dateOfBirth" class="col-form-label fw-bold">Ngày sinh (*): </label>
+            <label for="dateOfBirth" class="col-form-label fw-bold">Ngày sinh: </label>
           </div>
         </div>
       </div>
@@ -205,12 +325,42 @@
 
     </div>
 
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('dateOfBirth').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('dateOfBirth').hasError('notSuitableAge') && buttonFLag">
+          Thành viên đăng ký phải lớn hơn 16 tuổi hoặc bé hơn 100 tuổi!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
     <div class="row mt-3" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="identityNumber" class="col-form-label fw-bold">Số CMND (*): </label>
+            <label for="identityNumber" class="col-form-label fw-bold">Số CMND: </label>
           </div>
         </div>
       </div>
@@ -226,21 +376,51 @@
 
     </div>
 
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('identityNumber').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('identityNumber').hasError('pattern') && buttonFLag">
+          Dữ liệu không hợp lệ! SỐ chứng minh nhân dân phải tuân theo chuẩn quy ước
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
     <div class="row mt-3" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="city" class="col-form-label fw-bold">Thành phố (*): </label>
+            <label for="city" class="col-form-label fw-bold">Thành phố: </label>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-6 col-xl-6">
+      <div class="col-lg-6 col-xl-6 mt-1">
         <div class="col-auto">
           <select id="city" name="city" formControlName="city">
-<!--            <option [selected]="true">&#45;&#45;Chọn thành phố&#45;&#45;</option>-->
-            <option *ngFor="let city of cities" [ngValue]="city">{{memberUpdateForm.controls.city.value.id}}</option>
+            <option *ngFor="let city of cities" [ngValue]="city"
+                    [selected]="memberUpdateForm.controls.city.value?.id === city.id">{{city.name}}</option>
           </select>
         </div>
       </div>
@@ -249,106 +429,6 @@
       </div>
 
     </div>
-
-
-<!--    <div class="row mt-3" style="margin-left: 250px">-->
-<!--      <div class="col-lg-2 col-xl-2">-->
-<!--        <div class="row">-->
-<!--          <div class="col-lg-12 col-xl-12">-->
-<!--            <label for="dateOfBirth" class="col-form-label fw-bold">Ngày sinh (*): </label>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-6 col-xl-6">-->
-<!--        <div class="col-auto">-->
-<!--          <input type="date" id="dateOfBirth" class="form-control">-->
-<!--          <p class="text-danger mt-2">Bạn chưa chọn ngày sinh! Vui lòng chọn ngày tháng năm sinh!</p>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-4 col-xl-4">-->
-<!--      </div>-->
-<!--    </div>-->
-
-
-
-<!--    <div class="row mt-3" style="margin-left: 250px">-->
-<!--      <div class="col-lg-2 col-xl-2">-->
-<!--        <div class="row">-->
-<!--          <div class="col-lg-12 col-xl-12">-->
-<!--            <label for="email" class="col-form-label fw-bold">Email: </label>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-6 col-xl-6">-->
-<!--        <div class="col-auto">-->
-<!--          <input type="text" id="email" class="form-control" value="cr7_ManchesterUnited">-->
-<!--          <p class="text-danger mt-2">Bạn chưa nhập đúng định dạng email! Vui lòng nhập lại!</p>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-4 col-xl-4">-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div class="row mt-3" style="margin-left: 250px">-->
-<!--      <div class="col-lg-2 col-xl-2">-->
-<!--        <div class="row">-->
-<!--          <div class="col-lg-12 col-xl-12">-->
-<!--            <label for="identityNumber" class="col-form-label fw-bold">Số CMND (*): </label>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-6 col-xl-6">-->
-<!--        <div class="col-auto">-->
-<!--          <input type="text" id="identityNumber" class="form-control" value="202303404" disabled>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-4 col-xl-4">-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div class="row mt-3" style="margin-left: 250px">-->
-<!--      <div class="col-lg-2 col-xl-2">-->
-<!--        <div class="row">-->
-<!--          <div class="col-lg-12 col-xl-12">-->
-<!--            <label for="phoneNumber" class="col-form-label fw-bold">Số điện thoại (*): </label>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-6 col-xl-6">-->
-<!--        <div class="col-auto">-->
-<!--          <input type="text" id="phoneNumber" class="form-control" value="0907770654">-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-4 col-xl-4">-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div class="row mt-3" style="margin-left: 250px">-->
-<!--      <div class="col-lg-2 col-xl-2">-->
-<!--        <div class="row">-->
-<!--          <div class="col-lg-12 col-xl-12">-->
-<!--            <label for="address" class="col-form-label fw-bold">Địa chỉ: </label>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-6 col-xl-6">-->
-<!--        <div class="col-auto">-->
-<!--          <input type="text" id="address" class="form-control" value="Bồ Đào Nha">-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col-lg-4 col-xl-4">-->
-<!--      </div>-->
-<!--    </div>-->
 
     <div class="row mt-3" style="margin-left: 250px">
       <div class="col-lg-2 col-xl-2">
@@ -366,7 +446,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill ms-5" viewBox="0 0 16 16">
           <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
         </svg>
-        <a href="" class="ms-1 text-decoration-none text-dark fw-bold">Quay lại trang thành viên!</a>
+        <a routerLink="/member/list" class="ms-1 text-decoration-none text-dark fw-bold">Quay lại trang thành viên!</a>
 
       </div>
 

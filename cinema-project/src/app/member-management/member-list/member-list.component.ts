@@ -11,7 +11,7 @@ export class MemberListComponent implements OnInit {
 
   members: Member[];
 
-  //pagination variables
+  //pagination variables - KhanhLDQ
   totalPage: number;
   currentPage: number = 0;
   totalMember: number;
@@ -34,6 +34,8 @@ export class MemberListComponent implements OnInit {
       this.totalMember = value['totalElements'];
       this.currentMember = value['numberOfElements'];
 
+      console.log('no search');
+
       console.log(value);
       // console.log(this.currentPage);
       // console.log(this.totalPage);
@@ -52,6 +54,86 @@ export class MemberListComponent implements OnInit {
   moveToNextPage() {
     this.currentPage += 1;
     this.ngOnInit();
+  }
+
+  //search params - KhanhLDQ
+  pointArr: string[];
+  firstValue: number;
+  secondValue: number;
+
+  totalPageSearch: number;
+  currentPageSearch: number = 0;
+  totalMemberSearch: number;
+  currentMemberSearch: number;
+
+  buttonSearchFlag: boolean = false;
+
+  memberName: string;
+  pointRange: string;
+
+
+  //search members by name and point range - KhanhLDQ
+  searchMembers() {
+    console.log(this.memberName);
+    console.log(this.pointRange);
+
+    this.pointArr = this.pointRange.split("-");
+    // console.log(this.pointArr);
+
+    this.firstValue = Number(this.pointArr[0]);
+    this.secondValue = Number(this.pointArr[1]);
+
+    console.log(this.firstValue);
+    console.log(this.secondValue);
+
+    this.buttonSearchFlag = true;
+    // this.currentPageSearch = 0;
+
+    console.log('search');
+    console.log(this.currentPageSearch);
+
+    this.memberManagementService.
+      searchMembersByNameAndPointRange(this.currentPageSearch,this.memberName,this.firstValue,this.secondValue).subscribe(value => {
+        this.members = value['content'];
+        this.totalPageSearch = value['totalPages'];
+        this.currentPageSearch = value['number'];
+        this.totalMemberSearch = value['totalElements'];
+        this.currentMemberSearch = value['numberOfElements'];
+
+        // console.log(this.currentPageSearch);
+
+        console.log(value);
+    }, error => {
+        console.log(error);
+    })
+
+    console.log(this.totalPageSearch);
+    console.log(this.currentPageSearch);
+    console.log(this.totalMemberSearch);
+    console.log('abc');
+    console.log(this.currentMemberSearch);
+  }
+
+  moveToPreviousPageSearch() {
+    this.currentPageSearch -= 1;
+
+    console.log(this.currentPageSearch);
+    console.log(this.memberName);
+    console.log(this.pointRange);
+
+    this.buttonSearchFlag = true;
+    this.searchMembers();
+  }
+
+  moveToNextPageSearch() {
+    this.currentPageSearch += 1;
+
+    console.log(this.currentPageSearch);
+    console.log(this.memberName);
+    console.log(this.pointRange);
+
+    this.buttonSearchFlag = true;
+    this.searchMembers();
   }
 
 }

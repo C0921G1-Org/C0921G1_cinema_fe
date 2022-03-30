@@ -14,7 +14,7 @@ export class MemberManagementService {
     private http: HttpClient
   ) { }
 
-  //get all members - KhanhLDQ
+  //get all members with pagination - KhanhLDQ
   getAllMembers(page: number): Observable<Member[]> {
     return this.http.get<Member[]>(connect_backend_url + '/member-list?page=' + page);
   }
@@ -24,4 +24,14 @@ export class MemberManagementService {
     return this.http.get<Member>(connect_backend_url + '/member-list/info/' + id);
   }
 
+  //update member by id - KhanhLDQ
+  updateMember(id: string, member: Member): Observable<Member> {
+    return this.http.patch<Member>(connect_backend_url + '/member-list/update/' + id, member);
+  }
+
+  //search members by name and point range - KhanhLDQ
+  searchMembersByNameAndPointRange(page: number, name: string, firstValue: number, secondValue: number): Observable<Member[]> {
+    return this.http.get<Member[]>(connect_backend_url +
+      '/member-list/search?page=' + page + '&name=' + name + '&firstValue=' + firstValue + '&secondValue=' + secondValue);
+  }
 }

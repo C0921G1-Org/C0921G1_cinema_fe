@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {City} from "../../model/city";
 import {MemberManagementService} from "../../service/member-management/member-management.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {CityService} from "../../service/member-management/city.service";
+import {differenceInYears} from "date-fns";
 
 @Component({
   selector: 'app-member-account-edit',
@@ -14,20 +15,40 @@ export class MemberAccountEditComponent implements OnInit {
 
   memberUpdateForm: FormGroup = new FormGroup({
     id: new FormControl(),
-    name: new FormControl(),
+
+    name: new FormControl('',
+      Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z ]+$"),
+        Validators.minLength(8)])),
+
     gender: new FormControl(),
-    phone: new FormControl(),
-    email: new FormControl(),
-    address: new FormControl(),
+
+    phone: new FormControl('',
+      Validators.compose([Validators.required,
+        Validators.pattern("^(\\(84\\)\\+|0)(90|91)(\\d){7}$")])),
+
+    email: new FormControl('',
+      Validators.compose([Validators.required, Validators.email])),
+
+    address: new FormControl('',
+      Validators.compose([Validators.required])),
+
     point: new FormControl(),
+
     image: new FormControl(),
-    dateOfBirth: new FormControl(),
-    identityNumber: new FormControl(),
+
+    dateOfBirth: new FormControl('',
+      Validators.compose([Validators.required, this.checkAgeMember])),
+
+    identityNumber: new FormControl('',
+      Validators.compose([Validators.required,
+        Validators.pattern("^((\\d){9}|(\\d){12})$")])),
+
     city: new FormControl()
   });
 
   cities: City[];
   id: string;
+  buttonFLag: boolean = false;
 
   constructor(
     private memberManagementService: MemberManagementService,
@@ -39,7 +60,7 @@ export class MemberAccountEditComponent implements OnInit {
   ngOnInit(): void {
     this.cityService.getAllCities().subscribe(value => {
       this.cities = value;
-      console.log(value);
+      // console.log(value);
 
       this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
         this.id = paramMap.get('id');
@@ -51,15 +72,40 @@ export class MemberAccountEditComponent implements OnInit {
   //get member by id - KhanhLDQ
   getMemberById(id: string) {
     return this.memberManagementService.getMemberById(id).subscribe(value => {
+      // console.log(value);
       this.memberUpdateForm.setValue(value);
-      console.log(value);
+      // console.log(this.memberUpdateForm);
     }, error => {
       console.log(error);
     })
   }
 
-  updateMember() {
+  //age member >= 16 or <= 100
+  checkAgeMember(abstractControl: AbstractControl): any {
+    const formValue = abstractControl.value;
+    const now = new Date();
+    const dateOfBirth = new Date(formValue);
 
+    const years = differenceInYears(now,dateOfBirth);
+    // console.log(years);
+
+    return (years >= 16 && years <= 100) ? null : {notSuitableAge: true};
+  }
+
+  //update member by id - KhanhLDQ
+  updateMember() {
+    const member = this.memberUpdateForm.value;
+    this.buttonFLag = true;
+    // console.log(member);
+
+    if (this.memberUpdateForm.valid) {
+      this.memberManagementService.updateMember(this.id,member).subscribe(() => {
+        console.log('update member successfully!');
+        this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
+      }, error => {
+        console.log(error);
+      })
+    }
   }
 
 }
