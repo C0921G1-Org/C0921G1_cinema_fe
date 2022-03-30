@@ -1,41 +1,67 @@
 <div class="wrapper container-fluid">
   <div class="inner">
-    <form class="form" action="" [formGroup]="formFilm" (ngSubmit)="create(formFilm.value)">
-      <h3>Thêm Mới Phim</h3>
+    <form class="form" action="" [formGroup]="formFilm" (ngSubmit)="create()">
+      <h3><b>Thêm Mới Phim</b></h3>
       <div class="form-group">
         <div class="form-wrapper">
           <label for="1">Chọn File Image <span>(*)</span></label>
           <div class="form-holder">
-            <!--                        <i style="font-style: normal; font-size: 15px;"></i>-->
-            <input type="file" id="1" formControlName="image">
+            <input style="color: gray" type="file" id="1"  (change)="showPreview($event)">
           </div>
         </div>
         <div class="form-wrapper">
-          <!--                    <label>Hình Ảnh:</label>-->
-          <!--                    <div class="form-holder">-->
-          <!--                        <i class="zmdi zmdi-account-o"></i>-->
-          <!--                        &lt;!&ndash;                        <input type="text" class="form-control">&ndash;&gt;-->
-          <!--                        <img src="" alt="">-->
-          <!--                    </div>-->
+          <label for="2">Tên Phim <span>(*)</span></label>
+          <div class="form-holder">
+            <i class="zmdi zmdi-account-o"></i>
+            <input  type="text" id="2" class="form-control" formControlName="name" placeholder="Mời nhập tên phim">
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('name').hasError('required')&&
+            formFilm.get('name').dirty">
+            This field cannot be left blank
+          </div>
         </div>
 
       </div>
       <div class="form-group">
         <div class="form-wrapper">
-          <label for="2">Tên Phim <span>(*)</span></label>
-          <div class="form-holder">
-            <i class="zmdi zmdi-account-o"></i>
-            <input type="text" id="2" class="form-control" formControlName="name" placeholder="Mời nhập tên phim">
-          </div>
-<!--          <p>sai định dạng</p>-->
-        </div>
-        <div class="form-wrapper">
           <label for="3">Nhà Sản Xuất <span>(*)</span></label>
           <div class="form-holder">
             <i style="font-style: normal; font-size: 15px;"></i>
-            <input type="text" id="3" class="form-control" formControlName="director" placeholder="Mời nhập nhà sản xuất">
+            <input  type="text" id="3" class="form-control" formControlName="director" placeholder="Mời nhập nhà sản xuất">
+          </div >
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('director').hasError('required')&&
+            formFilm.get('director').dirty">
+            This field cannot be left blank
           </div>
-<!--          <p>sai định dạng</p>-->
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('director').hasError('pattern') &&
+          formFilm.get('director').dirty">
+            name actor must be correct for example: Nguyen Van A,..."
+          </div>
+
+
+
+        </div>
+        <div class="form-wrapper">
+
+          <label for="10">Diễn Viên Nam <span>(*)</span></label>
+          <div class="form-holder ">
+            <input  id="10" type="text" class="form-control" formControlName="actor" placeholder="Mời nhập diễn viên chính">
+            <i class="zmdi zmdi-pin"></i>
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('actor').hasError('required')&&
+            formFilm.get('actor').dirty">
+            This field cannot be left blank
+          </div>
+          <div class="mb-3 text-danger"
+               *ngIf="formFilm.get('actor').hasError('pattern') &&
+          formFilm.get('actor').dirty">
+            name actor must be correct for example: Nguyen Van A,..."
+          </div>
+
         </div>
       </div>
       <div class="form-group">
@@ -43,150 +69,131 @@
           <label for="4">Ngày Khởi Chiếu <span>(*)</span></label>
           <div class="form-holder">
             <i class="zmdi zmdi-lock-outline"></i>
-            <input type="date" id="4" class="form-control" formControlName="startDate">
+            <input  type="date" id="4" class="form-control" formControlName="startDate">
           </div>
-<!--          <p>sai định dạng</p>-->
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('startDate').hasError('required')&&
+            formFilm.get('startDate').dirty">
+            This field cannot be left blank
+          </div>
         </div>
         <div class="form-wrapper">
           <label for="5">Ngày Kết thúc <span>(*)</span></label>
           <div class="form-holder">
             <i class="zmdi zmdi-lock-outline"></i>
-            <input id="5" type="date" class="form-control" formControlName="endDate">
+            <input  id="5" type="date" class="form-control" formControlName="endDate">
           </div>
-<!--          <p>sai định dạng</p>-->
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('endDate').hasError('required')&&
+            formFilm.get('endDate').dirty">
+            This field cannot be left blank
+          </div>
         </div>
       </div>
       <div class="form-group">
         <div class="form-wrapper">
           <label for="e" >Phòng Chiếu<span>(*)</span></label>
-          <input class="form-control" list="datalistOption" id="e" placeholder="Mời nhập phòng chiếu" formControlName="studio">
+          <input  class="form-control" list="datalistOption" id="e" placeholder="Mời nhập phòng chiếu" formControlName="studio">
           <datalist id="datalistOption" >
             <option value="PC-01">
             <option value="PC-02">
             <option value="PC-03">
             <option value="PC-04">
           </datalist>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('studio').hasError('required')&&
+            formFilm.get('studio').dirty">
+            This field cannot be left blank
+          </div>
         </div>
-<!--          <p>sai định dạng</p>-->
+
 
         <div class="form-wrapper">
           <label for="7">Thời lượng phim <span>(*)</span></label>
           <div class="form-holder ">
             <i class="zmdi zmdi-face"></i>
-            <input id="7" type="text" class="form-control" formControlName="duration" placeholder="Mời nhập thời luọng">
-
+            <input  id="7" type="text" class="form-control" formControlName="duration" placeholder="Mời nhập thời lượng">
           </div>
-<!--          <p>sai định dạng</p>-->
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('duration').hasError('required')&&
+            formFilm.get('duration').dirty">
+            This field cannot be left blank
+          </div>
         </div>
       </div>
       <div class="form-group">
         <div class="form-wrapper">
           <label for="8">Phiên Bản <span>(*)</span></label>
-          <input class="form-control" list="phong" id="8" placeholder="Mời chọn phiên bản" formControlName="studio" >
+          <input class="form-control" list="phong" id="8" placeholder="Mời chọn phiên bản" formControlName="version" >
           <datalist id="phong" >
             <option value="2D">
             <option value="3D">
 
           </datalist>
-<!--          <p>sai định dạng</p>-->
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('version').hasError('required')&&
+            formFilm.get('version').dirty">
+            This field cannot be left blank
+          </div>
         </div>
+
         <div class="form-wrapper">
           <label for="t" > Trailer <span>(*)</span></label>
           <div class="form-holder ">
-<!--            <select id="PC" class="form-control" formControlName="">-->
-<!--              <option value="PC001">PC001</option>-->
-<!--              <option value="PC002">PC002</option>-->
-<!--              <option value="PC003" >PC003</option>-->
-<!--            </select>-->
             <input id="t" type="text" class="form-control" formControlName="trailer" placeholder="Mời nhập trailer">
             <i class="zmdi zmdi-pin"></i>
           </div>
-<!--          <p>sai định dạng</p>-->
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('trailer').hasError('required')&&
+            formFilm.get('trailer').dirty">
+            This field cannot be left blank
+          </div>
+
         </div>
       </div>
-<!--      <div class="form-group form-wrapper">-->
-<!--        <div class="container-fluid" style="margin-bottom: 15px">-->
-<!--          <div >-->
-<!--            <div >-->
-<!--              <div class="row">-->
-<!--                <div class="col-12">-->
-<!--                  <div class="row">-->
-<!--                    <label>Thể Loại Phim <span>(*)</span></label>-->
-<!--                    <div class="col-lg-3">-->
-<!--                      <ul class="menu">-->
-<!--                        <li>Hành Động:<input type="checkbox"></li>-->
-<!--                        <li>Viễn Tưởng:<input type="checkbox"></li>-->
-<!--                        <li>Hoạt Hình:<input type="checkbox"></li>-->
-<!--                        <li>Võ thuật:<input type="checkbox"></li>-->
-<!--                        <li>Hài HƯớc:<input type="checkbox"></li>-->
-<!--                      </ul>-->
-<!--                    </div>-->
-<!--                    <div class="col-lg-3">-->
-<!--                      <ul class="menu">-->
-<!--                        <li >Kinh Điển:<input type="checkbox"></li>-->
-<!--                        <li >Lãng Mạn:<input type="checkbox"></li>-->
-<!--                        <li >Kiếm hIệp:<input type="checkbox"></li>-->
-<!--                        <li >Phiêu Lưu:<input type="checkbox"></li>-->
-<!--                        <li >Tâm Lý:<input type="checkbox"></li>-->
-<!--                      </ul>-->
-<!--                    </div>-->
-<!--                    <div class="col-lg-3">-->
-<!--                      <ul class="menu">-->
-<!--                        <li >Chiến Tranh:<input type="checkbox"></li>-->
-<!--                        <li >Tình Cảm:<input type="checkbox"></li>-->
-<!--                        <li >Kinh Dị:<input type="checkbox"></li>-->
-<!--                        <li >Âm Nhạc:<input type="checkbox"></li>-->
-<!--                      </ul>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
 
-<!--              </div>-->
-<!--            </div>-->
 
-<!--          </div>-->
-<!--        </div>-->
+
+
+<!--      <div class="form-wrapper">-->
+<!--        <label for="exampleDataList" >Thể Loại Phim<span>(*)</span></label>-->
+<!--        <select name="cars" id="exampleDataList" formControlName="filmType" class="form-control"  >-->
+<!--          <option [ngValue]="filmType" *ngFor="let filmType of fimTypeList" >{{filmType.name}}</option>-->
+<!--        </select>-->
 <!--      </div>-->
 
-      <div class="form-group">
-        <div class="form-wrapper">
-          <label for="10">Diễn Viên Nam <span>(*)</span></label>
-          <div class="form-holder ">
-            <input id="10" type="text" class="form-control" formControlName="actor" placeholder="Mời nhập diễn viên chính">
-            <i class="zmdi zmdi-pin"></i>
+      <div class=" form-wrapper">
+        <div class="row">
+          <label>Thể Loại Phim <span>(*)</span></label>
+                <div class="col-lg-12">
+                  <ul class="menu">
+                    <li  style="color: gray; margin-left: 53px" *ngFor="let filmType of fimTypeList ">{{filmType.name}}
+                      <input (change)="onChangeFood($event.target.value)" [value]="filmType.name" type="checkbox">
+                    </li>
+                  </ul>
+                </div>
           </div>
-<!--          <p>sai định dạng</p>-->
-        </div>
-
-        <div class="form-wrapper">
-          <label for="11">Flag Delete<span>(*)</span></label>
-          <input class="form-control" list="FlagDelete" id="11" placeholder="Mời chọn trang thái phim" formControlName="studio" >
-          <datalist id="FlagDelete" >
-            <option value="0">Đang Tồn Tại
-            <option value="1">Đã xóa
-          </datalist>
-<!--          <p>sai định dạng</p>-->
-        </div>
-
-
       </div>
 
-      <div class="form-wrapper">
-        <label for="exampleDataList" >Thể Loại Phim<span>(*)</span></label>
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Mời chọn thể loại  phim" formControlName="filmType">
-        <datalist id="datalistOptions" >
-          <option *ngFor="let filmType of fimTypeList">{{filmType.name}}</option>
-        </datalist>
+
+      <div class="mt-2 text-danger"
+           *ngIf="formFilm.get('filmType').hasError('required')&&
+            formFilm.get('filmType').dirty">
+        This field cannot be left blank
       </div>
       <div class="form-end">
         <div class="button-holder">
-          <button style="margin-right: 110px">Quay Lại</button>
+             <a  [routerLink]="['/film/list-film-test']" >
+               <button type="submit" style="margin-right: 145px" class="button-holder">Quay Lại</button>
+          </a>
         </div>
         <div class="button-holder">
-          <button>Thêm Phim</button>
+          <button type="submit">Xác Nhận</button>
         </div>
 
       </div>
     </form>
   </div>
 </div>
+
+

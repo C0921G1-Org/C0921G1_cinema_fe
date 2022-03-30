@@ -44,13 +44,14 @@ a:hover {
 
 .inner {
   max-width: 850px;
-  margin: auto;
+  margin: 20px 260px 20px 260px;
   background: darkorange;
-  padding: 15px; }
+  padding: 7px; }
 
 form {
   border: 1px solid #d3cccc;
-  padding: 62px 65px 64px; }
+  /*padding: 62px 65px 64px; }*/
+  padding: 40px 55px 40px 55px; }
 
 h3 {
   text-transform: uppercase;
@@ -272,13 +273,13 @@ span{
   position: relative;
   float: left;
   list-style: none;
-  width: 25%;
+  width: 20%;
 }
 .menu li input {
   position: relative;
   float: right;
   list-style: none;
-  width: 25%;
+  width: 20%;
 }
 body {
   /*margin: 0;*/
@@ -297,12 +298,14 @@ body {
 
 
 li {
-  margin-right: 30px;
+  color: gray;
+  margin-right: 15px;
+
 }
 .form{
   background-color:#ccc ;
 }
-input{
+.form-control{
   border-radius: 30px;
   border: #D94711;
 }
