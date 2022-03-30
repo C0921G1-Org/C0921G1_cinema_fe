@@ -23,8 +23,7 @@ export class MemberAccountEditComponent implements OnInit {
     gender: new FormControl(),
 
     phone: new FormControl('',
-      Validators.compose([Validators.required,
-        Validators.pattern("^(\\(84\\)\\+|0)(90|91)(\\d){7}$")])),
+      Validators.compose([Validators.required, Validators.pattern("^(\\(84\\)\\+|0)(90|91)(\\d){7}$")])),
 
     email: new FormControl('',
       Validators.compose([Validators.required, Validators.email])),
@@ -49,6 +48,7 @@ export class MemberAccountEditComponent implements OnInit {
   cities: City[];
   id: string;
   buttonFLag: boolean = false;
+  errors: any;
 
   constructor(
     private memberManagementService: MemberManagementService,
@@ -98,14 +98,39 @@ export class MemberAccountEditComponent implements OnInit {
     this.buttonFLag = true;
     // console.log(member);
 
-    if (this.memberUpdateForm.valid) {
-      this.memberManagementService.updateMember(this.id,member).subscribe(() => {
-        console.log('update member successfully!');
-        this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
-      }, error => {
-        console.log(error);
-      })
-    }
-  }
+    // if (this.memberUpdateForm.valid) {
+    //   this.memberManagementService.updateMember(this.id,member).subscribe(() => {
+    //     console.log('update member successfully!');
+    //     this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
+    //   }, error => {
+    //     console.log(error);
+    //   })
+    // }
 
+    //memberUpdateForm.valid => chi bat duoc validate tai front-end
+
+    this.memberManagementService.updateMember(this.id,member).subscribe(() => {
+      console.log('update member successfully!');
+      this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
+
+    }, error => {
+
+      console.log(error.error);
+      this.errors = error.error;
+
+      for (let i = 0; i < this.errors.length; i++) {
+
+        // console.log(this.errors[i].field);
+        // console.log(this.errors[i].field == "phone");
+
+        if (this.errors[i].field == "phone" && this.errors[i].code == "Pattern") {
+          document.getElementById("phone-pattern").textContent = this.errors[i].defaultMessage;
+        }
+
+        if (this.errors[i].field == "phone" && this.errors[i].code == "NotBlank") {
+          document.getElementById("phone-not-blank").textContent = this.errors[i].defaultMessage;
+        }
+      }
+    })
+  }
 }

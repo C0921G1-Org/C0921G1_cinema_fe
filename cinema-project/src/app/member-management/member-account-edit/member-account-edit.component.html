@@ -160,6 +160,19 @@
 
     </div>
 
+    <!--    back-end-error-message-->
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger" id="phone-not-blank"></div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
     <div class="row" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2"></div>
@@ -169,6 +182,19 @@
              *ngIf="memberUpdateForm.get('phone').hasError('pattern') && buttonFLag">
           Dữ liệu không hợp lệ! Số điện thoại phải tuân theo chuẩn của Việt Nam
         </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <!--    back-end-error-message-->
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger" id="phone-pattern"></div>
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>

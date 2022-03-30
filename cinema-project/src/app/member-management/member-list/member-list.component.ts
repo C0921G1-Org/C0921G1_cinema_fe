@@ -68,14 +68,13 @@ export class MemberListComponent implements OnInit {
 
   buttonSearchFlag: boolean = false;
 
-  memberName: string;
+  memberName: string = "";
   pointRange: string;
-
 
   //search members by name and point range - KhanhLDQ
   searchMembers() {
-    console.log(this.memberName);
-    console.log(this.pointRange);
+    // console.log(this.memberName);
+    // console.log(this.pointRange);
 
     this.pointArr = this.pointRange.split("-");
     // console.log(this.pointArr);
@@ -83,14 +82,16 @@ export class MemberListComponent implements OnInit {
     this.firstValue = Number(this.pointArr[0]);
     this.secondValue = Number(this.pointArr[1]);
 
-    console.log(this.firstValue);
-    console.log(this.secondValue);
+    // console.log(this.firstValue);
+    // console.log(this.secondValue);
 
     this.buttonSearchFlag = true;
-    // this.currentPageSearch = 0;
+
+    if (this.currentPageSearch != 0)
+      this.currentPageSearch = 0;
 
     console.log('search');
-    console.log(this.currentPageSearch);
+    // console.log(this.currentPageSearch);
 
     this.memberManagementService.
       searchMembersByNameAndPointRange(this.currentPageSearch,this.memberName,this.firstValue,this.secondValue).subscribe(value => {
@@ -100,40 +101,73 @@ export class MemberListComponent implements OnInit {
         this.totalMemberSearch = value['totalElements'];
         this.currentMemberSearch = value['numberOfElements'];
 
+        // console.log(this.totalPageSearch);
         // console.log(this.currentPageSearch);
+        // console.log(this.totalMemberSearch);
+        // console.log(this.currentMemberSearch);
 
         console.log(value);
     }, error => {
         console.log(error);
     })
 
-    console.log(this.totalPageSearch);
-    console.log(this.currentPageSearch);
-    console.log(this.totalMemberSearch);
-    console.log('abc');
-    console.log(this.currentMemberSearch);
+
   }
 
   moveToPreviousPageSearch() {
     this.currentPageSearch -= 1;
 
-    console.log(this.currentPageSearch);
-    console.log(this.memberName);
-    console.log(this.pointRange);
+    // console.log(this.currentPageSearch);
+    // console.log(this.memberName);
+    // console.log(this.pointRange);
+
+    // console.log(this.firstValue);
+    // console.log(this.secondValue);
+    // console.log(this.memberName);
 
     this.buttonSearchFlag = true;
-    this.searchMembers();
+    this.memberManagementService.
+      searchMembersByNameAndPointRange(this.currentPageSearch,this.memberName,this.firstValue,this.secondValue).subscribe(value => {
+      this.members = value['content'];
+      this.totalPageSearch = value['totalPages'];
+      this.currentPageSearch = value['number'];
+      this.totalMemberSearch = value['totalElements'];
+      this.currentMemberSearch = value['numberOfElements'];
+
+      console.log(value);
+    }, error => {
+        console.log(error);
+    })
   }
 
   moveToNextPageSearch() {
     this.currentPageSearch += 1;
 
-    console.log(this.currentPageSearch);
-    console.log(this.memberName);
-    console.log(this.pointRange);
+    // console.log(this.currentPageSearch);
+    // console.log(this.memberName);
+    // console.log(this.pointRange);
+
+    // console.log(this.firstValue);
+    // console.log(this.secondValue);
+    // console.log(this.memberName);
 
     this.buttonSearchFlag = true;
-    this.searchMembers();
+    this.memberManagementService.
+    searchMembersByNameAndPointRange(this.currentPageSearch,this.memberName,this.firstValue,this.secondValue).subscribe(value => {
+      this.members = value['content'];
+      this.totalPageSearch = value['totalPages'];
+      this.currentPageSearch = value['number'];
+      this.totalMemberSearch = value['totalElements'];
+      this.currentMemberSearch = value['numberOfElements'];
+
+      console.log(value);
+    }, error => {
+      console.log(error);
+    })
   }
+
+
+
+
 
 }
