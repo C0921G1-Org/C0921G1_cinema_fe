@@ -12,11 +12,11 @@ import {RoleUserGuard} from "../login/role-user.guard";
 
 const routes: Routes = [
   {
-    path: 'list', component: BookingBookingTicketListComponent,canActivate: [RoleAdminGuard]
+    path: 'list', component: BookingBookingTicketListComponent,canActivate: [RoleUserGuard]
   },
 
   {
-    path: 'list', component: BookingBookingTicketListComponent
+    path: 'list', component: BookingBookingTicketListComponent, canActivate: [RoleAdminGuard]
   },
   {
     path: 'confirm-booking', component: BookingConfirmBookingTicketComponent
