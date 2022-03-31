@@ -7,7 +7,7 @@ import {District} from "../member-management/member-account-registration/distric
   providedIn: 'root'
 })
 export class DistrictService {
-  private API_URL = 'http://localhost:8080/member/district'
+  private API_URL = 'http://localhost:8080/c09/public/member/district'
   constructor(private http:HttpClient) { }
 
   //get district list NhanNT

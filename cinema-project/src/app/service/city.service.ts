@@ -7,7 +7,7 @@ import {City} from "../member-management/member-account-registration/city";
   providedIn: 'root'
 })
 export class CityService {
-  private API_URL = 'http://localhost:8080/member/city'
+  private API_URL = 'http://localhost:8080/c09/public/member/city'
   constructor(private http:HttpClient) { }
 
 

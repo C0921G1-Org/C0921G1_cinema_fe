@@ -8,16 +8,20 @@ import { MemberListComponent } from './member-list/member-list.component';
 import { MemberAccountEditComponent } from './member-account-edit/member-account-edit.component';
 import {MemberManagementRoutingModule} from "./member-management-routing.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AngularFireModule} from "@angular/fire";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 
 @NgModule({
   declarations: [MemberAccountRegistrationComponent, MemberBookingTicketManagementComponent, MemberInformationManagementComponent, MemberPointHistoryManagementComponent, MemberListComponent, MemberAccountEditComponent],
-  imports: [
-    CommonModule,
-    MemberManagementRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        MemberManagementRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxPaginationModule,
+        // AngularFireModule
+    ]
 })
 export class MemberManagementModule { }

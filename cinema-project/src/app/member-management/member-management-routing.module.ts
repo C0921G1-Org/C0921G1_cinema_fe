@@ -17,7 +17,7 @@ const routes: Routes = [
     path: 'registration-account', component: MemberAccountRegistrationComponent
   },
   {
-    path: 'Booking-ticket', component: MemberBookingTicketManagementComponent
+    path: 'booking-ticket', component: MemberBookingTicketManagementComponent
   },
   {
     path: 'info-member', component: MemberInformationManagementComponent

@@ -7,7 +7,7 @@ import {Ward} from "../member-management/member-account-registration/ward";
   providedIn: 'root'
 })
 export class WardService {
-  private API_URL = 'http://localhost:8080/member/ward'
+  private API_URL = 'http://localhost:8080/c09/public/member/ward'
   constructor(private http:HttpClient) { }
 
   //get ward list NhanNT
