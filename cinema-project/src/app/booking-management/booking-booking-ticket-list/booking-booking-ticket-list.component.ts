@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TypeFilmServiceService} from "../../service/film-type/type-film-service.service";
 
 @Component({
   selector: 'app-booking-booking-ticket-list',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingBookingTicketListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private typeFilmServiceService : TypeFilmServiceService) { }
 
   ngOnInit(): void {
+    this.typeFilmServiceService.getBooking().subscribe(
+      () =>{
+        console.log("vaofoo??");
+      },
+      () =>{
+        console.log("ko vào đc?");
+      }
+    )
   }
 
 }

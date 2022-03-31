@@ -7,6 +7,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './layout/home/home.component';
 
+
 import {MemberManagementModule} from "./member-management/member-management.module";
 import {HttpClientModule} from "@angular/common/http";
 import {environment} from "../environments/environment";
@@ -15,6 +16,8 @@ import {MemberAccountRegistrationComponent} from "./member-management/member-acc
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {LoadCssService} from "./loadCss/load-css-service.service";
+import {MatDialogModule} from "@angular/material/dialog";
+
 
 
 
@@ -35,7 +38,13 @@ import {LoadCssService} from "./loadCss/load-css-service.service";
     AppRoutingModule,
     MemberManagementModule,
     HttpClientModule,
+
     AngularFireModule.initializeApp(environment.firebaseConfig),
+
+
+    MatDialogModule,
+
+
 
   ],
   providers: [
