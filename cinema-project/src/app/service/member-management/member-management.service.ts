@@ -32,6 +32,13 @@ export class MemberManagementService {
   //search members by name and point range - KhanhLDQ
   searchMembersByNameAndPointRange(page: number, name: string, firstValue: number, secondValue: number): Observable<Member[]> {
     return this.http.get<Member[]>(connect_backend_url +
-      '/member-list/search?page=' + page + '&name=' + name + '&firstValue=' + firstValue + '&secondValue=' + secondValue);
+      '/member-list/search-point-range?page=' + page + '&name=' + name + '&firstValue=' + firstValue + '&secondValue=' + secondValue);
   }
+
+  //search members by name and point default - KhanhLDQ
+  searchMembersByNameAndPointDefault(page: number, name: string): Observable<Member[]> {
+    return this.http.get<Member[]>(connect_backend_url +
+      '/member-list/search-point-default?page=' + page + '&name=' + name);
+  }
+
 }

@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 style="margin-top: 20px;margin-left: 20px;text-align: center">Danh sách thông tin thành viên</h2>
+  <h2 style="margin-top: 20px;margin-left: 20px;text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 32px !important; ">Danh sách thông tin thành viên</h2>
   <hr>
 </div>
 
@@ -15,22 +15,21 @@
             <div style="display: flex;justify-content: space-between">
 
               <div>
-                <h2><b>Thành viên</b></h2>
+                <h2 style="font-family: 'Varela Round', sans-serif !important; font-size: 24px !important;"><b>Thành viên</b></h2>
               </div>
 
               <div style="display: flex">
-<!--                if we blank data input so the value = ""-->
-                <input [(ngModel)]="memberName" id="memberName" name="memberName" type="search" class="form-control rounded" placeholder="Tìm kiếm theo tên..." aria-label="Search" aria-describedby="search-addon">
 
-                <select class="form-select" id="pointRange" name="pointRange" [(ngModel)]="pointRange">
-<!--                  <option value="" [selected]="true">Chọn khoảng điểm</option>-->
+                <input [(ngModel)]="memberName" id="memberName" name="memberName" type="search" class="form-control rounded" placeholder="Tìm kiếm theo tên..." aria-label="Search" aria-describedby="search-addon" style="width: 187px !important;">
+
+                <select class="form-select" id="pointRange" name="pointRange" [(ngModel)]="pointRange" style="width: 187px !important;">
                   <option>0-999</option>
                   <option>1000-1999</option>
                   <option>2000-4999</option>
                   <option>5000-9999</option>
                 </select>
 
-                <button type="submit" class="input-group-text border-0" id="search-addon" (click)="searchMembers()">
+                <button type="submit" class="input-group-text border-0" id="search-addon" (click)="searchMembers()" style="padding-left: 1rem !important; margin-right: 0rem !important;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                   </svg>
@@ -50,43 +49,60 @@
 
             <thead>
             <tr>
-              <th>Mã thành viên</th>
-              <th>Họ và tên</th>
-              <th>Số điện thoại</th>
-              <th>Giới tính</th>
-              <th>Địa chỉ</th>
+              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Mã thành viên</th>
+              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Họ và tên</th>
+              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Số điện thoại</th>
+              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Giới tính</th>
+              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Địa chỉ</th>
 <!--              <th>Thành phố</th>-->
-              <th>Số CMND</th>
-              <th>Email</th>
-              <th>Điểm thưởng</th>
+              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Số CMND</th>
+              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Email</th>
+              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Điểm thưởng</th>
 
-              <th style="text-align: center">Sửa thông tin</th>
+<!--              <th style="text-align: center; font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;"></th>-->
+              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Xem/Sửa</th>
             </tr>
             </thead>
 
             <tbody>
 
             <tr *ngFor="let member of members">
-              <td>{{member.id}}</td>
-              <td>{{member.name}}</td>
-              <td>{{member.phone}}</td>
+              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.id}}</td>
+              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.name}}</td>
+              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.phone}}</td>
 
-              <td *ngIf="member.gender == 0">Nam</td>
-              <td *ngIf="member.gender == 1">Nữ</td>
+              <td *ngIf="member.gender == 0" style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Nam</td>
+              <td *ngIf="member.gender == 1" style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Nữ</td>
 
-              <td>{{member.address}}</td>
+              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.address}}</td>
 <!--              <td>{{member.city.name}}</td>-->
-              <td>{{member.identityNumber}}</td>
-              <td>{{member.email}}</td>
-              <td>{{member.point}}</td>
+              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.identityNumber}}</td>
+              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.email}}</td>
+              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.point}}</td>
 
-              <td style="text-align: center">
+              <td style="text-align: center" style="font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">
+
+                <a style="margin-left: 30px;margin-right: 10px">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars text-primary" viewBox="0 0 16 16">
+                    <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
+                  </svg>
+                </a>
+
                 <a [routerLink]="['/member/edit-account',member.id]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen text-primary" viewBox="0 0 16 16">
                     <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
                   </svg>
                 </a>
+
               </td>
+
+<!--              <td style="text-align: center" style="font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">-->
+<!--                <a>-->
+<!--                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen text-primary" viewBox="0 0 16 16">-->
+<!--                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>-->
+<!--                  </svg>-->
+<!--                </a>-->
+<!--              </td>-->
             </tr>
 
             </tbody>
@@ -98,15 +114,15 @@
       <div class="row" *ngIf="!buttonSearchFlag">
         <div class="col-lg-12 col-xl-12">
 
-          <div class="hint-text">Hiển thị <b>{{currentMember}}</b> trên tổng số <b>{{totalMember}}</b> thành viên</div>
+          <div class="hint-text" style="font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Hiển thị <b>{{currentMember}}</b> trên tổng số <b>{{totalMember}}</b> thành viên</div>
 
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" *ngIf="currentPage > 0"
+            <li class="page-item" style="cursor: pointer"><a class="page-link" *ngIf="currentPage > 0"
                                      (click)="moveToPreviousPage()">Trước</a></li>
 
-            <li class="page-item active"><a class="page-link">{{currentPage+1}} / {{totalPage}}</a></li>
+            <li class="page-item active"><a class="page-link" style="color: white">{{currentPage+1}} / {{totalPage}}</a></li>
 
-            <li class="page-item"><a class="page-link" *ngIf="currentPage < totalPage - 1"
+            <li class="page-item" style="cursor: pointer"><a class="page-link" *ngIf="currentPage < totalPage - 1"
                                      (click)="moveToNextPage()">Sau</a></li>
 
           </ul>
@@ -116,15 +132,18 @@
       <div class="row" *ngIf="buttonSearchFlag">
         <div class="col-lg-12 col-xl-12">
 
-          <div class="hint-text">Hiển thị <b>{{currentMemberSearch}}</b> trên tổng số <b>{{totalMemberSearch}}</b> thành viên</div>
+          <div class="hint-text" *ngIf="totalMemberSearch > 0">Hiển thị <b>{{currentMemberSearch}}</b> trên tổng số <b>{{totalMemberSearch}}</b> thành viên</div>
+
+          <div class="hint-text" *ngIf="totalMemberSearch == 0">Không có <b>thành viên</b> phù hợp</div>
+
 
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" *ngIf="currentPageSearch > 0"
+            <li class="page-item" style="cursor: pointer"><a class="page-link" *ngIf="currentPageSearch > 0"
                                      (click)="moveToPreviousPageSearch()">Trước</a></li>
 
-            <li class="page-item active"><a class="page-link">{{currentPageSearch+1}} / {{totalPageSearch}}</a></li>
+            <li class="page-item active"><a class="page-link" style="color: white" *ngIf="totalPageSearch > 0">{{currentPageSearch+1}} / {{totalPageSearch}}</a></li>
 
-            <li class="page-item"><a class="page-link" *ngIf="currentPageSearch < totalPageSearch - 1"
+            <li class="page-item" style="cursor: pointer"><a class="page-link" *ngIf="currentPageSearch < totalPageSearch - 1"
                                      (click)="moveToNextPageSearch()">Sau</a></li>
 
           </ul>

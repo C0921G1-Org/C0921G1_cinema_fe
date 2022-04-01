@@ -1,9 +1,9 @@
 body {
   font-family: 'Varela Round', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
 }
 
-.form-check-input:checked {
-  background-color: #f28123;
-  border-color: #f28123;
+
+.khanh_btn_update:hover{
+  background: #e07412 !important;
 }

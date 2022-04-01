@@ -22,8 +22,10 @@ export class MemberAccountEditComponent implements OnInit {
 
     gender: new FormControl(),
 
-    phone: new FormControl('',
-      Validators.compose([Validators.required, Validators.pattern("^(\\(84\\)\\+|0)(90|91)(\\d){7}$")])),
+    // phone: new FormControl('',
+    //   Validators.compose([Validators.required, Validators.pattern("^(\\(84\\)\\+|0)(90|91)(\\d){7}$")])),
+
+    phone: new FormControl(),
 
     email: new FormControl('',
       Validators.compose([Validators.required, Validators.email])),
@@ -80,7 +82,7 @@ export class MemberAccountEditComponent implements OnInit {
     })
   }
 
-  //age member >= 16 or <= 100
+  //age member >= 16 or <= 100 - KhanhLDQ
   checkAgeMember(abstractControl: AbstractControl): any {
     const formValue = abstractControl.value;
     const now = new Date();
@@ -123,13 +125,13 @@ export class MemberAccountEditComponent implements OnInit {
         // console.log(this.errors[i].field);
         // console.log(this.errors[i].field == "phone");
 
-        if (this.errors[i].field == "phone" && this.errors[i].code == "Pattern") {
-          document.getElementById("phone-pattern").textContent = this.errors[i].defaultMessage;
-        }
+        // if (this.errors[i].field == "phone" && this.errors[i].code == "Pattern") {
+        //   document.getElementById("phone-pattern").textContent = this.errors[i].defaultMessage;
+        // }
 
-        if (this.errors[i].field == "phone" && this.errors[i].code == "NotBlank") {
-          document.getElementById("phone-not-blank").textContent = this.errors[i].defaultMessage;
-        }
+        // if (this.errors[i].field == "phone" && this.errors[i].code == "NotBlank") {
+        //   document.getElementById("phone-not-blank").textContent = this.errors[i].defaultMessage;
+        // }
       }
     })
   }
