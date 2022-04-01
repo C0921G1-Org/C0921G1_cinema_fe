@@ -19,6 +19,6 @@ export class MemberService {
 
   //get historyList NhanNT
   getTradingHistory(page:number,id:string,name:string): Observable<TradingHistory[]>{
-    return this.http.get<TradingHistory[]>(this.API_URL+'/user/member/history?'+'page='+page+'&memberID='+id+'&filmName='+name);
+    return this.http.get<TradingHistory[]>(this.API_URL+'/public/member/history?'+'page='+page+'&memberID='+id+'&filmName='+name);
   }
 }

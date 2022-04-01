@@ -38,13 +38,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     AppRoutingModule,
     MemberManagementModule,
     HttpClientModule,
-
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-
-
     MatDialogModule,
-
-
+    AngularFireModule.initializeApp(environment.firebaseConfig),
 
   ],
   providers: [
