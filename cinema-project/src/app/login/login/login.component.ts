@@ -56,13 +56,15 @@ export class LoginComponent implements OnInit {
           this.tokenStorageService.saveUserLocal(data);
         } else {
           this.tokenStorageService.saveTokenSession(data.accessToken);
-          this.tokenStorageService.saveUserLocal(data);
+          this.tokenStorageService.saveUserSession(data);
         }
 
         this.authService.isLoggedIn = true;
         this.username = this.tokenStorageService.getUser().username;
         this.roles = this.tokenStorageService.getUser().roles;
         this.closeDialog();
+
+
         // this.formGroup.reset();
         this.router.navigateByUrl(this.returnUrl);
         this.shareService.sendClickEvent();
