@@ -28,6 +28,8 @@ export class StatisticalCommonService {
       return this.httpClient.get<any>(this.API_URL + '/member' + '?&year=' + year)
     } else
       console.log("tìm theo quarter và year")
+    console.log(quarter)
+    console.log(year)
     return this.httpClient.get<any>(this.API_URL + '/member' + '?quarter=' + quarter + '&year=' + year)
   }
 

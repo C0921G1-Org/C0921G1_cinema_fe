@@ -35,7 +35,7 @@ export class StatisticalCommonManagementComponent implements OnInit {
     this.statisticalCommonService.getAllTopFilm().subscribe(value => {
       for (let i = 0; i < value.length; i++) {
         this.nameFilm[i] = value[i].name
-        this.totalMoneyFilm[i] = Number(value[i].totalTicket)
+        this.totalTicketFilm[i] = Number(value[i].totalTicket)
         this.totalMoneyFilm[i] = Number(value[i].totalMoney)
       }
       this.options = {
