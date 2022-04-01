@@ -41,6 +41,7 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   countCommonSeat = [];
   countVIPSeat = [];
   errorPromoCode: boolean;
+  usedPromocode: boolean;
   combo = {id: 1, name: 'Combo Bắp + Nước', price: 85000};
 
 
@@ -196,6 +197,7 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
       showtime: this.currentShowTimeChooseObj,
       seatChoose: this.seatChoosenList,
       totalPayment: this.totalPayment,
+      combo: this.combo,
       member: this.tokenStorageService.getUser().member
     };
     console.log(transferObj.showtime);
@@ -205,9 +207,10 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
 
   promotion(code: any) {
     if (code === 'C0921G1') {
-      if (this.totalPayment > 50000) {
+      if (this.totalPayment > 50000 && !this.usedPromocode) {
         this.totalPayment -= 50000;
         this.errorPromoCode = false;
+        this.usedPromocode = true;
       }
     } else {
       this.errorPromoCode = true;

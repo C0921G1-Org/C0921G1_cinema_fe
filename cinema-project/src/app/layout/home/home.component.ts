@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   typeFilm = '';
   seeMore = 6;
 
+
   constructor(private filmService: FilmServiceService,
               private typeFilmServiceService: TypeFilmServiceService) {
     this.film = new Film();
@@ -36,8 +37,12 @@ export class HomeComponent implements OnInit {
 
   public getListFilmClient() {
     this.filmService.getListFilmClient(this.seeMore, this.page, this.startDate, this.name, this.statusFilm, this.typeFilm).subscribe(value => {
-      this.filmClientList = value['content'];
-      this.totalPage = value['totalPages'];
+      if (value ===null){
+        this.filmClientList = [];
+      }else {
+        this.filmClientList = value['content'];
+        this.totalPage = value['totalPages'];
+      }
     });
   }
 
