@@ -54,4 +54,8 @@ export class FilmServiceService {
     return this.httpClient.get<Film>(this.API_URL_LIST + '/filmList/' + id);
   }
 
+  public findByIdFilm(id: number):Observable<Film>{
+    return this.httpClient.get<Film>(this.API_URL_LIST  +"/findById/"+id);
+  }
+
 }

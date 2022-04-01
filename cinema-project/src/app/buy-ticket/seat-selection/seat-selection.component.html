@@ -195,7 +195,7 @@
             <h3>{{this.totalPayment | currency: 'VND'}}</h3>
           </div>
           <div class="booking_ticket_button text-center">
-            <button class="booking_ticket_button text-decoration-none" (click)="transferPayment()" href="">ĐẶT VÉ</button>
+            <button class="text-decoration-none" (click)="transferPayment()" [routerLink]="['/booking/info-booking']">ĐẶT VÉ</button>
           </div>
         </div>
         <!--End Order Detail-->

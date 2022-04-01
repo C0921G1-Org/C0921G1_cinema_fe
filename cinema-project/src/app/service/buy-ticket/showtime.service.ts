@@ -30,3 +30,4 @@ export class ShowtimeService {
     return this.httpClient.get<Showtime>(this.API_URL + 'showtime/' + id);
   }
 }
+
