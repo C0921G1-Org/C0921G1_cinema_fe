@@ -26,7 +26,7 @@ export class TokenStorageService {
   }
 
   public getToken(): string {
-    if(localStorage.getItem(TOKEN_KEY)!==null){
+    if(localStorage.getItem(TOKEN_KEY) !== null){
       return localStorage.getItem(TOKEN_KEY);
     }else {
       return sessionStorage .getItem(TOKEN_KEY);
@@ -43,7 +43,7 @@ export class TokenStorageService {
   }
 
   public getUser() {
-    if(localStorage.getItem(USER_KEY) !== null){
+    if (localStorage.getItem(USER_KEY) !== null){
       return JSON.parse(localStorage.getItem(USER_KEY));
     }else {
       return JSON.parse(sessionStorage.getItem(USER_KEY));

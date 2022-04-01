@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+
 
 const AUTH_API = 'http://localhost:8080/c09/public/';
 
@@ -12,6 +13,7 @@ export class AuthService {
   isLoggedIn: boolean;
 
   constructor(private http: HttpClient) {
+
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
