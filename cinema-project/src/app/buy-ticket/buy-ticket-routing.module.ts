@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {FilmSelectionComponent} from './film-selection/film-selection.component';
 import {SeatSelectionComponent} from './seat-selection/seat-selection.component';
+import {RoleUserGuard} from "../login/role-user.guard";
+import {RoleAdminGuard} from "../login/role-admin.guard";
 
 const routes: Routes = [
   {
     path: '', component: FilmSelectionComponent
   },
   {
-    path: 'seat-selection/:id', component: SeatSelectionComponent
+    path: 'seat-selection/:id', component: SeatSelectionComponent, canActivate: [RoleUserGuard]
   }
 ];
 
