@@ -52,7 +52,7 @@
 
             </div>
             <div class="col-md-6">
-              <button type="button" class="btn_click">Hủy Thanh Toán</button>
+              <button type="button" class="btn_click" [routerLink]="['/buy-ticket']" (click)="checkbox()">Hủy Thanh Toán</button>
               <button type="button" class="btn_click" (click)="show()">Xác Nhận Thanh Toán</button>
               <br><br>
               <div *ngIf="check">

@@ -4,6 +4,9 @@ import {PaymentService} from '../../service/payment/payment.service';
 import {Transaction} from '../../model/Transaction';
 import {SharingDataService} from '../../buy-ticket/sharing-data.service';
 import {Showtime} from '../../model/showtime';
+import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-booking-information-booking-ticket',
@@ -11,11 +14,12 @@ import {Showtime} from '../../model/showtime';
   styleUrls: ['./booking-information-booking-ticket.component.css']
 })
 export class BookingInformationBookingTicketComponent implements OnInit {
-  showTime : Showtime ;
+  showTime: Showtime;
 
 
   constructor(private paymentService: PaymentService,
-              private  sharingDataService: SharingDataService) {
+              private  sharingDataService: SharingDataService,
+              private router: Router) {
   }
 
   transaction: Transaction
@@ -23,8 +27,8 @@ export class BookingInformationBookingTicketComponent implements OnInit {
     code: '1',
     transactionalDate: '2000-22-09',
     ticketStatus: '1',
-    checkAcceptTicket : 0,
-    pointGained : 0.0,
+    checkAcceptTicket: 0,
+    pointGained: 0.0,
     pointUsed: 0.0
   };
 
@@ -32,20 +36,24 @@ export class BookingInformationBookingTicketComponent implements OnInit {
   receiveObj: any;
   public payPalConfig ?: IPayPalConfig;
   check = false;
-  sum : any;
+  sum: any;
 
   ngOnInit(): void {
+
     this.sharingDataService.obj.subscribe(value => {
       this.receiveObj = value;
-      //Tổng tiền thành toán paypal
-      this.sum = this.receiveObj.totalPayment / 26000;
-      this.initConfig();
-
+      console.log(this.receiveObj);
+      if (this.receiveObj == null) {
+        this.router.navigateByUrl('/buy-ticket');
+      } else {
+        //Tổng tiền thành toán paypal
+        this.sum = this.receiveObj.totalPayment / 26000;
+        this.initConfig();
+      }
     });
 
+
   }
-
-
 
 
   private initConfig(): void {
@@ -100,11 +108,21 @@ export class BookingInformationBookingTicketComponent implements OnInit {
       onClientAuthorization: (data) => {
 
         //lấy thông tin showtime còn thông tin member nữa là xong
-     this.transaction.showTime =this.receiveObj['showtime'];
-     this.transaction.member =this.receiveObj['member'];
-     this.paymentService.payment(this.transaction).subscribe(value => {
-              this.transaction =value;
-          console.log(this.transaction);
+        this.transaction.showTime = this.receiveObj['showtime'];
+        this.transaction.member = this.receiveObj['member'];
+        this.paymentService.payment(this.transaction).subscribe(value => {
+          this.transaction = value;
+          Swal.fire({
+            position: 'center',
+            background: '#f8f9fa',
+            width: 400,
+            heightAuto: true,
+            icon: 'success',
+            title: 'Bạn đã thanh toán thành công',
+            toast: true,
+            showConfirmButton: false,
+            timer: 3000,
+          });
         });
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
       },
@@ -122,5 +140,19 @@ export class BookingInformationBookingTicketComponent implements OnInit {
 
   show() {
     this.check = !this.check;
+  }
+
+  checkbox() {
+    Swal.fire({
+      position: 'center',
+      background: '#f8f9fa',
+      width: 400,
+      heightAuto: true,
+      icon: 'error',
+      title: 'Bạn đã hủy thanh toán',
+      toast: true,
+      showConfirmButton: false,
+      timer: 3000,
+    });
   }
 }
