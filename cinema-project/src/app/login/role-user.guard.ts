@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {TokenStorageService} from '../service/security/token-storage.service';
 import Swal from 'sweetalert2';
 
+
 /**
  *  TuNK
  */
@@ -24,7 +25,8 @@ export class RoleUserGuard implements CanActivate {
     }
 
     // this.router.navigateByUrl("/")
-    this.router.navigate([''], {
+
+    this.router.navigate(['/'], {
       queryParams: { returnUrl: state.url }});
 
 
@@ -40,6 +42,7 @@ export class RoleUserGuard implements CanActivate {
       showConfirmButton: false,
       timer: 3000,
     });
+
     return false;
   }
 

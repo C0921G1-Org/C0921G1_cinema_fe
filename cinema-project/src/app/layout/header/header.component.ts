@@ -5,6 +5,7 @@ import {TokenStorageService} from '../../service/security/token-storage.service'
 import {ShareService} from '../../service/security/share.service';
 import {Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
     this.shareService.getClickEvent().subscribe(() => {
       this.loadHeader();
     });
+
   }
 
   ngOnInit(): void {
@@ -48,7 +50,8 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.tokenStorageService.signOut();
     this.loadHeader();
-    this.router.navigateByUrl('/');
+
+    this.router.navigateByUrl("")
   }
 
   getUsernameAccount(){

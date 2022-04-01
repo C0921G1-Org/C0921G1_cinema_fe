@@ -7,6 +7,7 @@ import {FilmManagementEditComponent} from './film-management-edit/film-managemen
 import {FilmManagementListComponent} from './film-management-list/film-management-list.component';
 
 
+
 const routes: Routes = [
   {
     path: 'detail-client/:id', component: FilmClientFilmDetailComponent,
