@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {TokenStorageService} from '../security/token-storage.service';
 import {Observable} from 'rxjs';
 import {SelectedSeat} from '../../model/selected-seat';
-import {catchError} from 'rxjs/operators';
-import {TokenStorageService} from '../security/token-storage.service';
+import {SeatType} from '../../model/seat-type';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SelectedSeatService {
-  API_URL = 'http://localhost:8080/c09/user/selectedSeat';
+export class SeatTypeService {
+  API_URL = 'http://localhost:8080/c09/user/seatType';
   httpOptions: any;
 
   constructor(private httpClient: HttpClient,
@@ -24,7 +24,7 @@ export class SelectedSeatService {
     };
   }
 
-  public getAllSelectedSeatByShowTimeId(id: number): Observable<any> {
-    return this.httpClient.get<SelectedSeat[]>(this.API_URL + '/' + id, this.httpOptions);
+  public findById(id: number): Observable<any> {
+    return this.httpClient.get<SeatType>(this.API_URL + '/' + id, this.httpOptions);
   }
 }

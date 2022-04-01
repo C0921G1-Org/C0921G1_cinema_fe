@@ -43,7 +43,8 @@ a {
 
 .seat_map_wrapper {
   width: 100%;
-  background-color: #f8f8f8;
+  background-color: rgba(241, 241, 241, 0.47);
+  border-radius: 8px;
 }
 
 .screen_wrapper {
@@ -98,6 +99,12 @@ a {
 }
 
 /*Order Detail*/
+.order_detail_position{
+  position: sticky;
+  top: 100px;
+  margin-top: 66px;
+}
+
 .order_detail_wrapper {
   background-color: #F2F2F2;
   border-radius: 8px;
@@ -107,6 +114,12 @@ a {
   border-bottom: 1px solid #bebebe;
 }
 .order_detail_title {
+  color: #ff530d!important;
+  background-color: #f3ec78;
+  background-image: linear-gradient(135deg, var(--pj-dark-orange), var(--pj-bright-orange));
+  background-size: 100%;
+  -webkit-background-clip: text!important;
+  -webkit-text-fill-color:transparent;
   font-weight: 600;
 }
 
@@ -151,18 +164,32 @@ a {
   border-bottom: 1px solid #bebebe;
 }
 
+.promo_button {
+  border: 2px solid var(--pj-bright-orange)!important;
+  padding: 8px 14px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.promo_button:hover {
+  color: white!important;
+  background-image: linear-gradient(135deg, var(--pj-dark-orange), var(--pj-bright-orange));
+}
+
 .order_detail_total h3{
   font-weight: 600;
 }
 
-.booking_ticket_button a {
-  border: 2px solid var(--pj-bright-orange);
+
+
+.booking_ticket_button {
+  border: 2px solid var(--pj-bright-orange)!important;
   padding: 8px 140px;
   font-weight: 600;
   border-radius: 4px;
 }
 
-.booking_ticket_button a:hover {
+.booking_ticket_button:hover {
   color: white!important;
   background-image: linear-gradient(135deg, var(--pj-dark-orange), var(--pj-bright-orange));
 }
@@ -198,6 +225,12 @@ a {
   font-size: 30px;
 }
 
+.combo_title {
+  margin-top: 110px;
+  font-weight: 600;
+
+}
+
 /*Seat Animation*/
 .DatTC_active {
   background-image: linear-gradient(135deg, var(--pj-dark-orange), var(--pj-bright-orange));
@@ -207,5 +240,7 @@ a {
 .seat_icon:hover {
   cursor: pointer;
 }
+
+
 
 

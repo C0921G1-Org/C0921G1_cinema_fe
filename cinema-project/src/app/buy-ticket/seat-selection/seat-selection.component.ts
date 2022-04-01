@@ -6,6 +6,9 @@ import {SelectedSeat} from '../../model/selected-seat';
 import {ActivatedRoute} from '@angular/router';
 import {ShowtimeService} from '../../service/buy-ticket/showtime.service';
 import {TokenStorageService} from '../../service/security/token-storage.service';
+import Swal from 'sweetalert2';
+import {SeatTypeService} from '../../service/buy-ticket/seat-type.service';
+import {SeatType} from '../../model/seat-type';
 
 @Component({
   selector: 'app-seat-selection',
@@ -16,7 +19,6 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   currentShowTimeChooseObj: Showtime;
   selectedSeatList: SelectedSeat[] = [];
   seatList = [];
-  // seatChoose: any;
   seatMapRow = 10;
   seatMapColumn = 5;
   totalSeat = this.seatMapRow * this.seatMapColumn;
@@ -32,19 +34,39 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   orderDetailSeatNumber = 0;
   count = 0;
   memberId: string;
+  economySeat: SeatType;
+  commonSeat: SeatType;
+  VIPSeat: SeatType;
+  countEconomySeat = [];
+  countCommonSeat = [];
+  countVIPSeat = [];
+  errorPromoCode: boolean;
+  combo = {id: 1, name: 'Combo Bắp + Nước', price: 85000};
+
 
   constructor(private sharingDataService: SharingDataService,
               private selectedSeatService: SelectedSeatService,
               private showtimeService: ShowtimeService,
               private activatedRoute: ActivatedRoute,
+              private seatTypeService: SeatTypeService,
               private tokenStorageService: TokenStorageService) {
   }
 
   public showContent = false;
 
   ngOnInit(): void {
+    this.seatTypeService.findById(3).subscribe(value => {
+      this.economySeat = value;
+    });
+    this.seatTypeService.findById(2).subscribe(value => {
+      this.commonSeat = value;
+
+    });
+    this.seatTypeService.findById(1).subscribe(value => {
+      this.VIPSeat = value;
+
+    });
     this.memberId = this.tokenStorageService.getUser().member;
-    console.log(this.memberId);
     const id = this.activatedRoute.snapshot.params.id;
     this.showtimeService.findById(id).subscribe(value => this.currentShowTimeChooseObj = value);
     this.selectedSeatService.getAllSelectedSeatByShowTimeId(id).subscribe(value1 => {
@@ -89,6 +111,20 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   getSeat(seatObj: any) {
     const nonActive = this.count < this.orderDetailSeatNumber && !seatObj.active;
     const active = this.count <= this.orderDetailSeatNumber && seatObj.active;
+    if (this.orderDetailSeatNumber === 0) {
+      Swal.fire({
+        position: 'top',
+        background: '#f8f9fa',
+        width: 500,
+        heightAuto: true,
+        icon: 'error',
+        title: 'Vui lòng chọn số lượng vé trước khi chọn ghế',
+
+        toast: true,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
     if (!seatObj.status) {
       if (nonActive || active) {
         if (nonActive) {
@@ -100,24 +136,32 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
         if (seatObj.active) {
           this.seatChoosenList.push(seatObj.id);
           if (seatObj.id <= 20) {
-            this.totalPayment += 65000;
+            this.totalPayment += this.economySeat.price;
+            this.countEconomySeat.push(this.economySeat);
+            console.log(this.countEconomySeat);
           }
           if (seatObj.id > 20 && seatObj.id <= 40) {
-            this.totalPayment += 75000;
+            this.totalPayment += this.commonSeat.price;
+            this.countCommonSeat.push(this.commonSeat);
           }
           if (seatObj.id > 40 && seatObj.id <= 50) {
-            this.totalPayment += 85000;
+            this.totalPayment += this.VIPSeat.price;
+            this.countVIPSeat.push(this.VIPSeat);
           }
         } else {
           this.seatChoosenList.splice(this.seatChoosenList.indexOf(seatObj.id), 1);
           if (seatObj.id <= 20) {
-            this.totalPayment -= 65000;
+            this.totalPayment -= this.economySeat.price;
+            this.countEconomySeat.splice(0, 1);
+            console.log(this.countEconomySeat);
           }
           if (seatObj.id > 20 && seatObj.id <= 40) {
-            this.totalPayment -= 75000;
+            this.totalPayment -= this.commonSeat.price;
+            this.countCommonSeat.splice(0, 1);
           }
           if (seatObj.id > 40 && seatObj.id <= 50) {
-            this.totalPayment -= 85000;
+            this.totalPayment -= this.VIPSeat.price;
+            this.countVIPSeat.splice(0, 1);
           }
         }
         console.log(this.seatChoosenList);
@@ -125,45 +169,12 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-
-  // getSeat(seatObj: any) {
-  //   console.log(this.count);
-  //   if (!seatObj.status) {
-  //     seatObj.active = !seatObj.active;
-  //     // this.seatChoose = seatObj;
-  //     if (seatObj.active) {
-  //       this.seatChoosenList.push(seatObj.id);
-  //       if (seatObj.id <= 20) {
-  //         this.totalPayment += 65000;
-  //       }
-  //       if (seatObj.id > 20 && seatObj.id <= 40) {
-  //         this.totalPayment += 75000;
-  //       }
-  //       if (seatObj.id > 40 && seatObj.id <= 50) {
-  //         this.totalPayment += 85000;
-  //       }
-  //     } else {
-  //       this.seatChoosenList.splice(this.seatChoosenList.indexOf(seatObj.id), 1);
-  //       if (seatObj.id <= 20) {
-  //         this.totalPayment -= 65000;
-  //       }
-  //       if (seatObj.id > 20 && seatObj.id <= 40) {
-  //         this.totalPayment -= 75000;
-  //       }
-  //       if (seatObj.id > 40 && seatObj.id <= 50) {
-  //         this.totalPayment -= 85000;
-  //       }
-  //     }
-  //     console.log(this.seatChoosenList);
-  //   }
-  // }
-
   plusTicket() {
     this.orderDetailSeatNumber += 1;
   }
 
   minusTicket() {
-    if (this.orderDetailSeatNumber > 0) {
+    if (this.orderDetailSeatNumber > 0 && this.count < this.orderDetailSeatNumber) {
       this.orderDetailSeatNumber -= 1;
     }
   }
@@ -190,6 +201,18 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
     console.log(transferObj.showtime);
     this.sharingDataService.getDataFromFirstComponent(transferObj);
     console.log(transferObj);
+  }
+
+  promotion(code: any) {
+    if (code === 'C0921G1') {
+      if (this.totalPayment > 50000) {
+        this.totalPayment -= 50000;
+        this.errorPromoCode = false;
+      }
+    } else {
+      this.errorPromoCode = true;
+
+    }
   }
 }
 

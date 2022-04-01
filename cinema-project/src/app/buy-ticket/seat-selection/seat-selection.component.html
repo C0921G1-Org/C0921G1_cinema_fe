@@ -105,10 +105,11 @@
                 <div class="row_title_item_content">10</div>
               </li>
             </ul>
-<!--            <ul *ngIf="showContent" class="row_title list-unstyled d-flex justify-content-center flex-wrap">-->
+            <!--            <ul *ngIf="showContent" class="row_title list-unstyled d-flex justify-content-center flex-wrap">-->
             <ul *ngIf="showContent" class="row_title list-unstyled d-flex flex-wrap justify-content-evenly">
               <li *ngFor="let seatObj of seatList" class="row_title_item text-center seat_item">
-                <div [ngClass]="{'selecting_seat': seatObj.active}" class="seat_icon economy_seat d-flex justify-content-center align-items-center"
+                <div [ngClass]="{'selecting_seat': seatObj.active}"
+                     class="seat_icon economy_seat d-flex justify-content-center align-items-center"
                      [class.ordered_seat]="seatObj.status" (click)="getSeat(seatObj)"
                      [class.economy_seat]="seatObj.id <= 20"
                      [class.common_seat]="seatObj.id <=40 && seatObj.id > 20"
@@ -142,15 +143,15 @@
       </div>
       <!--End Seat Map Caption-->
       <!--Combo-->
+      <h3 class="text-center combo_title">HOT COMBO</h3>
       <div style="padding: 20px" class="attached_service_wrapper">
-        <h3>HOT COMBO</h3>
         <div class="attached_service_item d-flex justify-content-between">
           <div class="attached_service_item_desc">
             <img style="width: 80px; height: 80px"
                  src="https://salt.tikicdn.com/cache/400x400/ts/product/c5/9d/41/4dcf799a77eafbbf0b2c7c0ee79c4938.jpg"
                  alt="">
-            <p>Combo Bắp + nước <br>
-              75.000 VNĐ</p>
+            <p>{{this.combo.name}} <br>
+              {{this.combo.price | currency: 'VND'}}</p>
           </div>
           <div class="attached_service_item_quantity">
             <div class="attached_service_item_button my-3">
@@ -164,7 +165,7 @@
     </div>
     <!--End Seat Choosing-->
     <div class="col-4 col-lg-4 col-md-12 col-sm-12 p-0">
-      <div class="container">
+      <div class="container order_detail_position">
 
         <!--Order Detail-->
         <div style="padding: 20px" class="order_detail_wrapper">
@@ -179,23 +180,42 @@
           <div class="order_detail_selected_seat my-3">
             <div class="selected_seat_icon_wrapper d-flex justify-content-">
               <div *ngFor="let seatChooseName of seatChoosenList"
-                   class="seat_icon selected_seat_icon text-center mx-1">{{this.seatMap[seatChooseName - 1]}}</div>
+                   class="seat_icon selected_seat_icon text-center mx-1">{{this.seatMap[seatChooseName - 1]}}
+              </div>
             </div>
-            <div *ngFor="let seatChooseObj of seatChoosenList" class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
-              <h5>1 Economy Seat</h5>
-              <h5>{{this.totalPayment}}</h5>
+            <div *ngIf="countEconomySeat.length > 0"
+                 class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
+              <h5>{{this.countEconomySeat.length}} x Economy Seat</h5>
+              <h5>{{this.countEconomySeat.length * this.economySeat.price}}</h5>
+            </div>
+            <div *ngIf="countCommonSeat.length > 0"
+                 class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
+              <h5>{{this.countCommonSeat.length}} x Common Seat</h5>
+              <h5>{{this.countCommonSeat.length * this.commonSeat.price}}</h5>
+            </div>
+            <div *ngIf="countVIPSeat.length > 0"
+                 class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
+              <h5>{{this.countVIPSeat.length}} x Premium Seat</h5>
+              <h5>{{this.countVIPSeat.length * this.VIPSeat.price}}</h5>
             </div>
           </div>
           <div class="order_detail_promotion my-3">
             <h5>NHẬP MÃ KHUYẾN MÃI</h5>
-            <input style="width: 94%" class="form-control" type="text" placeholder="Nhập mã khuyến mãi">
+            <div style="width: 100%" class="enterPromo d-flex justify-content-evenly">
+              <input #promoCode style="width: 65%" class="form-control" type="text"
+                     placeholder="Nhập mã khuyến mãi">
+              <button class="btn promo_button" (click)="promotion(promoCode.value)" type="submit">Áp dụng</button>
+            </div>
+            <p style="color: red" *ngIf="this.errorPromoCode">Mã khuyến mãi không tồn tại!</p>
           </div>
           <div class="order_detail_total d-flex justify-content-between my-3">
             <h3>TỔNG CỘNG:</h3>
             <h3>{{this.totalPayment | currency: 'VND'}}</h3>
           </div>
-          <div class="booking_ticket_button text-center">
-            <button class="booking_ticket_button text-decoration-none" (click)="transferPayment()" href="">ĐẶT VÉ</button>
+          <div class="text-center">
+            <button class="btn booking_ticket_button text-decoration-none" (click)="transferPayment()"
+                    [routerLink]="['/booking/info-booking']">ĐẶT VÉ
+            </button>
           </div>
         </div>
         <!--End Order Detail-->
