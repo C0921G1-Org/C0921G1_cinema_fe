@@ -155,6 +155,7 @@ table td{
 mat-form-field{
   background: white;
   color: #212529;
+  padding-bottom: 0.34375em;
 }
 .name{
   border: none;

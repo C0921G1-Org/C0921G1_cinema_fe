@@ -4,3 +4,7 @@
 button{
   float: right;
 }
+.modal-content{
+  width: 555px;
+  height: 200px;
+}
