@@ -39,7 +39,7 @@
 
 /*** Button ***/
 .btn {
-    font-weight: 500;
+    font-weight: 300;
     text-transform: uppercase;
     transition: .5s;
 }

@@ -17,7 +17,15 @@ export class BookingManageService {
     return this.http.get<Transaction[]>(this.API_URL_BOOKING + '/List?page=' + page);
   }
 
-  searchBookingTicket(pageable: number,code: string, name: string, member_id: string, phone: string): Observable<Transaction[]> {
+  searchBookingTicket(pageable: number, name: string, code: string, member_id: string, phone: string): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(this.API_URL_BOOKING + '/Search?pageable=' + pageable + '&code=' + code + '&name=' + name + '&member_id=' + member_id + '&phone=' + phone);
+  }
+
+  findById(id: number): Observable<Transaction> {
+    return this.http.get<Transaction>(this.API_URL_BOOKING + "/Confirm/" + id)
+  }
+
+  acceptTicket(transaction : Transaction){
+    return this.http.patch<Transaction>(this.API_URL_BOOKING + "/Update", transaction)
   }
 }

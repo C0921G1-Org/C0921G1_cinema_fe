@@ -2,6 +2,7 @@ import {Member} from './Member';
 import {ShowTime} from './ShowTime';
 import {Film} from './Film';
 import {FilmType} from './Film-type';
+import {SelectedSeat} from './SelectedSeat';
 
 export class Transaction{
   id: number;
@@ -12,5 +13,7 @@ export class Transaction{
   showTime: ShowTime;
   film: Film;
   filmType: FilmType;
+  selectedSeat: SelectedSeat;
+  checkAcceptTicket:number;
 }
 

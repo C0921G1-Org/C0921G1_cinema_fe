@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'list', component: BookingBookingTicketListComponent
   },
   {
-    path: 'confirm-booking', component: BookingConfirmBookingTicketComponent
+    path: 'confirm-booking/:id', component: BookingConfirmBookingTicketComponent
   },
   {
     path: 'confirm-info-booking', component: BookingConfirmInformationBookingComponent

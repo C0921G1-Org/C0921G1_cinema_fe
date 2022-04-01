@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BookingManageService} from '../../service/booking-manage/booking-manage.service';
 import {Transaction} from '../../model/Transaction';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {log} from 'util';
-
-
 
 @Component({
   selector: 'app-booking-booking-ticket-list',
@@ -13,12 +10,12 @@ import {log} from 'util';
   styleUrls: ['./booking-booking-ticket-list.component.css']
 })
 export class BookingBookingTicketListComponent implements OnInit {
-  pageable=1;
-  code= '';
-  member_id ='';
-  phone ='';
+  message = '';
+  pageable = 0;
+  code = '';
+  member_id = '';
+  phone = '';
   name = '';
-  page = 0;
   totalPage: number;
   transaction: Transaction;
   transactions: Transaction[];
@@ -26,7 +23,8 @@ export class BookingBookingTicketListComponent implements OnInit {
 
   constructor(private bookingManageService: BookingManageService,
               private router: Router,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private activatedRoute: ActivatedRoute) {
     this.keywordForm = this.fb.group({
       keyword: ''
     });
@@ -34,6 +32,7 @@ export class BookingBookingTicketListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.activatedRoute.snapshot.params.id);
     // this.bookingManageService.findAll(this.page).subscribe(value => {
     //   this.transactions = value['content'];
     //   this.totalPage = value['totalPages'];
@@ -43,41 +42,34 @@ export class BookingBookingTicketListComponent implements OnInit {
   }
 
   previousPage() {
-    if (this.page <= this.totalPage) {
-      this.page = this.page - 1;
+    if (this.pageable <= this.totalPage) {
+      this.pageable = this.pageable - 1;
     }
-    this.bookingManageService.searchBookingTicket(this.pageable, this.name, this.code,  this.member_id, this.phone).subscribe(data => {
+    this.bookingManageService.searchBookingTicket(this.pageable, this.name, this.code, this.member_id, this.phone).subscribe(data => {
       this.transactions = data['content'];
+      // console.log('previousPage: ' + this.transactions.length);
     });
   }
 
   nextPage() {
-    if (this.page <= this.totalPage) {
-      this.page = this.page + 1;
+    if (this.pageable <= this.totalPage) {
+      this.pageable = this.pageable + 1;
     }
-    this.bookingManageService.searchBookingTicket(this.pageable, this.name, this.code,  this.member_id, this.phone).subscribe(data => {
+    this.bookingManageService.searchBookingTicket(this.pageable, this.name, this.code, this.member_id, this.phone).subscribe(data => {
       this.transactions = data['content'];
+      // console.log('nextpage: ' + this.transactions.length);
     });
   }
 
-  searchBookingTicket(){
-    this.bookingManageService.searchBookingTicket(this.pageable, this.name, this.code,  this.member_id, this.phone).subscribe(data =>
-
-    {
-      console.log(this.name);
-      this.transactions = data['content']
+  searchBookingTicket() {
+    this.bookingManageService.searchBookingTicket(this.pageable, this.name, this.code, this.member_id, this.phone).subscribe(data => {
+      if (data == null) {
+        this.totalPage = 0;
+        console.log(this.message);
+      }
+      this.transactions = data['content'];
       this.totalPage = data['totalPages'];
-      console.log(this.transactions);
-    })
+      // console.log(this.transactions.length);
+    });
   }
-
-  search(){
-    // this.bookingManageService.findAll(this.page);
-  }
-
-  // searchBookingTicket(value: any) {
-  //   console.log('hello  ' + value);
-  //   this.keywordForm.controls.keyword.patchValue(value);
-  //   this.ngOnInit();
-  // }
 }

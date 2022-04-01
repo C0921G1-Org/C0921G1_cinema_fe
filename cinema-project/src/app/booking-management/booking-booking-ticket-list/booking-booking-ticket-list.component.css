@@ -163,14 +163,18 @@ table.table {
   font-size: 13px;
 }
 
-.btn {
+.anh_custom-button {
   background-color: #f28123;
-  color: white;
-
+  color: white !important;
 }
 
-.custom-button:hover {
-  background: #f28123;
+.anhVN_custom-button-2 {
+  background-color: #f28123;
+  color: white !important;
+}
+
+.anh_custom-button:hover {
+  background: #f2a60d;
 }
 
 table td {
@@ -195,3 +199,8 @@ th {
 .pagination li.active a, .pagination li.active a.page-link{
   background-color: #f28123;
 }
+.accept-button-AnhVn1:hover{
+  color: dimgray !important;
+}
+
+

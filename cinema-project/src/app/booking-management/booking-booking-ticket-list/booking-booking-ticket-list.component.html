@@ -8,45 +8,44 @@
     <div class="table-wrapper">
       <div class="table-title" style="background: #f28123">
         <div class="row">
-          <div class="col-lg-5">
+          <div class="col-lg-3">
             <h2>Vé Phim <b>C09</b></h2>
           </div>
-          <div class="col-lg-7">
-            <form action="" style="margin-left: 450px">
-              <div class="input-group">
-                <div class="col-lg-6">
-                  <div style="display: flex">
-<!--                    <input type="search" (ngModelChange)="searchBookingTicket(key.value)" #key="ngModel" ngModel-->
-<!--                           name="key" id="searchName" class="form-control" placeholder="Tìm kiếm"-->
-<!--                           style="height: 46px; width: 200px;margin-left: 20px">-->
-                    <input type="text" [(ngModel)]="name"
-                           name="key" id="searchName" class="form-control" placeholder="Tìm kiếm"
-                           style="height: 46px; width: 200px;margin-left: 20px">
-                    <input type="hidden" [(ngModel)]="code"
-                           name="key" id="code" class="form-control" placeholder="Tìm kiếm"
-                           style="height: 46px; width: 200px;margin-left: 20px">
-                    <input type="hidden" [(ngModel)]="member_id"
-                           name="key" id="member_id" class="form-control" placeholder="Tìm kiếm"
-                           style="height: 46px; width: 200px;margin-left: 20px">
-                    <input type="hidden" [(ngModel)]="phone"
-                           name="key" id="phone" class="form-control" placeholder="Tìm kiếm"
-                           style="height: 46px; width: 200px;margin-left: 20px">
-<!--                    <form>-->
-<!--                      <input type="search" (ngModelChange)="searchEquipment(key.value)" #key="ngModel" ngModel-->
-<!--                             name="key" id="searchName" class="form-control mr-sm-2" placeholder="Tìm kiếm...">-->
-<!--                    </form>-->
-                    <button class="btn btn-default" type="submit" (click)="searchBookingTicket()"><i
-                      class="glyphicon glyphicon-search"
-                      style="height: 46px">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                           fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                      </svg>
-                    </i></button>
-                  </div>
-                </div>
+          <div class="col-lg-8">
+            <div style="display: flex; float: left !important; margin-left: 25px">
+              <div>
+                <input type="text" [(ngModel)]="name"
+                       name="key" id="searchName" class="form-control" placeholder="Nhập tên"
+                       style="height: 46px; width: 200px;margin-left: 10px">
               </div>
-            </form>
+              <div>
+                <input type="text" [(ngModel)]="code"
+                       name="key" id="code" class="form-control" placeholder="Nhập mã đặt vé"
+                       style="height: 46px; width: 200px;margin-left: 10px">
+              </div>
+              <div>
+                <input type="text" [(ngModel)]="member_id"
+                       name="key" id="member_id" class="form-control" placeholder="Nhập mã thành viên"
+                       style="height: 46px; width: 200px;margin-left: 10px">
+              </div>
+              <div>
+                <input type="text" [(ngModel)]="phone"
+                       name="key" id="phone" class="form-control" placeholder="Nhập số điện thoại"
+                       style="height: 46px; width: 200px;margin-left: 10px">
+              </div>
+              <div>
+                <button class="btn btn-default" type="submit" (click)="searchBookingTicket()"
+                        style="margin-left: 10px; height: 100%; border-radius: 5px"><i
+                  class="glyphicon glyphicon-search"
+                  style="height: 46px">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                       fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path
+                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+                </i></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -73,21 +72,38 @@
           <td>{{t.member.identityNumber}}</td>
           <td>{{t.member.phone}}</td>
           <td>{{t.showTime.film.name}}</td>
-          <td>{{t.showTime.name}} | {{t.showTime.date |  date:"MM-dd-yyyy"}} </td>
+          <td>{{t.showTime.name}} | {{t.showTime.date |  date:"dd-MM-yyyy"}} </td>
           <td>
-            <button type="button" class="btn custom-button">Nhận vé</button>
+            <div *ngIf="t.checkAcceptTicket == 0">
+              <a type="button" class="btn anh_custom-button" [routerLink]="['/booking/confirm-booking/'+ t.id]">Nhận
+                vé</a>
+
+            </div>
+            <div *ngIf="t.checkAcceptTicket == 1">
+              <a type="button" class="accept-button-AnhVn1">Đã Nhận Vé</a>
+
+            </div>
           </td>
         </tr>
         </tbody>
       </table>
-      <div class="clearfix">
-        <!--                <div class="hint-text">Được cung cấp bởi <b>@</b><b>AnhVN</b> from C0921G1</div>-->
-        <ul class="pagination">
-          <li class="page-item disabled"><a style="margin-right: 5px" class="custom-button btn" (click)="previousPage()" *ngIf="page != 0">Trước</a></li>
-          <li class="page-item active btn btn-light" style="margin-top:5px">{{page+1}}/{{totalPage}}</li>
-          <li class="page-item"><a style="margin-left: 5px" class="custom-button btn" (click)="nextPage() " *ngIf="page < totalPage -1">Sau</a></li>
+      <h1 style="color: red; text-align: center; margin-top:100px" *ngIf="totalPage == 0"><strong>Không tìm
+        thấy !</strong>
+      </h1>
+    </div>
+  </div>
+  <!--  Phân trang-->
+  <div class="row">
+    <div class="col-lg-12 float-end">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li class="page-item disabled"><a class="anh_custom-button btn" (click)="previousPage()"
+                                            *ngIf="pageable != 0">Trước</a></li>
+          <li class="page-item" style="background: #dbd6d2"><a>{{pageable + 1}}/{{totalPage}}</a></li>
+          <li class="page-item"><a class="anh_custom-button btn" (click)="nextPage() "
+                                   *ngIf="pageable < totalPage -1">Sau</a></li>
         </ul>
-      </div>
+      </nav>
     </div>
   </div>
 </div>
