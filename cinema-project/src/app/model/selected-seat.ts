@@ -7,5 +7,5 @@ export class SelectedSeat {
   seatPosition: number;
   status: number;
   seatType: SeatType;
-  showtime: Showtime;
+  showtime?: Showtime;
 }

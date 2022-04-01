@@ -56,7 +56,7 @@ export class MemberAccountRegistrationComponent implements OnInit {
                 confirmPassword:  new FormControl('',[Validators.required,]),
               }, this.comparePassword),
 
-            city:  new FormControl(''),
+            cityThis:  new FormControl(''),
             district:  new FormControl(''),
             ward:  new FormControl('',[Validators.required,]),
             address: new FormControl('',[Validators.required,]),
@@ -102,17 +102,19 @@ export class MemberAccountRegistrationComponent implements OnInit {
     this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
-          console.log(url)
+          // console.log(url)
           this.memberForm.patchValue({image: url});
 
           // Call API to create vaccine
           if (this.memberForm.valid) {
             this.memberObj = Object.assign({}, this.memberForm.value);
-            this.memberObj.wardId = this.memberForm.value.ward.id
-            this.memberObj.password = this.memberForm.value.passwordFormGroup.password
+            this.memberObj.cityId = this.memberForm.value.cityThis;
 
-            console.log(this.memberObj.password)
-            console.log(this.memberObj)
+            console.log(this.memberObj);
+            this.memberObj.password = this.memberForm.value.passwordFormGroup.password;
+
+            // console.log(this.memberObj.password);
+            // console.log(this.memberObj);
             this.memberService.createMember(this.memberObj).subscribe(()=>{
               Swal.fire(
                     'Tạo Thành Công!!!',

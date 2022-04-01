@@ -17,9 +17,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {LoadCssService} from "./loadCss/load-css-service.service";
 import {MatDialogModule} from "@angular/material/dialog";
-
-
-
+import {NgxPayPalModule} from 'ngx-paypal';
 
 
 
@@ -32,6 +30,7 @@ import {MatDialogModule} from "@angular/material/dialog";
   ],
   imports: [
     BrowserModule,
+    NgxPayPalModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

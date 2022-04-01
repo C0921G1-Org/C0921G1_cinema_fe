@@ -3,7 +3,6 @@ import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './layout/home/home.component';
 
 
-// router nhiều chỗ còn thiếu tham số, ai cần gì thì tự thêm vô rồi làm nhé(trong routing của module con ấy)
 const routes: Routes = [
   {
     path: '',

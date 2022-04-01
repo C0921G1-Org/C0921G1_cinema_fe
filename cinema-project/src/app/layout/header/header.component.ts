@@ -35,7 +35,8 @@ export class HeaderComponent implements OnInit {
 
 
   loadHeader(): void {
-    if (this.tokenStorageService.getToken()) {
+    if (this.tokenStorageService.getUser()) {
+      // console.log("tại loadHeader: " + this.tokenStorageService.getToken());
       this.currentUser = this.tokenStorageService.getUser().username;
       this.role = this.tokenStorageService.getUser().roles[0];
       this.username = this.tokenStorageService.getUser().username;
@@ -43,8 +44,8 @@ export class HeaderComponent implements OnInit {
       this.username = null;
     }
     this.isLoggedIn = this.username != null;
+    // console.log(this.tokenStorageService.getUser().token);
     this.getUsernameAccount();
-    console.log(this.tokenStorageService.getUser());
   }
 
   logOut() {
@@ -55,7 +56,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getUsernameAccount(){
-    if (this.tokenStorageService.getToken()) {
+    if (this.tokenStorageService.getUser()) {
       this.idMember = this.tokenStorageService.getUser().member.id;
     }
   }
@@ -65,7 +66,6 @@ export class HeaderComponent implements OnInit {
       width: 'max-content',
       height: 'max-content'
     });
-
   }
 
 }

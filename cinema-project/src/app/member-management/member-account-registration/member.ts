@@ -13,7 +13,7 @@ export interface Member {
  password:string;
  confirmPassword: string;
  identityNumber: string;
- wardId: string;
+ cityId: string;
  address:string;
  dateOfBirth: string;
 
