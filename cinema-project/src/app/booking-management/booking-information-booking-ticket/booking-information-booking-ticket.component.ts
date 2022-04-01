@@ -18,40 +18,34 @@ export class BookingInformationBookingTicketComponent implements OnInit {
               private  sharingDataService: SharingDataService) {
   }
 
-
-
-  receiveObj: any;
-  public payPalConfig ?: IPayPalConfig;
-  check = false;
-
-  ngOnInit(): void {
-    this.sharingDataService.obj.subscribe(value => {
-      this.receiveObj = value;
-      // console.log(this.receiveObj['showtime']);
-
-      this.initConfig();
-    });
-  }
-
   transaction: Transaction
     = {
     code: '1',
     transactionalDate: '2000-22-09',
     ticketStatus: '1',
-    member: {
-      id: '1',
-      name: 'Nguyễn Văn A',
-      gender: 1,
-      phone: '0901231231',
-      email: 'anguyen@gmail.com',
-      address: 'Lý Thái Tổ',
-      point: 100.0,
-      image: 'ava1',
-      dateOfBirth: '2000-01-01',
-      identityNumber: '123123123'
-    },
-
+    checkAcceptTicket : 0,
+    pointGained : 0.0,
+    pointUsed: 0.0
   };
+
+
+  receiveObj: any;
+  public payPalConfig ?: IPayPalConfig;
+  check = false;
+  sum : any;
+
+  ngOnInit(): void {
+    this.sharingDataService.obj.subscribe(value => {
+      this.receiveObj = value;
+      //Tổng tiền thành toán paypal
+      this.sum = this.receiveObj.totalPayment / 26000;
+      this.initConfig();
+
+    });
+
+  }
+
+
 
 
   private initConfig(): void {
@@ -59,16 +53,17 @@ export class BookingInformationBookingTicketComponent implements OnInit {
       currency: 'USD',
       clientId: 'sb',
       createOrderOnClient: (data) => <ICreateOrderRequest> {
+
         intent: 'CAPTURE',
         purchase_units: [
           {
             amount: {
               currency_code: 'USD',
-              value: '9.99',
+              value: this.sum,
               breakdown: {
                 item_total: {
                   currency_code: 'USD',
-                  value: '9.99'
+                  value: this.sum,
                 }
               }
             },
@@ -79,7 +74,7 @@ export class BookingInformationBookingTicketComponent implements OnInit {
                 category: 'DIGITAL_GOODS',
                 unit_amount: {
                   currency_code: 'USD',
-                  value: '9.99',
+                  value: this.sum,
                 },
               }
             ]
@@ -106,8 +101,8 @@ export class BookingInformationBookingTicketComponent implements OnInit {
 
         //lấy thông tin showtime còn thông tin member nữa là xong
      this.transaction.showTime =this.receiveObj['showtime'];
-
-        this.paymentService.payment(this.transaction).subscribe(value => {
+     this.transaction.member =this.receiveObj['member'];
+     this.paymentService.payment(this.transaction).subscribe(value => {
               this.transaction =value;
           console.log(this.transaction);
         });

@@ -19,9 +19,5 @@ import {NgxPayPalModule} from 'ngx-paypal';
         NgxPayPalModule
     ]
 
-  imports: [
-    CommonModule,
-    BookingManagementRoutingModule,
-  ]
 })
 export class BookingManagementModule { }

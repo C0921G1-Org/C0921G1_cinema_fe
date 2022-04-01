@@ -11,10 +11,10 @@ import {Transaction} from '../../model/Transaction';
   providedIn: 'root'
 })
 export class PaymentService {
-          API_URL_LIST = 'http://localhost:8080/';
+          API_URL_LIST = 'http://localhost:8080/c09/user/';
   constructor(private http: HttpClient) { }
 
-
+  
 
   public payment(transaction: Transaction): Observable<Transaction>{
     return this.http.post<Transaction>(this.API_URL_LIST  + "pay" , transaction);

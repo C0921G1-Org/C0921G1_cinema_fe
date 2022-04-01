@@ -7,7 +7,6 @@ import {BookingSeatSelectionComponent} from "./booking-seat-selection/booking-se
 import {BookingInformationBookingTicketComponent} from "./booking-information-booking-ticket/booking-information-booking-ticket.component";
 import {BookingTicketSelectionComponent} from "./booking-ticket-selection/booking-ticket-selection.component";
 import {RoleAdminGuard} from "../login/role-admin.guard";
-import {RoleUserGuard} from "../login/role-user.guard";
 
 
 const routes: Routes = [
