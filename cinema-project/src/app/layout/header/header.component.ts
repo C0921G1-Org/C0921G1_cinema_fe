@@ -66,7 +66,6 @@ export class HeaderComponent implements OnInit {
       width: 'max-content',
       height: 'max-content'
     });
-
   }
 
 }

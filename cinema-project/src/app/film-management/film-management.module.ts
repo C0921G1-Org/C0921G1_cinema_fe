@@ -5,14 +5,21 @@ import {FilmManagementEditComponent} from './film-management-edit/film-managemen
 import {FilmManagementListComponent} from './film-management-list/film-management-list.component';
 import {FilmClientFilmDetailComponent} from './film-client-film-detail/film-client-film-detail.component';
 import {FilmManagementDeleteComponent} from './film-management-delete/film-management-delete.component';
-import {FilmManagementRoutingModule} from "./film-management-routing.module";
+import {FilmManagementRoutingModule} from './film-management-routing.module';
 
 
 @NgModule({
-  declarations: [FilmManagementCreateComponent, FilmManagementEditComponent, FilmManagementListComponent, FilmClientFilmDetailComponent, FilmManagementDeleteComponent],
+  declarations: [
+    FilmManagementCreateComponent,
+    FilmManagementEditComponent,
+    FilmManagementListComponent,
+    FilmClientFilmDetailComponent,
+    FilmManagementDeleteComponent],
   imports: [
     CommonModule,
     FilmManagementRoutingModule
+    // SafePipeModule
+
   ]
 })
 export class FilmManagementModule {

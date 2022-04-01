@@ -26,21 +26,10 @@ export class TokenStorageService {
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
 
-
-  // public getToken() {
-  //   if (USER_KEY != null){
-  //     if (localStorage.getItem(USER_KEY) !== null) {
-  //       return JSON.parse(localStorage.getItem(USER_KEY)).token;
-  //     } else {
-  //       return JSON.parse(sessionStorage.getItem(USER_KEY)).token;
-  //     }
-  //   }else return "";
-  // }
-
   public getToken(): string {
-    if(localStorage.getItem(USER_KEY)!==null){
+    if (localStorage.getItem(USER_KEY) !== null) {
       return localStorage.getItem(USER_KEY);
-    }else {
+    } else {
       return sessionStorage.getItem(USER_KEY);
     }
   }

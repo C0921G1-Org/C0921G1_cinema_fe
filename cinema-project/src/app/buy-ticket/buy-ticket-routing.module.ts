@@ -8,10 +8,10 @@ import {RoleAdminGuard} from "../login/role-admin.guard";
 
 const routes: Routes = [
   {
-    path: '', component: FilmSelectionComponent, canActivate: [RoleUserGuard]
+    path: '', component: FilmSelectionComponent
   },
   {
-    path: 'seat-selection/:id', component: SeatSelectionComponent, canActivate: [RoleAdminGuard]
+    path: 'seat-selection/:id', component: SeatSelectionComponent, canActivate: [RoleUserGuard]
   }
 ];
 
