@@ -44,7 +44,7 @@
       <th>Số giao dịch</th>
       <th>Phòng chiếu</th>
       <th>Tên Phim</th>
-      <th>Tiền vé (VND)</th>
+      <th>Tổng Tiền vé (VND)</th>
       <th>Tiền combo (VND)</th>
       <th>Điểm tích lũy</th>
     </tr>
@@ -57,7 +57,9 @@
       <td>{{item.screenName}}</td>
       <td>{{item.filmName}}</td>
       <td>{{item.ticketPrice}}</td>
-      <td>{{item.attachedPrice}}</td>
+<!--      <td *ngIf="">{{item.attachedPrice}}</td>-->
+      <td *ngIf="item.attachedPrice === null; else elseBlock">0</td>
+      <ng-template #elseBlock>{{item.attachedPrice}}</ng-template>
       <td>{{item.point}}</td>
     </tr>
 

@@ -19,7 +19,7 @@ export class MemberBookingTicketManagementComponent implements OnInit {
   totalPagination: number;
   totalElement: number
   searchText: string = "";
-  memberId: string = "Mem-002";
+  memberId: string = "TV-0004";
 
   constructor(
     // public dialog: MatDialog,
@@ -27,7 +27,8 @@ export class MemberBookingTicketManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTradingHistory(this.p,this.memberId,this.searchText)
-    // console.log("ok")
+    console.log("ok")
+    console.log("===============================")
   }
 
   //NhanNT get trading history list
@@ -40,6 +41,7 @@ export class MemberBookingTicketManagementComponent implements OnInit {
       }
       else{
         this.tradingHistoryList = value['content'];
+        console.log(this.tradingHistoryList)
         this.totalPagination = value['totalPages'];
         this.totalElement = value['totalElements'];
       }
