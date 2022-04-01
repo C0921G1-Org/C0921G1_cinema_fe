@@ -9,7 +9,7 @@ import {FilmType} from "../../model/film-type";
 })
 export class TypeFilmServiceService {
   filmType: FilmType;
-  API_URL_LIST = 'http://localhost:8080/film-type';
+  API_URL_LIST = 'http://localhost:8080/c09/user/film-type';
 
   constructor(private httpClient: HttpClient) {
   }

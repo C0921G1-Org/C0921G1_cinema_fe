@@ -12,6 +12,10 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'home/:status',
+    component: HomeComponent
+  },
+  {
     path: 'statistical',
     loadChildren: () => import('./statistical/statistical.module').then(module => module.StatisticalModule)
   },
