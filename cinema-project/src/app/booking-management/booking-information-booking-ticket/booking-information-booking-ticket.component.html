@@ -11,7 +11,7 @@
               <label class="control-label">Họ và Tên</label><span class="bat_buoc">(*)</span>
             </div>
             <div class="col-md-6">
-              <input id="name" [value]="transaction.member.name" type="text" class="form-control">
+              <input id="name" [value]="receiveObj?.member.name" type="text" class="form-control">
             </div>
           </div>
           <div class="row">
@@ -19,7 +19,7 @@
               <label class="control-label">Email</label><span class="bat_buoc">(*)</span>
             </div>
             <div class="col-md-6">
-              <input id="email" [value]="transaction.member.email"  type="text" class="form-control">
+              <input id="email" [value]="receiveObj?.member.email"  type="text" class="form-control">
             </div>
           </div>
           <div class="row">
@@ -27,7 +27,7 @@
               <label class="control-label">Số Điện Thoại</label><span class="bat_buoc">(*)</span>
             </div>
             <div class="col-md-6">
-              <input id="sdt" [value]="transaction.member.phone" type="text" class="form-control">
+              <input id="sdt" [value]="receiveObj?.member.phone" type="text" class="form-control">
             </div>
           </div>
 
@@ -36,7 +36,7 @@
               <label class="control-label">Ngày Sinh</label><span class="bat_buoc">(*)</span>
             </div>
             <div class="col-md-6">
-              <input id="ngaySinh" [value]="transaction.member.dateOfBirth" type="date" class="form-control">
+              <input id="ngaySinh" [value]="receiveObj?.member.dateOfBirth" type="date" class="form-control">
             </div>
           </div>
           <div class="row">
@@ -87,7 +87,7 @@
           <span><b class="testH2">Tổng </b>: </span> <span>{{receiveObj?.totalPayment}}</span>
         <div *ngIf="check">
         <hr>
-        <span><b class="testH2">Thanh Toán PayPal</b>: </span> <span>140,000đ</span>
+        <span><b class="testH2">Thanh Toán PayPal</b>: </span> <span>{{sum| currency :'USD' }}</span>
         </div>
       </div>
 

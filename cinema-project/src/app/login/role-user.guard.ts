@@ -30,9 +30,8 @@ export class RoleUserGuard implements CanActivate {
     // this.router.navigateByUrl("/")
 
     this.router.navigate(['/'], {
-      queryParams: { returnUrl: state.url }});
-
-
+      queryParams: { returnUrl: state.url }
+    });
 
     Swal.fire({
       position: 'top',
