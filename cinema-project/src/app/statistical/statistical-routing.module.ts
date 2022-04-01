@@ -8,7 +8,7 @@ import {StatisticalMemberComponent} from "./statistical-member/statistical-membe
 
 const routes: Routes = [
   {
-    path: 'common', component: StatisticalCommonManagementComponent
+    path: 'common', component: StatisticalCommonManagementComponent,
   },
   {
     path: 'film', component: StatisticalFilmComponent
