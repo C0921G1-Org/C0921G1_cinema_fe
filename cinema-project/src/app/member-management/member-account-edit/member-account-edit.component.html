@@ -55,10 +55,14 @@
       <div class="col-lg-2 col-xl-2"></div>
 
       <div class="col-lg-6 col-xl-6">
+
         <div class="mt-2 text-danger"
              *ngIf="memberUpdateForm.get('name').hasError('required') && buttonFLag">
           Dữ liệu còn trống! Mời bạn nhập vào!
         </div>
+
+        <div class="mt-2 text-danger" id="name-not-blank"></div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>
@@ -70,10 +74,14 @@
       <div class="col-lg-2 col-xl-2"></div>
 
       <div class="col-lg-6 col-xl-6">
+
         <div class="mt-2 text-danger"
              *ngIf="memberUpdateForm.get('name').hasError('pattern') && buttonFLag">
           Dữ liệu không hợp lệ! Tên không bao gồm số hoặc kí tự đặc biệt!
         </div>
+
+        <div class="mt-2 text-danger" id="name-pattern"></div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>
@@ -85,10 +93,14 @@
       <div class="col-lg-2 col-xl-2"></div>
 
       <div class="col-lg-6 col-xl-6">
+
         <div class="mt-2 text-danger"
              *ngIf="memberUpdateForm.get('name').hasError('minlength') && buttonFLag">
           Dữ liệu không hợp lệ! Tên ít nhất bao gồm 8 kí tự!
         </div>
+
+        <div class="mt-2 text-danger" id="name-size"></div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>
@@ -96,7 +108,7 @@
     </div>
 
     <!--    memberImage-->
-    <div class="row mt-3" style="margin-left: 250px">
+    <div class="row" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2">
         <div class="row">
@@ -176,10 +188,14 @@
       <div class="col-lg-2 col-xl-2"></div>
 
       <div class="col-lg-6 col-xl-6">
+
         <div class="mt-2 text-danger"
              *ngIf="memberUpdateForm.get('dateOfBirth').hasError('required') && buttonFLag">
           Dữ liệu còn trống! Mời bạn nhập vào!
         </div>
+
+        <div class="mt-2 text-danger" id="dateOfBirth-not-blank"></div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>
@@ -191,10 +207,14 @@
       <div class="col-lg-2 col-xl-2"></div>
 
       <div class="col-lg-6 col-xl-6">
+
         <div class="mt-2 text-danger"
              *ngIf="memberUpdateForm.get('dateOfBirth').hasError('notSuitableAge') && buttonFLag">
           Thành viên đăng ký phải lớn hơn 16 tuổi hoặc bé hơn 100 tuổi!
         </div>
+
+        <div class="mt-2 text-danger" id="dateOfBirth-not-suitable"></div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>
@@ -202,7 +222,7 @@
     </div>
 
 <!--    memberPhone-->
-    <div class="row mt-3" style="margin-left: 250px">
+    <div class="row" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2">
         <div class="row">
@@ -228,23 +248,14 @@
       <div class="col-lg-2 col-xl-2"></div>
 
       <div class="col-lg-6 col-xl-6">
+
         <div class="mt-2 text-danger"
              *ngIf="memberUpdateForm.get('phone').hasError('required') && buttonFLag">
           Dữ liệu còn trống! Mời bạn nhập vào!
         </div>
-      </div>
 
-      <div class="col-lg-4 col-xl-4"></div>
-
-    </div>
-
-    <!--    back-end-error-message-->
-    <div class="row mb-3" style="margin-left: 250px">
-
-      <div class="col-lg-2 col-xl-2"></div>
-
-      <div class="col-lg-6 col-xl-6">
         <div class="mt-2 text-danger" id="phone-not-blank"></div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>
@@ -256,23 +267,14 @@
       <div class="col-lg-2 col-xl-2"></div>
 
       <div class="col-lg-6 col-xl-6">
+
         <div class="mt-2 text-danger"
              *ngIf="memberUpdateForm.get('phone').hasError('pattern') && buttonFLag">
           Dữ liệu không hợp lệ! Số điện thoại phải tuân theo chuẩn của Việt Nam!
         </div>
-      </div>
 
-      <div class="col-lg-4 col-xl-4"></div>
-
-    </div>
-
-    <!--    back-end-error-message-->
-    <div class="row mb-3" style="margin-left: 250px">
-
-      <div class="col-lg-2 col-xl-2"></div>
-
-      <div class="col-lg-6 col-xl-6">
         <div class="mt-2 text-danger" id="phone-pattern"></div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>
@@ -306,10 +308,14 @@
       <div class="col-lg-2 col-xl-2"></div>
 
       <div class="col-lg-6 col-xl-6">
+
         <div class="mt-2 text-danger"
              *ngIf="memberUpdateForm.get('identityNumber').hasError('required') && buttonFLag">
           Dữ liệu còn trống! Mời bạn nhập vào!
         </div>
+
+        <div class="mt-2 text-danger" id="identityNumber-not-blank"></div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>
@@ -321,10 +327,14 @@
       <div class="col-lg-2 col-xl-2"></div>
 
       <div class="col-lg-6 col-xl-6">
+
         <div class="mt-2 text-danger"
              *ngIf="memberUpdateForm.get('identityNumber').hasError('pattern') && buttonFLag">
           Dữ liệu không hợp lệ! Số chứng minh nhân dân phải tuân theo chuẩn quy ước!
         </div>
+
+        <div class="mt-2 text-danger" id="identityNumber-pattern"></div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>
@@ -332,7 +342,7 @@
     </div>
 
 <!--    memberEmail-->
-    <div class="row mt-3" style="margin-left: 250px">
+    <div class="row" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2">
         <div class="row">
@@ -344,7 +354,7 @@
 
       <div class="col-lg-6 col-xl-6">
         <div class="col-auto">
-          <input type="text" id="email" name="email" class="form-control" formControlName="email" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+          <input type="text" id="email" name="email" class="form-control" [attr.disabled]="true" formControlName="email" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
         </div>
       </div>
 
@@ -410,10 +420,14 @@
       <div class="col-lg-2 col-xl-2"></div>
 
       <div class="col-lg-6 col-xl-6">
+
         <div class="mt-2 text-danger"
              *ngIf="memberUpdateForm.get('address').hasError('required') && buttonFLag">
           Dữ liệu còn trống! Mời bạn nhập vào!
         </div>
+
+        <div class="mt-2 text-danger" id="address-not-blank"></div>
+
       </div>
 
       <div class="col-lg-4 col-xl-4"></div>
@@ -421,7 +435,7 @@
     </div>
 
 <!--    memberCity-->
-    <div class="row mt-3" style="margin-left: 250px">
+    <div class="row" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2">
         <div class="row">
@@ -446,7 +460,7 @@
     </div>
 
     <!--    memberPoint-->
-    <div class="row mt-3" style="margin-left: 250px">
+    <div class="row mt-2" style="margin-left: 250px">
 
       <div class="col-lg-2 col-xl-2">
         <div class="row">

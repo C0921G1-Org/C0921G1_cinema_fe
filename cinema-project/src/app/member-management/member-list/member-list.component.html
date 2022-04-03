@@ -85,7 +85,10 @@
 
             <tr *ngFor="let member of members">
               <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.id}}</td>
-              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.name}}</td>
+              <td style="text-align: left;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important">
+                <img [src]="member.image" alt="" width="25px" height="25px" style="border-radius: 10px; border-color: #f28123">
+                {{member.name}}
+              </td>
 <!--              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.phone}}</td>-->
 
               <td *ngIf="member.gender == 0" style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Nam</td>

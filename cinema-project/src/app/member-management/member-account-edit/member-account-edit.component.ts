@@ -13,6 +13,7 @@ import {differenceInYears} from "date-fns";
 })
 export class MemberAccountEditComponent implements OnInit {
 
+  //turn on front-end validate - KhanhLDQ
   memberUpdateForm: FormGroup = new FormGroup({
     id: new FormControl(),
 
@@ -24,8 +25,6 @@ export class MemberAccountEditComponent implements OnInit {
 
     phone: new FormControl('',
       Validators.compose([Validators.required, Validators.pattern("^(\\(84\\)\\+|0)(90|91)(\\d){7}$")])),
-
-    // phone: new FormControl(),
 
     email: new FormControl('',
       Validators.compose([Validators.required, Validators.email])),
@@ -47,10 +46,39 @@ export class MemberAccountEditComponent implements OnInit {
     city: new FormControl()
   });
 
+  //turn off front-end validate - KhanhLDQ
+  // memberUpdateForm: FormGroup = new FormGroup({
+  //   id: new FormControl(),
+  //
+  //   name: new FormControl(),
+  //
+  //   gender: new FormControl(),
+  //
+  //   phone: new FormControl(),
+  //
+  //   email: new FormControl(),
+  //
+  //   address: new FormControl(),
+  //
+  //   point: new FormControl(),
+  //
+  //   image: new FormControl(),
+  //
+  //   dateOfBirth: new FormControl(),
+  //
+  //   identityNumber: new FormControl(),
+  //
+  //   city: new FormControl()
+  // });
+
+
   cities: City[];
   id: string;
   buttonFLag: boolean = false;
   errors: any;
+
+  //show on - off back-end errors
+  // nameBlank: boolean = false;
 
   constructor(
     private memberManagementService: MemberManagementService,
@@ -98,6 +126,7 @@ export class MemberAccountEditComponent implements OnInit {
   updateMember() {
     const member = this.memberUpdateForm.value;
     this.buttonFLag = true;
+
     // console.log(member);
 
     // if (this.memberUpdateForm.valid) {
@@ -109,31 +138,85 @@ export class MemberAccountEditComponent implements OnInit {
     //   })
     // }
 
+    // connect back-end / front-end
+    if (this.memberUpdateForm.valid) {
+      console.log('front-end valid / back-end-error');
+
+      this.memberManagementService.updateMember(this.id,member).subscribe(() => {
+        console.log('update member successfully!');
+        this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
+
+      }, error => {
+
+        console.log(error);
+        console.log(error.error);
+
+        this.errors = error.error;
+        for (let i = 0; i < this.errors.length; i++) {
+
+          // console.log(this.errors[i].field);
+          // console.log(this.errors[i].field == "phone");
+
+          //need solution to solve a problem - how can show on / off the back-end errors reasonably - KhanhLDQ
+
+          //field-name
+          if (this.errors[i].field == "name" && this.errors[i].code == "NotBlank") {
+            document.getElementById("name-not-blank").textContent = this.errors[i].defaultMessage;
+
+            // const element = document.getElementById("name-not-blank");
+            // if (element) {
+            //   element.textContent = this.errors[i].defaultMessage;
+            //   this.nameBlank = true;
+            // }
+          }
+
+          if (this.errors[i].field == "name" && this.errors[i].code == "Size") {
+            document.getElementById("name-size").textContent = this.errors[i].defaultMessage;
+          }
+
+          if (this.errors[i].field == "name" && this.errors[i].code == "Pattern") {
+            document.getElementById("name-pattern").textContent = this.errors[i].defaultMessage;
+          }
+
+          //field-phone
+          if (this.errors[i].field == "phone" && this.errors[i].code == "Pattern") {
+            document.getElementById("phone-pattern").textContent = this.errors[i].defaultMessage;
+          }
+
+          if (this.errors[i].field == "phone" && this.errors[i].code == "NotBlank") {
+            document.getElementById("phone-not-blank").textContent = this.errors[i].defaultMessage;
+          }
+
+          //field-address
+          if (this.errors[i].field == "address" && this.errors[i].code == "NotBlank") {
+            document.getElementById("address-not-blank").textContent = this.errors[i].defaultMessage;
+          }
+
+          //field-dateOfBirth
+          if (this.errors[i].field == "dateOfBirth" && this.errors[i].code == "NotBlank") {
+            document.getElementById("dateOfBirth-not-blank").textContent = this.errors[i].defaultMessage;
+          }
+
+          if (this.errors[i].field == "dateOfBirth" && this.errors[i].code == "dateOfBirth.age") {
+            document.getElementById("dateOfBirth-not-suitable").textContent
+              = "Thành viên đăng ký phải lớn hơn 16 tuổi học bé hơn 100 tuổi!";
+          }
+
+          //field-identityNumber
+          if (this.errors[i].field == "identityNumber" && this.errors[i].code == "NotBlank") {
+            document.getElementById("identityNumber-not-blank").textContent = this.errors[i].defaultMessage;
+          }
+
+          if (this.errors[i].field == "identityNumber" && this.errors[i].code == "Pattern") {
+            document.getElementById("identityNumber-pattern").textContent = this.errors[i].defaultMessage;
+          }
+
+        }
+      })
+    } else {
+      console.log('invalid info / front-end');
+    }
+
     //memberUpdateForm.valid => chi bat duoc validate tai front-end
-
-    this.memberManagementService.updateMember(this.id,member).subscribe(() => {
-      console.log('update member successfully!');
-      this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
-
-    }, error => {
-
-      console.log(error);
-      console.log(error.error);
-      this.errors = error.error;
-
-      for (let i = 0; i < this.errors.length; i++) {
-
-        // console.log(this.errors[i].field);
-        // console.log(this.errors[i].field == "phone");
-
-        if (this.errors[i].field == "phone" && this.errors[i].code == "Pattern") {
-          document.getElementById("phone-pattern").textContent = this.errors[i].defaultMessage;
-        }
-
-        if (this.errors[i].field == "phone" && this.errors[i].code == "NotBlank") {
-          document.getElementById("phone-not-blank").textContent = this.errors[i].defaultMessage;
-        }
-      }
-    })
   }
 }
