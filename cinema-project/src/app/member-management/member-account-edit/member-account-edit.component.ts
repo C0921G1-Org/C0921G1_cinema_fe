@@ -126,13 +126,13 @@ export class MemberAccountEditComponent implements OnInit {
         // console.log(this.errors[i].field);
         // console.log(this.errors[i].field == "phone");
 
-        // if (this.errors[i].field == "phone" && this.errors[i].code == "Pattern") {
-        //   document.getElementById("phone-pattern").textContent = this.errors[i].defaultMessage;
-        // }
+        if (this.errors[i].field == "phone" && this.errors[i].code == "Pattern") {
+          document.getElementById("phone-pattern").textContent = this.errors[i].defaultMessage;
+        }
 
-        // if (this.errors[i].field == "phone" && this.errors[i].code == "NotBlank") {
-        //   document.getElementById("phone-not-blank").textContent = this.errors[i].defaultMessage;
-        // }
+        if (this.errors[i].field == "phone" && this.errors[i].code == "NotBlank") {
+          document.getElementById("phone-not-blank").textContent = this.errors[i].defaultMessage;
+        }
       }
     })
   }
