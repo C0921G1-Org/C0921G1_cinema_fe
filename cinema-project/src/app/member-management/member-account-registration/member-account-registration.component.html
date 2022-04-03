@@ -1,5 +1,5 @@
 
-<div class="form_wrapper">
+<div class="form_wrapper" style="margin-bottom: 130px; margin-top: 30px">
   <div class="form_container">
     <div class="title_container">
       <h3>Đăng ký thành viên</h3>
@@ -11,10 +11,10 @@
 
         <div class="input_field">
           <label for="image" style="font-weight: 500">Thêm ảnh đại diện</label>
-          <input id="image" type="file" class="form-control-file" (change)="showPreview($event)"/>
+          <input id="image" type="file" class="form-control-file"  (change)="showPreview($event)" />
           <div style="color: red"
                *ngIf="memberForm.get('image').hasError('required') && submitted">Vui lòng thêm ảnh</div>
-          <!--          <div style="color: red">Vui lòng thêm ảnh</div>-->
+<!--                    <div style="color: red">Vui lòng thêm ảnh</div>-->
         </div>
 
         <!--name-->
@@ -65,6 +65,9 @@
           <input type="email" name="email" placeholder="Email" formControlName="email" required/>
           <div style="color: red"
                *ngIf="memberForm.get('email').hasError('required') && submitted">Bạn vui lòng không để trống mục email</div>
+<!--          <div style="color: red"-->
+<!--               *ngIf="memberForm.get('email').hasError('existEmail') && submitted">Email đã tồn tại</div>-->
+          <div style="color: red" id="email-duplicate"></div>
 <!--          <div style="color: red">Bạn vui lòng không để trống mục email</div>-->
 <!--          <div style="color: red">Bạn vui lòng theo định dạng: email@mail.com </div>-->
         </div>
@@ -161,7 +164,7 @@
             <input type="date" name="dateOfBirth" placeholder="" formControlName="dateOfBirth" required/>
             <div style="color: red"
                  *ngIf="memberForm.get('dateOfBirth').hasError('required') && submitted">Bạn vui lòng không để trống mục số điện thoại</div>
-            <!--          <div style="color: red">Vui lòng chọn ngày sinh</div>-->
+            <div style="color: red" id="checkAge"></div>
             <!--          <div style="color: red">Vui lòng chọn ngày sinh theo dạng (dd/mm/yyyy)</div>-->
           </div>
 

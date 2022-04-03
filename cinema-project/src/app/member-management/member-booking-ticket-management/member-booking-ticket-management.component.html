@@ -56,11 +56,12 @@
       <td>{{item.code}}</td>
       <td>{{item.screenName}}</td>
       <td>{{item.filmName}}</td>
-      <td>{{item.ticketPrice}}</td>
+      <td>{{item.ticketPrice|currency:'VND'}}</td>
 <!--      <td *ngIf="">{{item.attachedPrice}}</td>-->
       <td *ngIf="item.attachedPrice === null; else elseBlock">0</td>
       <ng-template #elseBlock>{{item.attachedPrice}}</ng-template>
       <td>{{item.point}}</td>
+
     </tr>
 
     <!--  phân trang -->
@@ -69,10 +70,11 @@
   </table>
 
   <div class=" row">
+    <h2 *ngIf="totalElement == 0" class="hint-text" style="color: #f28123; text-align: center">Bạn hãy đặt vé xem phim ngay thôi!</h2>
     <div class="col-lg-3">
       <div class="d-flex float-start">
         <div *ngIf="totalElement > 0" class="hint-text">Tổng cộng danh sách có {{totalElement}} lịch sử xem phim</div>
-        <div *ngIf="totalElement == 0" class="hint-text">Bạn chưa có lịch sử xem phim</div>
+
       </div>
     </div>
     <div class="col-lg-9">

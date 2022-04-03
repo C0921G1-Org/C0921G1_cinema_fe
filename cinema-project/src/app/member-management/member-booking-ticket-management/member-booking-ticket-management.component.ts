@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {TradingHistory} from "./trading-history";
 import {MatDialog} from "@angular/material/dialog";
 import {MemberService} from "../../service/member.service";
+import {TokenStorageService} from "../../service/security/token-storage.service";
+import {log} from "util";
 
 @Component({
   selector: 'app-member-booking-ticket-management',
@@ -19,16 +21,21 @@ export class MemberBookingTicketManagementComponent implements OnInit {
   totalPagination: number;
   totalElement: number
   searchText: string = "";
-  memberId: string = "TV-0004";
+  memberId: string ;
+  // memberId: string = "TV-0004";
 
   constructor(
-    // public dialog: MatDialog,
-              public tradingHistoryService: MemberService,) { }
+
+              public tradingHistoryService: MemberService,
+              private tokenStorageService: TokenStorageService,) { }
 
   ngOnInit(): void {
-    this.getTradingHistory(this.p,this.memberId,this.searchText)
-    console.log("ok")
-    console.log("===============================")
+
+    this.memberId = this.tokenStorageService.getUser().member.id;
+
+    console.log(this.memberId);
+    // console.log("===============================")
+    this.getTradingHistory(this.p,this.memberId,this.searchText);
   }
 
   //NhanNT get trading history list
@@ -41,7 +48,7 @@ export class MemberBookingTicketManagementComponent implements OnInit {
       }
       else{
         this.tradingHistoryList = value['content'];
-        console.log(this.tradingHistoryList)
+        // console.log(this.tradingHistoryList)
         this.totalPagination = value['totalPages'];
         this.totalElement = value['totalElements'];
       }

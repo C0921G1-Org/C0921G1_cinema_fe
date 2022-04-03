@@ -16,6 +16,8 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import * as firebase from 'firebase/app';
 import {MemberService} from "../../service/member.service";
 import validate = WebAssembly.validate;
+import {emailVerified} from "@angular/fire/auth-guard";
+
 
 @Component({
   selector: 'app-member-account-registration',
@@ -24,85 +26,108 @@ import validate = WebAssembly.validate;
 })
 export class MemberAccountRegistrationComponent implements OnInit {
 
-  submitted=false;
-  memberObj:Member;
-  cityList:City[] = [];
-  districtList:District[] = [];
-  wardList:Ward[] = [];
-  memberForm:FormGroup;
-  selectedImage:any = "";
-  cityObj:City;
-  districtObj:District;
-  constructor(private cityService:CityService,
-              private districtService:DistrictService,
-              private wardService:WardService,
-              private memberService:MemberService,
-              private router:Router,
-              @Inject(AngularFireStorage) private storage: AngularFireStorage) { }
+  submitted = false;
+  memberObj: Member;
+  cityList: City[] = [];
+  districtList: District[] = [];
+  wardList: Ward[] = [];
+  memberForm: FormGroup;
+  selectedImage: any = "";
+  cityObj: City;
+  districtObj: District;
+
+  errors: any;
+
+  constructor(private cityService: CityService,
+              private districtService: DistrictService,
+              private wardService: WardService,
+              private memberService: MemberService,
+              private router: Router,
+              @Inject(AngularFireStorage) private storage: AngularFireStorage) {
+  }
 
   ngOnInit(): void {
+
     this.cityService.getCityList().subscribe(city => {
       this.cityList = city;
       // console.log(city)
-          this.memberForm = new FormGroup({
-            image: new FormControl('',[Validators.required,]),
-            name: new FormControl('',[Validators.required,]),
-            phone: new FormControl('',[Validators.required,Validators.pattern("\\(?(0[1-9]{2})\\)?([ .-]?)([0-9]{3})\\2([0-9]{4})")]),
-            gender: new FormControl('',[Validators.required,]),
-            email: new FormControl('',[Validators.required,]),
 
-            passwordFormGroup: new FormGroup({
-                password: new FormControl('',[Validators.required,]),
-                confirmPassword:  new FormControl('',[Validators.required,]),
-              }, this.comparePassword),
+      this.memberForm = new FormGroup({
+        image: new FormControl('', [Validators.required,]),
+        name: new FormControl('', [Validators.required,]),
+        phone: new FormControl('', [Validators.required, Validators.pattern("\\(?(0[1-9]{2})\\)?([ .-]?)([0-9]{3})\\2([0-9]{4})")]),
+        gender: new FormControl('', [Validators.required,]),
+        email: new FormControl('', [Validators.required]),
 
-            cityThis:  new FormControl(''),
-            district:  new FormControl(''),
-            ward:  new FormControl('',[Validators.required,]),
-            address: new FormControl('',[Validators.required,]),
-            dateOfBirth:  new FormControl('',[Validators.required,]),
-            identityNumber: new FormControl('',[Validators.required,]),
-            check: new FormControl('',[Validators.required,])
-          })
-        })
+        passwordFormGroup: new FormGroup({
+          password: new FormControl('', [Validators.required,]),
+          confirmPassword: new FormControl('', [Validators.required,]),
+        }, this.comparePassword),
+
+        cityThis: new FormControl(''),
+        district: new FormControl(''),
+        ward: new FormControl('', [Validators.required,]),
+        address: new FormControl('', [Validators.required,]),
+        dateOfBirth: new FormControl('', [Validators.required,]),
+        identityNumber: new FormControl('', [Validators.required,]),
+        check: new FormControl('', [Validators.required,])
+      })
+    })
+    // console.log(this.memberForm.value.gender);
   }
 
-
-  comparePassword(compare : AbstractControl): any{
+  //NhanNT check password
+  comparePassword(compare: AbstractControl): any {
     const validate = compare.value;
-    return (validate.password === validate.confirmPassword)? null : {notMatch: true};
+    // console.log(validate.password + "ok");
+    return (validate.password === validate.confirmPassword) ? null : {notMatch: true};
   }
+
+  //NhanNT check exist
+  // checkExist(abstract: AbstractControl): any {
+  //
+  //   const validateExist = abstract.value;
+  //
+  //   this.memberService.checkExist(validateExist).subscribe(value => {
+  //     if (value === null) {
+  //       return null;
+  //     } else {
+  //       return {"existEmail": true};
+  //     }
+  //
+  //   })
+  //
+  // }
 
   //get city NhanNT
-  getCityToDistrictNhanNT(event: number): any{
-    // console.log(event)
-    // this.cityObj = event
+  getCityToDistrictNhanNT(event: number): any {
+
     return this.districtService.getDistrictList(event).subscribe(district => {
       this.districtList = district;
     })
   }
+
   //get district  NhanNT
-  getDistrictToWardNhanNT(event2: number): any{
-    // console.log(event2)
-    // this.districtObj = event2
+  getDistrictToWardNhanNT(event2: number): any {
+
     return this.wardService.getWardList(event2).subscribe(ward => {
       this.wardList = ward;
     })
   }
 
   //create member NhanNT
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
 
 // img upload
     const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
 
-    const fileRef = this.storage.ref(nameImg) ;
-    // console.log(fileRef)
+    const fileRef = this.storage.ref(nameImg);
+
     this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
-          // console.log(url)
+
           this.memberForm.patchValue({image: url});
 
           // Call API to create vaccine
@@ -110,19 +135,43 @@ export class MemberAccountRegistrationComponent implements OnInit {
             this.memberObj = Object.assign({}, this.memberForm.value);
             this.memberObj.cityId = this.memberForm.value.cityThis;
 
-            console.log(this.memberObj);
+
             this.memberObj.password = this.memberForm.value.passwordFormGroup.password;
 
-            // console.log(this.memberObj.password);
-            // console.log(this.memberObj);
-            this.memberService.createMember(this.memberObj).subscribe(()=>{
+
+            this.memberService.createMember(this.memberObj).subscribe(() => {
               Swal.fire(
-                    'Tạo Thành Công!!!',
-                    'Bạn có thể đăng nhập.',
-                    'success'
+                'Tạo Thành Công!!!',
+                'Bạn có thể đăng nhập.',
+                'success'
               );
               this.router.navigateByUrl('');
-            });
+            }
+            , error => {
+
+              // console.log(error);
+              // console.log(error.error);
+              this.errors = error.error;
+                // console.log(this.errors.get("emailDup"))
+                // if (this.errors.length===0){
+                //   document.getElementById("email-duplicate").textContent = "Tài khoản đã tồn tại";
+                // }
+                // else {
+                  for (let i = 0; i < this.errors.length; i++) {
+                    console.log("ok")
+                    if (this.errors[i].field == "dateOfBirth") {
+                      document.getElementById("checkAge").textContent = this.errors[i].defaultMessage;
+                    }
+                    if (this.errors[i].field == "existedEmail") {
+
+                      document.getElementById("email-duplicate").textContent = this.errors[i].defaultMessage;
+                    }
+
+                  }
+                // }
+
+            }
+            );
           }
 
         });
@@ -131,10 +180,12 @@ export class MemberAccountRegistrationComponent implements OnInit {
 
 
   }
+
   // img support NhanNT
-  showPreview(event: any){
+  showPreview(event: any) {
     this.selectedImage = event.target.files[0];
   }
+
   getCurrentDateTime(): string {
     return formatDate(new Date(), 'dd-MM-yyyy', 'en-US');
   }
