@@ -39,7 +39,6 @@ body {
   border: none;
   min-width: 50px;
   border-radius: 2px;
-  border: none;
   outline: none !important;
   margin-left: 10px;
 }
@@ -157,7 +156,6 @@ table.table td i {
 .btn {
   background-color: #f28123;
   color: white;
-
 }
 
 .custom-button:hover {

@@ -232,4 +232,20 @@ export class MemberListComponent implements OnInit {
     console.log(this.currentMemberSearch);
   }
 
+  resetSearch() {
+    this.memberName = "";
+    this.pointRange = "0";
+  }
+
+  member: Member;
+
+  showInfoMember(id: string) {
+    this.memberManagementService.getMemberById(id).subscribe(value => {
+      this.member = value;
+      // console.log(this.member);
+    }, error => {
+      console.log(error);
+    })
+  }
+
 }

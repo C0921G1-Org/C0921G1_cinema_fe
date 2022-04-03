@@ -22,10 +22,10 @@ export class MemberAccountEditComponent implements OnInit {
 
     gender: new FormControl(),
 
-    // phone: new FormControl('',
-    //   Validators.compose([Validators.required, Validators.pattern("^(\\(84\\)\\+|0)(90|91)(\\d){7}$")])),
+    phone: new FormControl('',
+      Validators.compose([Validators.required, Validators.pattern("^(\\(84\\)\\+|0)(90|91)(\\d){7}$")])),
 
-    phone: new FormControl(),
+    // phone: new FormControl(),
 
     email: new FormControl('',
       Validators.compose([Validators.required, Validators.email])),
@@ -117,6 +117,7 @@ export class MemberAccountEditComponent implements OnInit {
 
     }, error => {
 
+      console.log(error);
       console.log(error.error);
       this.errors = error.error;
 

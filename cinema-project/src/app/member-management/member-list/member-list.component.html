@@ -22,6 +22,7 @@
 
                 <input [(ngModel)]="memberName" id="memberName" name="memberName" type="search" class="form-control rounded" placeholder="Tìm kiếm theo tên..." aria-label="Search" aria-describedby="search-addon" style="width: 187px !important;">
 
+                <label for="pointRange"></label>
                 <select class="form-select" id="pointRange" name="pointRange" [(ngModel)]="pointRange" style="width: 187px !important;">
                   <option>0-999</option>
                   <option>1000-1999</option>
@@ -32,6 +33,12 @@
                 <button type="submit" class="input-group-text border-0" id="search-addon" (click)="searchMembers()" style="padding-left: 1rem !important; margin-right: 0rem !important;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+                </button>
+
+                <button type="submit" class="input-group-text border-0" id="reset-search" (click)="resetSearch()" style="padding-left: 1rem !important; margin-right: 0rem !important;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-lightning-rain" viewBox="0 0 16 16">
+                    <path d="M2.658 11.026a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316zm9.5 0a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316zm-7.5 1.5a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316zm9.5 0a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316zm-.753-8.499a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10H13a3 3 0 0 0 .405-5.973zM8.5 1a4 4 0 0 1 3.976 3.555.5.5 0 0 0 .5.445H13a2 2 0 0 1 0 4H3.5a2.5 2.5 0 1 1 .605-4.926.5.5 0 0 0 .596-.329A4.002 4.002 0 0 1 8.5 1zM7.053 11.276A.5.5 0 0 1 7.5 11h1a.5.5 0 0 1 .474.658l-.28.842H9.5a.5.5 0 0 1 .39.812l-2 2.5a.5.5 0 0 1-.875-.433L7.36 14H6.5a.5.5 0 0 1-.447-.724l1-2z"/>
                   </svg>
                 </button>
 
@@ -51,13 +58,21 @@
             <tr>
               <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Mã thành viên</th>
               <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Họ và tên</th>
-              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Số điện thoại</th>
+
+<!--              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Số điện thoại</th>-->
+
               <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Giới tính</th>
-              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Địa chỉ</th>
-<!--              <th>Thành phố</th>-->
-              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Số CMND</th>
+<!--              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Địa chỉ</th>-->
+
               <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Email</th>
               <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Điểm thưởng</th>
+
+              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Thành phố</th>
+
+
+              <!--              <th>Thành phố</th>-->
+<!--              <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Số CMND</th>-->
+
 
 <!--              <th style="text-align: center; font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;"></th>-->
               <th style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Xem/Sửa</th>
@@ -69,27 +84,30 @@
             <tr *ngFor="let member of members">
               <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.id}}</td>
               <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.name}}</td>
-              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.phone}}</td>
+<!--              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.phone}}</td>-->
 
               <td *ngIf="member.gender == 0" style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Nam</td>
               <td *ngIf="member.gender == 1" style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">Nữ</td>
 
-              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.address}}</td>
-<!--              <td>{{member.city.name}}</td>-->
-              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.identityNumber}}</td>
               <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.email}}</td>
               <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.point}}</td>
 
-              <td style="text-align: center" style="font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">
+              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.city.name}}</td>
+<!--              <td>{{member.city.name}}</td>-->
+<!--              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">{{member.identityNumber}}</td>-->
 
-                <a style="margin-left: 30px;margin-right: 10px">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars text-primary" viewBox="0 0 16 16">
+              <td style="text-align: center;font-family: 'Varela Round', sans-serif !important; font-size: 13px !important;">
+
+<!--                see detail information-->
+                <a style="margin-left: 30px;margin-right: 10px; cursor: pointer" data-bs-toggle="modal" data-bs-target="#detail-info" (click)="showInfoMember(member.id)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars text-secondary" viewBox="0 0 16 16">
                     <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
                   </svg>
                 </a>
 
+<!--                edit information-->
                 <a [routerLink]="['/member/edit-account',member.id]">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen text-primary" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen text-secondary" viewBox="0 0 16 16">
                     <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
                   </svg>
                 </a>
@@ -153,3 +171,40 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="detail-info" tabindex="-1" aria-labelledby="detail-info-label" aria-hidden="true">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title lead" id="detail-info-label"
+            style="text-align: left; font-family: 'Varela Round', sans-serif !important">Thông tin thành viên</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body" style="text-align: left; font-family: 'Varela Round', sans-serif !important">
+
+        <p><b>Mã thành viên:</b> {{member?.id}}</p>
+        <p><b>Họ và tên:</b> {{member?.name}}</p>
+        <p *ngIf="member?.gender == 0"><b>Giới tính:</b> Nam</p>
+        <p *ngIf="member?.gender == 1"><b>Giới tính:</b> Nữ</p>
+        <p><b>Ngày sinh:</b> {{member?.dateOfBirth}}</p>
+        <p><b>Địa chỉ:</b> {{member?.address}}</p>
+        <p><b>Email:</b> {{member?.email}}</p>
+        <p><b>Số CMND:</b> {{member?.identityNumber}}</p>
+        <p><b>Điểm thưởng:</b> {{member?.point}}</p>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn bg-secondary" data-bs-dismiss="modal"
+                style="text-align: center;font-family: 'Varela Round', sans-serif !important;
+                font-size: 13px !important; text-transform: capitalize">Quay lại</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
