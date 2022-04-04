@@ -45,6 +45,7 @@
             &nbsp;&nbsp;
           </div>
           <div class="screen_wrapper col-11 col-lg-11 col-md-11 col-sm-11 p-0">
+            <p style="position: relative; top: 148px; font-weight: 600; color: #777777" class="text-center">Màn hình</p>
             <img id="screen" src="https://www.myvue.com/assets/images/booking/screen-2x.png"
                  alt="screen">
           </div>
@@ -110,6 +111,7 @@
               <li *ngFor="let seatObj of seatList" class="row_title_item text-center seat_item">
                 <div [ngClass]="{'selecting_seat': seatObj.active}"
                      class="seat_icon economy_seat d-flex justify-content-center align-items-center"
+                     [class.seat_icon_hover]="!seatObj.status"
                      [class.ordered_seat]="seatObj.status" (click)="getSeat(seatObj)"
                      [class.economy_seat]="seatObj.id <= 20"
                      [class.common_seat]="seatObj.id <=40 && seatObj.id > 20"
@@ -170,7 +172,7 @@
         <!--Order Detail-->
         <div style="padding: 20px" class="order_detail_wrapper">
           <div class="order_detail_choosing_seat d-flex justify-content-between">
-            <h3 class="order_detail_title my-3">SỐ LƯỢNG GHẾ</h3>
+            <h3 class="order_detail_title my-3">SỐ LƯỢNG VÉ</h3>
             <div class="order_detail_ticket my-3">
               <a class="quantity_btn" (click)="minusTicket()"><i class="bi bi-dash-circle"></i></a>
               <span id="numberTicket" class="quantity_btn mx-3">{{this.orderDetailSeatNumber}}</span>
@@ -185,18 +187,23 @@
             </div>
             <div *ngIf="countEconomySeat.length > 0"
                  class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
-              <h5>{{this.countEconomySeat.length}} x Economy Seat</h5>
-              <h5>{{this.countEconomySeat.length * this.economySeat.price}}</h5>
+              <h5>{{this.countEconomySeat.length}} x Ghế Tiết Kiệm</h5>
+              <h5>{{this.countEconomySeat.length * this.economySeat.price | currency: 'VND'}}</h5>
             </div>
             <div *ngIf="countCommonSeat.length > 0"
                  class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
-              <h5>{{this.countCommonSeat.length}} x Common Seat</h5>
-              <h5>{{this.countCommonSeat.length * this.commonSeat.price}}</h5>
+              <h5>{{this.countCommonSeat.length}} x Ghế Phổ thông</h5>
+              <h5>{{this.countCommonSeat.length * this.commonSeat.price | currency: 'VND'}}</h5>
             </div>
             <div *ngIf="countVIPSeat.length > 0"
                  class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
-              <h5>{{this.countVIPSeat.length}} x Premium Seat</h5>
-              <h5>{{this.countVIPSeat.length * this.VIPSeat.price}}</h5>
+              <h5>{{this.countVIPSeat.length}} x Ghế VIP</h5>
+              <h5>{{this.countVIPSeat.length * this.VIPSeat.price | currency: 'VND'}}</h5>
+            </div>
+            <div *ngIf="comboNumber > 0"
+                 class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
+              <h5>{{this.comboNumber}} x Combo 1</h5>
+              <h5>{{this.comboNumber * this.combo.price | currency: 'VND'}}</h5>
             </div>
           </div>
           <div class="order_detail_promotion my-3">
@@ -206,15 +213,19 @@
                      placeholder="Nhập mã khuyến mãi">
               <button class="btn promo_button" (click)="promotion(promoCode.value)" type="submit">Áp dụng</button>
             </div>
-            <p style="color: red" *ngIf="this.errorPromoCode">Mã khuyến mãi không tồn tại!</p>
+            <p style="color: red; margin: 10px 0 0 8px" *ngIf="this.errorPromoCode">Mã khuyến mãi không tồn tại!</p>
           </div>
           <div class="order_detail_total d-flex justify-content-between my-3">
             <h3>TỔNG CỘNG:</h3>
             <h3>{{this.totalPayment | currency: 'VND'}}</h3>
           </div>
+          <div *ngIf="successPromoCode && this.seatChoosenList.length > 0" class="order_detail_promo_detail d-flex justify-content-between my-3">
+            <h5 style="color: var(--pj-dark-orange)">Mã giảm giá:</h5>
+            <h5>{{-50000 | currency: 'VND'}}</h5>
+          </div>
           <div class="text-center">
             <button class="btn booking_ticket_button text-decoration-none" (click)="transferPayment()"
-                    [routerLink]="['/booking/info-booking']">ĐẶT VÉ
+                    >ĐẶT VÉ
             </button>
           </div>
         </div>

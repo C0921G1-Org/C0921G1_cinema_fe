@@ -64,7 +64,7 @@
     <!--End Film Selection-->
   </div>
   <!--Showtime Selection-->
-  <div class="col-10 col-lg-10 col-md-12 col-sm-12 offset-1 offset-lg-1">
+  <div id="showTimeSelection" *ngIf="this.filmCurrentChooseId != null" class="col-10 col-lg-10 col-md-12 col-sm-12 offset-1 offset-lg-1">
     <div class="row m-3 DatTC_showtime_schedule">
       <h2 class="DatTC_header_title_showtime text-center mt-3 fw-bold">CHỌN SUẤT CHIẾU</h2>
       <div class="col-lg-2 d-flex">
@@ -75,15 +75,19 @@
         </div>
       </div>
       <div class="col-lg-10">
-        <ul class="list-unstyled d-flex flex-wrap m-0">
+        <ul *ngIf="this.showTimeList.length > 0; else elseBlockCurrent" class="list-unstyled d-flex flex-wrap m-0">
           <li *ngFor="let showTimeObj of showTimeList" class="DatTC_showtime_hour"><a
             [class.DatTC_showtime_hour_active]="this.showTimeCurrentChoose === showTimeObj.id"
             (click)="getShowTimeId(showTimeObj.id)">{{showTimeObj.name}}</a></li>
         </ul>
+
+        <ng-template #elseBlockCurrent>
+          <p class="noShowTime d-flex justify-content-center align-items-center text-center">{{this.noShowTime}}</p>
+        </ng-template>
       </div>
     </div>
   </div>
-  <div class="col-10 col-lg-10 col-md-12 col-sm-12 offset-1 offset-lg-1">
+  <div *ngIf="this.filmCurrentChooseId != null" class="col-10 col-lg-10 col-md-12 col-sm-12 offset-1 offset-lg-1">
     <div class="row m-3 DatTC_showtime_schedule">
       <div class="col-lg-2 d-flex">
         <div class="DatTC_date">
@@ -93,14 +97,18 @@
         </div>
       </div>
       <div class="col-lg-10">
-        <ul class="list-unstyled d-flex flex-wrap m-0">
-          <li *ngFor="let showtimeObjNextDate of showTimeListNextDay" class="DatTC_showtime_hour"><a
+        <ul *ngIf="showTimeListNextDay.length > 0; else elseBlockNextDay" class="list-unstyled d-flex flex-wrap m-0">
+          <li  *ngFor="let showtimeObjNextDate of showTimeListNextDay" class="DatTC_showtime_hour"><a
+            [class.DatTC_showtime_hour_active]="this.showTimeCurrentChoose === showtimeObjNextDate.id"
             (click)="getShowTimeId(showtimeObjNextDate.id)">{{showtimeObjNextDate.name}}</a></li>
         </ul>
+          <ng-template #elseBlockNextDay>
+            <p class="noShowTime d-flex justify-content-center align-items-center text-center">{{this.noShowTimeNextDay}}</p>
+          </ng-template>
       </div>
     </div>
   </div>
-  <div class="col-10 col-lg-10 col-md-12 col-sm-12 offset-1 offset-lg-1">
+  <div *ngIf="this.filmCurrentChooseId != null" class="col-10 col-lg-10 col-md-12 col-sm-12 offset-1 offset-lg-1">
     <div class="row m-3 DatTC_showtime_schedule">
       <div class="col-lg-2 d-flex">
         <div class="DatTC_date">
@@ -110,16 +118,21 @@
         </div>
       </div>
       <div class="col-lg-10">
-        <ul class="list-unstyled d-flex flex-wrap m-0">
+        <ul *ngIf="this.showTimeListNextTwoDay.length > 0; else elseBlockNextTwoDay" class="list-unstyled d-flex flex-wrap m-0">
           <li *ngFor="let showtimeObjNextTwoDate of showTimeListNextTwoDay" class="DatTC_showtime_hour"><a
+            [class.DatTC_showtime_hour_active]="this.showTimeCurrentChoose === showtimeObjNextTwoDate.id"
             (click)="getShowTimeId(showtimeObjNextTwoDate.id)">{{showtimeObjNextTwoDate.name}}</a></li>
         </ul>
+
+        <ng-template #elseBlockNextTwoDay>
+          <p class="noShowTime d-flex justify-content-center align-items-center text-center">{{this.noShowTimeNextTwoDay}}</p>
+        </ng-template>
       </div>
     </div>
   </div>
   <!--End Showtime Selection-->
   <a class="DatTC_next-step text-decoration-none"
-     routerLink="/buy-ticket/seat-selection/{{this.showTimeCurrentChoose}}">Đặt vé&nbsp;&nbsp;<i
+     routerLink="/buy-ticket/seat-selection/{{this.showTimeCurrentChoose}}" (click)="nextStep()">Đặt vé&nbsp;&nbsp;<i
     class="bi bi-ticket-perforated"></i></a>
 </div>
 

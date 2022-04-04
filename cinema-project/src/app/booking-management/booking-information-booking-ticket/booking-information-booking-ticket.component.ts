@@ -3,7 +3,7 @@ import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
 import {PaymentService} from '../../service/payment/payment.service';
 import {Transaction} from '../../model/Transaction';
 import {SharingDataService} from '../../buy-ticket/sharing-data.service';
-import {Showtime} from '../../model/showtime';
+import {ShowTime} from '../../model/showtime';
 
 @Component({
   selector: 'app-booking-information-booking-ticket',
@@ -11,7 +11,7 @@ import {Showtime} from '../../model/showtime';
   styleUrls: ['./booking-information-booking-ticket.component.css']
 })
 export class BookingInformationBookingTicketComponent implements OnInit {
-  showTime : Showtime ;
+  showTime : ShowTime ;
 
 
   constructor(private paymentService: PaymentService,
