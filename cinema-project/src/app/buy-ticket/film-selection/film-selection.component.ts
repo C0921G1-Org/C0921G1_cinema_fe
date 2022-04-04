@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Film} from '../../model/film';
 import {FilmServiceService} from '../../service/film/film-service.service';
 import {ShowtimeService} from '../../service/buy-ticket/showtime.service';
-import {Showtime} from '../../model/showtime';
 import {SharingDataService} from '../sharing-data.service';
 import * as moment from 'moment';
+import {ShowTime} from "../../model/ShowTime";
 
 @Component({
   selector: 'app-film-selection',
@@ -13,13 +13,13 @@ import * as moment from 'moment';
 })
 export class FilmSelectionComponent implements OnInit {
   filmList: Film[] = [];
-  showTimeList: Showtime[] = [];
-  showTimeListNextDay: Showtime[] = [];
-  showTimeListNextTwoDay: Showtime[] = [];
+  showTimeList: ShowTime[] = [];
+  showTimeListNextDay: ShowTime[] = [];
+  showTimeListNextTwoDay: ShowTime[] = [];
   filmCurrentChooseId: number;
   showTimeCurrentChoose: number;
   filmCurrentChooseObj: Film;
-  showTimeCurrentChooseObj: Showtime;
+  showTimeCurrentChooseObj: ShowTime;
   weekday = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chủ Nhật'];
   monthList = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
   today = moment().format('YYYY MM DD');

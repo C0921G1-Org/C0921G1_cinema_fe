@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Showtime} from '../../model/showtime';
 import {SharingDataService} from '../sharing-data.service';
+import {ShowTime} from "../../model/ShowTime";
 
 @Component({
   selector: 'app-temp',
@@ -8,7 +8,7 @@ import {SharingDataService} from '../sharing-data.service';
   styleUrls: ['./temp.component.css']
 })
 export class TempComponent implements OnInit {
-  currentShowTimeObj: Showtime;
+  currentShowTimeObj: ShowTime;
   constructor(private sharingDataService: SharingDataService) { }
 
   ngOnInit(): void {

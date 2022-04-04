@@ -26,4 +26,8 @@ export class AppComponent {
   //   this.loadCssServiceService.loadScript("../../assets/lib/owlcarousel/owl.carousel.min.js")
   //   this.loadCssServiceService.loadScript("../../assets/js/main.js")
   // }
+
+  onActivate(event){
+    window.scroll(0,0);
+  }
 }

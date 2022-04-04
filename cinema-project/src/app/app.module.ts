@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './layout/home/home.component';
+import {BookingManagementModule} from './booking-management/booking-management.module';
 
 import {LoadCssService} from './loadCss/load-css-service.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -14,8 +15,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MemberManagementModule} from "./member-management/member-management.module";
 import {NgxPayPalModule} from "ngx-paypal";
-
-
 
 
 @NgModule({
@@ -37,6 +36,7 @@ import {NgxPayPalModule} from "ngx-paypal";
     ReactiveFormsModule,
   MemberManagementModule
   ],
+
   providers: [
     LoadCssService
   ],

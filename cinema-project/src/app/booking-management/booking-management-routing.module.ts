@@ -15,10 +15,9 @@ const routes: Routes = [
     path: 'list', component: BookingBookingTicketListComponent,canActivate: [RoleUserGuard]
   },
 
+
   {
-    path: 'list', component: BookingBookingTicketListComponent, canActivate: [RoleAdminGuard]
-  },
-  {
+
     path: 'confirm-booking', component: BookingConfirmBookingTicketComponent, canActivate: [RoleAdminGuard]
   },
   {

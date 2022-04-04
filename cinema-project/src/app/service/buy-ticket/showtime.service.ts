@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Showtime} from '../../model/showtime';
 import {TokenStorageService} from '../security/token-storage.service';
+import {ShowTime} from "../../model/ShowTime";
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +23,11 @@ export class ShowtimeService {
   }
 
   public getShowTimeByFilmId(filmId: number, date: string): Observable<any> {
-    return this.httpClient.get<Showtime[]>(this.API_URL + 'showtime/by-film?filmId=' + filmId + '&date=' + date);
+    return this.httpClient.get<ShowTime[]>(this.API_URL + 'showtime/by-film?filmId=' + filmId + '&date=' + date);
   }
 
   public findById(id: number): Observable<any>{
-    return this.httpClient.get<Showtime>(this.API_URL + 'showtime/' + id);
+    return this.httpClient.get<ShowTime>(this.API_URL + 'showtime/' + id);
   }
 }
 

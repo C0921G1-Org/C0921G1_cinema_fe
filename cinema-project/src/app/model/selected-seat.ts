@@ -1,5 +1,5 @@
 import {SeatType} from './seat-type';
-import {Showtime} from './showtime';
+import {ShowTime} from './ShowTime';
 
 export class SelectedSeat {
   id: number;
@@ -7,5 +7,5 @@ export class SelectedSeat {
   seatPosition: number;
   status: number;
   seatType: SeatType;
-  showtime: Showtime;
+  showtime: ShowTime;
 }
