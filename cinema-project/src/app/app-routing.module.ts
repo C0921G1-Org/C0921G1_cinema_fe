@@ -1,9 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {HomeComponent} from "./layout/home/home.component";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HomeComponent} from './layout/home/home.component';
 
-// router nhiều chỗ còn thiếu tham số, ai cần gì thì tự thêm vô rồi làm nhé(trong routing của module con ấy)
 const routes: Routes = [
   {
     path: '', redirectTo: 'home', pathMatch: 'full'
@@ -35,6 +34,10 @@ const routes: Routes = [
   {
     path: 'booking',
     loadChildren: () => import('./booking-management/booking-management.module').then(module => module.BookingManagementModule)
+  },
+  {
+    path: 'buy-ticket',
+    loadChildren: () => import('./buy-ticket/buy-ticket.module').then(module => module.BuyTicketModule)
   }
 ];
 

@@ -8,18 +8,22 @@ import { BookingConfirmInformationBookingComponent } from './booking-confirm-inf
 import {BookingManagementRoutingModule} from "./booking-management-routing.module";
 import { BookingTicketSelectionComponent } from './booking-ticket-selection/booking-ticket-selection.component';
 import {FormsModule} from '@angular/forms';
+import {NgxPayPalModule} from "ngx-paypal";
+
+
+
 
 
 
 @NgModule({
-    declarations: [BookingConfirmBookingTicketComponent, BookingInformationBookingTicketComponent, BookingSeatSelectionComponent, BookingBookingTicketListComponent, BookingConfirmInformationBookingComponent, BookingTicketSelectionComponent],
-    exports: [
-        BookingBookingTicketListComponent
-    ],
+  declarations: [BookingConfirmBookingTicketComponent, BookingInformationBookingTicketComponent, BookingSeatSelectionComponent, BookingBookingTicketListComponent, BookingConfirmInformationBookingComponent, BookingTicketSelectionComponent],
+
   imports: [
     CommonModule,
     BookingManagementRoutingModule,
+    NgxPayPalModule,
     FormsModule
   ]
+
 })
 export class BookingManagementModule { }
