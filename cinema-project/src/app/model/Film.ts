@@ -1,4 +1,5 @@
-import {FilmType} from "./film-type";
+import {FilmType} from "./Film-type";
+import {ShowTime} from "./ShowTime";
 
 export class Film {
   id: number;
@@ -13,11 +14,9 @@ export class Film {
   trailer: string;
   version: string;
   flagDelete: number;
+  filmTypeNew : string;
   filmType: FilmType;
-// showTimes: ShowTime;
-
-  constructor() {
-  }
+  showTime: ShowTime;
 
 
 }

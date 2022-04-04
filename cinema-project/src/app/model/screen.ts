@@ -1,4 +1,4 @@
 export class Screen {
-  id: number;
-  name: string;
+  id?: number;
+  name?: string;
 }

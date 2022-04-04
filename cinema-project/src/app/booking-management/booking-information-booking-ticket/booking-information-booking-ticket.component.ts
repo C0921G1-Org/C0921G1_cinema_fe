@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
 import {PaymentService} from '../../service/payment/payment.service';
 import {Transaction} from '../../model/Transaction';
@@ -7,6 +7,7 @@ import {Showtime} from '../../model/showtime';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import {FormControl, FormGroup} from '@angular/forms';
+
 
 
 @Component({
@@ -51,9 +52,6 @@ export class BookingInformationBookingTicketComponent implements OnInit {
         this.initConfig();
       }
     });
-
-
-  }
 
 
   private initConfig(): void {
@@ -126,6 +124,14 @@ export class BookingInformationBookingTicketComponent implements OnInit {
 
           });
         },
+
+        this.paymentService.payment(this.transaction).subscribe(value => {
+          this.transaction = value;
+          console.log(this.transaction);
+        });
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+      },
+
       onCancel: (data, actions) => {
         Swal.fire({
           position: 'center',

@@ -75,7 +75,6 @@ body {
 .form_wrapper input[type="submit"], .form_wrapper input[type="button"] {
   background: #D94711;
   height: 35px;
-  line-height: 35px;
   width: 100%;
   border: none;
   outline: none;
@@ -84,7 +83,6 @@ body {
   font-size: 1.1em;
   margin-bottom: 10px;
   border-radius: 5px;
-
 }
 
 .form_wrapper input[type="submit"]:hover ,.form_wrapper input[type="button"]:hover {
@@ -197,6 +195,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  width: 180px;
 }
 
 /* Hide the browser's default checkbox */

@@ -1,13 +1,13 @@
 <!--Sửa header chặt tay-->
 
-<!-- Spinner Start -->
+<!-- Spinner Start-->
 <!--<div id="spinner"-->
 <!--     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">-->
 <!--  <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">-->
 <!--    <span class="sr-only">Loading...</span>-->
 <!--  </div>-->
 <!--</div>-->
-<!-- Spinner End -->
+<!-- Spinner End-->
 
 <!-- Header Start -->
 <div class="container-fluid custom-bg-color-header px-0">
@@ -41,9 +41,10 @@
 
         <div class="col-lg-5 text-end custom-p-header" [hidden]="isLoggedIn">
           <div class="d-inline-flex align-items-center py-2">
-            <a href="#"
-               class="btn rounded-1 d-none d-lg-block me-2 custom-background-btn-bold custom-login-register">đăng
+            <a [routerLink]="['/member/registration-account']"
+               class="btn  rounded-1 d-none d-lg-block me-2 custom-background-btn-bold custom-login-register">đăng
               ký</a>
+
             <a (click)="openDialog()"
                class="btn  rounded-1 d-none d-lg-block me-2 custom-background-btn-bold custom-login-register">Đăng
               nhập</a>
@@ -59,8 +60,8 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"
                   style="top: 100% !important;right: 0 !important; margin-top: 0 !important; border-radius: 8px">
-                <li *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1"><a class="dropdown-item" routerLink="/statistical/common">Quản lý</a></li>
-                <li><a class="dropdown-item" (click)="logOut()">Đăng xuất</a></li>
+                <li *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1"><a class="dropdown-item" routerLink="/statistical/common" style="cursor: pointer">Quản lý</a></li>
+                <li><a class="dropdown-item" (click)="logOut()" style="cursor: pointer">Đăng xuất</a></li>
               </ul>
             </div>
           </div>
@@ -80,8 +81,8 @@
             <div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle custom-mua-ve" data-bs-toggle="dropdown">PHIM</a>
               <div class="dropdown-menu rounded-0 m-0 custom-background-navbar ">
-                <a href="#" class="dropdown-item custom-text-color">PHIM ĐANG CHIẾU</a>
-                <a href="#" class="dropdown-item custom-text-color">PHIM SẮP CHIẾU</a>
+                <a [routerLink]="['/home/2']" class="dropdown-item custom-text-color">PHIM ĐANG CHIẾU</a>
+                <a [routerLink]="['/home/1']" class="dropdown-item custom-text-color">PHIM SẮP CHIẾU</a>
               </div>
             </div>
             <div class="nav-item dropdown">
@@ -117,13 +118,6 @@
                 <a href="#" class="dropdown-item custom-text-color">GIÁ VÉ CHI TIẾT</a>
               </div>
             </div>
-            <!--            <div class="nav-item dropdown">-->
-            <!--              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">SỰ KIỆN</a>-->
-            <!--              <div class="dropdown-menu rounded-0 m-0 custom-background-navbar custom-size-navbar">-->
-            <!--                <a href="#" class="dropdown-item custom-text-color">KHUYẾN MÃI</a>-->
-            <!--                <a href="#" class="dropdown-item custom-text-color">PHIM HAY THÁNG</a>-->
-            <!--              </div>-->
-            <!--            </div>-->
             <div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle custom-mua-ve" data-bs-toggle="dropdown">HỖ TRỢ</a>
               <div class="dropdown-menu rounded-0 m-0 custom-background-navbar ">

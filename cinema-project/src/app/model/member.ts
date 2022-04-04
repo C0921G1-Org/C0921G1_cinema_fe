@@ -1,8 +1,6 @@
-import {Film} from './film';
-import {Screen} from './Screen';
 
 export class Member {
- id?:string;
+  id?:string;
   name?:string;
   gender?:number;
   phone?:string;
@@ -12,6 +10,4 @@ export class Member {
   image?:string;
   dateOfBirth?:string;
   identityNumber?:string;
-
-
 }
