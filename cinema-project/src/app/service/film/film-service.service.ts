@@ -14,15 +14,7 @@ export class FilmServiceService {
   httpOptions: any;
 
   constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService) {
-    // console.log(JSON.parse(this.tokenStorage.getToken()).token);
-    // this.httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ` + JSON.parse(this.tokenStorage.getToken()).token
-    //   })
-    //   , 'Access-Control-Allow-Origin': 'http://localhost:4200',
-    //   'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-    // };
+
   }
 
   public getHttpOptions(): any {
@@ -50,7 +42,6 @@ export class FilmServiceService {
   }
 
   public findById(id: number): Observable<any> {
-    console.log(this.httpOptions);
     return this.httpClient.get<Film>(this.API_URL_LIST + '/filmList/' + id);
   }
 

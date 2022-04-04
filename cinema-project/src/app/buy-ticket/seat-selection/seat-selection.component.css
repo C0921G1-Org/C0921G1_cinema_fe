@@ -237,7 +237,8 @@ a {
   -webkit-background-clip: padding;
 }
 
-.seat_icon:hover {
+.seat_icon_hover:hover {
+  background-color: rgba(255, 140, 60, 0.66);
   cursor: pointer;
 }
 

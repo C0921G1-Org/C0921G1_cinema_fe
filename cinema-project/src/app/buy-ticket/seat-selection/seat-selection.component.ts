@@ -1,9 +1,9 @@
-import {Component, OnChanges, OnInit, Renderer2} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SharingDataService} from '../sharing-data.service';
 import {Showtime} from '../../model/showtime';
 import {SelectedSeatService} from '../../service/buy-ticket/selected-seat.service';
 import {SelectedSeat} from '../../model/selected-seat';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ShowtimeService} from '../../service/buy-ticket/showtime.service';
 import {TokenStorageService} from '../../service/security/token-storage.service';
 import Swal from 'sweetalert2';
@@ -15,7 +15,7 @@ import {SeatType} from '../../model/seat-type';
   templateUrl: './seat-selection.component.html',
   styleUrls: ['./seat-selection.component.css']
 })
-export class SeatSelectionComponent implements OnInit, OnChanges {
+export class SeatSelectionComponent implements OnInit {
   currentShowTimeChooseObj: Showtime;
   selectedSeatList: SelectedSeat[] = [];
   seatList = [];
@@ -41,7 +41,8 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   countCommonSeat = [];
   countVIPSeat = [];
   errorPromoCode: boolean;
-  usedPromocode: boolean;
+  usedPromoCode: boolean;
+  successPromoCode: boolean;
   combo = {id: 1, name: 'Combo Bắp + Nước', price: 85000};
 
 
@@ -50,12 +51,14 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
               private showtimeService: ShowtimeService,
               private activatedRoute: ActivatedRoute,
               private seatTypeService: SeatTypeService,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService,
+              private router: Router) {
   }
 
   public showContent = false;
 
   ngOnInit(): void {
+    /*DatTC - Lấy dữ liệu loại ghế theo id*/
     this.seatTypeService.findById(3).subscribe(value => {
       this.economySeat = value;
     });
@@ -67,8 +70,14 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
       this.VIPSeat = value;
 
     });
+
+    /* DatTC - Lấy thông tin user đăng nhập*/
     this.memberId = this.tokenStorageService.getUser().member;
+    console.log(this.memberId);
+
+    /*DatTC - Lấy thông tin xuất chiếu dựa theo film id*/
     const id = this.activatedRoute.snapshot.params.id;
+    //DatTC - TH có dữ liệu
     this.showtimeService.findById(id).subscribe(value => this.currentShowTimeChooseObj = value);
     this.selectedSeatService.getAllSelectedSeatByShowTimeId(id).subscribe(value1 => {
       this.selectedSeatList = value1;
@@ -77,16 +86,17 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
       console.log(this.selectedSeatList);
       console.log(this.seatList);
     }, error => {
+      //DatTC - TH không có dữ liệu
       this.createSeat(this.totalSeat);
     });
+
+    /*DatTC - Delay thời gian hiển thị*/
     setTimeout(() => {
       this.showContent = true;
     }, 0);
   }
 
-  ngOnChanges() {
-  }
-
+  /*DatTC - Tạo bản đồ ghế*/
   createSeat(quantity: number) {
     console.log(this.selectedSeatList);
     for (let i = 0; i < quantity; i++) {
@@ -98,6 +108,7 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
     }
   }
 
+  /*DatTC - Update lại dữ liệu nếu có ghế đã đặt*/
   updateSeat() {
     console.log(this.selectedSeatList);
     for (let i = 0; i < this.seatList.length; i++) {
@@ -109,6 +120,7 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
     }
   }
 
+  /*DatTC - Lấy thông tin user chọn ghế*/
   getSeat(seatObj: any) {
     const nonActive = this.count < this.orderDetailSeatNumber && !seatObj.active;
     const active = this.count <= this.orderDetailSeatNumber && seatObj.active;
@@ -126,6 +138,8 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
         timer: 3000,
       });
     }
+
+    /*DatTC - Đổi màu ghế khi user chọn ghế*/
     if (!seatObj.status) {
       if (nonActive || active) {
         if (nonActive) {
@@ -134,6 +148,7 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
           this.count--;
         }
         seatObj.active = !seatObj.active;
+        this.successPromoCode = false;
         if (seatObj.active) {
           this.seatChoosenList.push(seatObj.id);
           if (seatObj.id <= 20) {
@@ -149,7 +164,7 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
             this.totalPayment += this.VIPSeat.price;
             this.countVIPSeat.push(this.VIPSeat);
           }
-        } else {
+        } else if (!seatObj.active) {
           this.seatChoosenList.splice(this.seatChoosenList.indexOf(seatObj.id), 1);
           if (seatObj.id <= 20) {
             this.totalPayment -= this.economySeat.price;
@@ -165,11 +180,28 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
             this.countVIPSeat.splice(0, 1);
           }
         }
+        if (this.totalPayment < 0){
+          this.totalPayment = 0;
+        }
         console.log(this.seatChoosenList);
       }
+    } else {
+      Swal.fire({
+        position: 'top',
+        background: '#f8f9fa',
+        width: 500,
+        heightAuto: true,
+        icon: 'error',
+        title: 'Không thể chọn ghế đã được đặt trước!',
+
+        toast: true,
+        showConfirmButton: false,
+        timer: 3000,
+      });
     }
   }
 
+  /*DatTC - Func tăng giảm số lượng vé*/
   plusTicket() {
     this.orderDetailSeatNumber += 1;
   }
@@ -177,44 +209,88 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   minusTicket() {
     if (this.orderDetailSeatNumber > 0 && this.count < this.orderDetailSeatNumber) {
       this.orderDetailSeatNumber -= 1;
+    } else {
+      Swal.fire({
+        position: 'top',
+        background: '#f8f9fa',
+        width: 500,
+        heightAuto: true,
+        icon: 'error',
+        title: 'Số lượng vé không thể nhỏ hơn số ghế đã chọn!',
+
+        toast: true,
+        showConfirmButton: false,
+        timer: 3000,
+      });
     }
   }
 
+  /*DatTC - Func tăng giảm số lượng combo*/
   minusCombo() {
-    if (this.comboNumber > 0) {
+    if (this.comboNumber > 0 && this.totalPayment >= this.combo.price) {
       this.comboNumber -= 1;
-      this.totalPayment -= 75000;
+      this.totalPayment -= this.combo.price;
     }
   }
 
   plusCombo() {
     this.comboNumber += 1;
-    this.totalPayment += 75000;
+    this.totalPayment += this.combo.price;
   }
 
+  /*DatTC - Func chuyển đối tượng sang màn hình thanh toán của TaiDHN*/
   transferPayment() {
-    const transferObj = {
-      showtime: this.currentShowTimeChooseObj,
-      seatChoose: this.seatChoosenList,
-      totalPayment: this.totalPayment,
-      combo: this.combo,
-      member: this.tokenStorageService.getUser().member
-    };
-    console.log(transferObj.showtime);
-    this.sharingDataService.getDataFromFirstComponent(transferObj);
-    console.log(transferObj);
+    if (this.seatChoosenList.length == this.orderDetailSeatNumber && this.orderDetailSeatNumber > 0) {
+      const transferObj = {
+        showtime: this.currentShowTimeChooseObj,
+        seatChoose: this.seatChoosenList,
+        totalPayment: this.totalPayment,
+        combo: this.combo,
+        member: this.tokenStorageService.getUser().member
+      };
+      this.sharingDataService.getDataFromFirstComponent(transferObj);
+      console.log(transferObj);
+      this.router.navigateByUrl('/booking/info-booking');
+    } else if (this.seatChoosenList.length < this.orderDetailSeatNumber) {
+      Swal.fire({
+        position: 'top',
+        background: '#f8f9fa',
+        width: 500,
+        heightAuto: true,
+        icon: 'error',
+        title: 'Vui lòng chọn đủ số lượng ghế!',
+
+        toast: true,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } else {
+      Swal.fire({
+        position: 'top',
+        background: '#f8f9fa',
+        width: 500,
+        heightAuto: true,
+        icon: 'error',
+        title: 'Vui lòng chọn ghế trước khi thanh toán!',
+
+        toast: true,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+    this.usedPromoCode = true;
   }
 
+  /*DatTC - Func để kiểm tra mã khuyến mãi & áp dụng mã*/
   promotion(code: any) {
     if (code === 'C0921G1') {
-      if (this.totalPayment > 50000 && !this.usedPromocode) {
+      if (this.totalPayment >= 50000 && !this.usedPromoCode) {
         this.totalPayment -= 50000;
         this.errorPromoCode = false;
-        this.usedPromocode = true;
+        this.successPromoCode = true;
       }
     } else {
       this.errorPromoCode = true;
-
     }
   }
 }

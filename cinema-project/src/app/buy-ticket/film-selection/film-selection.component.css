@@ -191,6 +191,10 @@ a {
   border-radius: 6px;
 }
 
+.noShowTime {
+  height: 100%;
+}
+
 
 /*Button Next Step*/
 .DatTC_next-step {
