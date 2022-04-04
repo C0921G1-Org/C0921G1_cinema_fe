@@ -134,13 +134,18 @@ table.table td a.delete {
 
 .search{
   background: white;
+  margin-top:1px;
+  margin-right: -9px;
+  margin-left: 0 !important;
+  border-radius: 4px !important;
+  height: 48px !important;
 }
 
 table th{
-  text-align: left !important;
+  text-align: left;
 }
 table td{
-  text-align: left !important;
+  text-align: left;
 }
 .bi-search{
   color: #f28123;
@@ -150,14 +155,31 @@ table td{
   background: #f5f5f5;
   font-family: 'Varela Round', sans-serif;
   font-size: 13px;
-  margin-bottom: 114px;
+  margin-bottom: 100px;
 }
 mat-form-field{
-  background: white;
-  color: #212529;
-  padding-bottom: 0.34375em;
+  width: 180px;
+  height: 50px;
+  border-radius: 4px;
 }
-.name{
+.name {
   border: none;
+  height: 48px;
+  width: 199px;
+  text-indent: 9px;
+}
+.mat-input-element{
+  color: #333333;
+}
+
+.ellipsis {
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.table{
+  height: 100%;
 }
 

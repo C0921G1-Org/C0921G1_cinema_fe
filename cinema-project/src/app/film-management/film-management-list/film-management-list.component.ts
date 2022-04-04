@@ -32,19 +32,18 @@ export class FilmManagementListComponent implements OnInit {
   }
 
   public getFilmList(){
+      this.page = 0;
       this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDateFormat,this.endDateFormat).subscribe(value => {
       if (value !=null){
         this.films = value['content'];
         this.totalPagination = value['totalPages'];
         this.totalElement = value['totalElements'];
-        this.page = 0;
       }else {
         this.films = [];
         this.totalElement=0;
         this.totalPagination=0;
       }
     },error => {
-        console.log(error)
       });
   }
 
@@ -57,22 +56,25 @@ export class FilmManagementListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.name = '';
+      this.endDate = null;
+      this.startDate = null;
       this.ngOnInit();
-
     });
   }
 
   nextPage() {
+    window.scroll(0,0);
     if (this.page <= this.totalPagination) {
       this.page = this.page + 1;
+      this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDateFormat,this.endDateFormat).subscribe(data => {
+        this.films = data['content'];
+      });
     }
-    this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDateFormat,this.endDateFormat).subscribe(data => {
-      this.films = data['content'];
-      this.page=0;
-    });
   }
 
   previousPage() {
+    window.scroll(0,0);
     this.page = this.page - 1;
     if (this.page == 0 || this.page < 0) {
       this.page = 0;
@@ -80,7 +82,6 @@ export class FilmManagementListComponent implements OnInit {
     } else {
       this.filmServiceService.getListFilmManagement(this.page,this.name,this.startDateFormat,this.endDateFormat).subscribe(data => {
         this.films = data['content'];
-        this.page=0;
       })
     }
   }
@@ -96,6 +97,8 @@ export class FilmManagementListComponent implements OnInit {
     } else {
       this.endDateFormat = '';
     }
+    console.log(this.startDateFormat,this.endDateFormat,this.name);
+    this.page =0;
     this.getFilmList();
 
   }

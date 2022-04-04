@@ -22,6 +22,13 @@ export class FilmManagementDeleteComponent implements OnInit {
   public getFilm(id: number){
     this.filmServiceService.getFilmManagement(id).subscribe(value => {
       this.film=value;
+    }, error => {
+      this.cancel();
+      Swal.fire({
+        icon: 'error',
+        title: 'Xóa thất bại',
+        text: 'Không tìm thấy phim phù hợp',
+      })
     })
   }
 
@@ -34,9 +41,7 @@ export class FilmManagementDeleteComponent implements OnInit {
         'success'
       )
     },error => {
-      console.log(error);
     });
-
   }
 
   public cancel(){
