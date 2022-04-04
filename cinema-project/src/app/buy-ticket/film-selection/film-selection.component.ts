@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Film} from '../../model/film';
 import {FilmServiceService} from '../../service/film/film-service.service';
 import {ShowtimeService} from '../../service/buy-ticket/showtime.service';
-import {Showtime} from '../../model/showtime';
+import {ShowTime} from '../../model/showtime';
 import {SharingDataService} from '../sharing-data.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-film-selection',
@@ -12,27 +13,30 @@ import {SharingDataService} from '../sharing-data.service';
 })
 export class FilmSelectionComponent implements OnInit {
   filmList: Film[] = [];
-  showTimeList: Showtime[] = [];
-  showTimeListNextDay: Showtime[] = [];
-  showTimeListNextTwoDay: Showtime[] = [];
+  showTimeList: ShowTime[] = [];
+  showTimeListNextDay: ShowTime[] = [];
+  showTimeListNextTwoDay: ShowTime[] = [];
   filmCurrentChooseId: number;
   showTimeCurrentChoose: number;
   filmCurrentChooseObj: Film;
-  showTimeCurrentChooseObj: Showtime;
-  weekday = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+  showTimeCurrentChooseObj: ShowTime;
+  weekday = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chủ Nhật'];
   monthList = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
-
-  currentDate: number;
+  today = moment().format('YYYY MM DD');
+  currentDate: string;
   currentDay: string;
   currentMonth: string;
-  currentNextDate: number;
+  currentNextDate: string;
   currentNextDay: string;
-  currentNextTwoDate: number;
+  currentNextMonth: string;
+  currentNextTwoDate: string;
   currentNextTwoDay: string;
+  currentNextTwoMonth: string;
   currentDateFull: string;
   nextDateFull: string;
   nextTwoDateFull: string;
-  private newDate: Date;
+  newDate: Date;
+  private test: moment.Moment;
 
   constructor(private filmServiceService: FilmServiceService,
               private showtimeService: ShowtimeService,
@@ -45,17 +49,24 @@ export class FilmSelectionComponent implements OnInit {
     });
 
     /*DatTC - Ngày chiếu phim hôm nay*/
-    this.currentDay = this.weekday[new Date().getDay()];
-    this.currentDate = new Date().getDate();
-    this.currentMonth = this.monthList[new Date().getMonth()];
+    this.currentDay = this.weekday[moment(this.today).isoWeekday()];
+    console.log('currentDay' + this.currentDay);
+    this.currentDate = moment(this.today).format('DD');
+    this.currentMonth = this.monthList[parseInt(moment(this.today).format('M')) - 1];
 
     /*DatTC - Ngày chiếu phim ngày mai*/
-    this.currentNextDay = this.weekday[new Date().getDay() + 1];
-    this.currentNextDate = new Date().getDate() + 1;
+    this.currentNextDay = this.weekday[moment(this.today).add(1, 'days').isoWeekday()];
+    console.log('currentNextDay' + this.currentNextDay);
+    this.currentNextDate = moment(this.today).add(1, 'days').format('DD');
+    this.currentNextMonth = this.monthList[parseInt(moment(this.today).add(1, 'days').format('M')) - 1];
 
     /*DatTC - Ngày chiếu phim ngày kia*/
-    this.currentNextTwoDay = this.weekday[new Date().getDay() + 2];
-    this.currentNextTwoDate = new Date().getDate() + 2;
+    this.currentNextTwoDay = this.weekday[moment(this.today).add(2, 'days').isoWeekday()];
+    // this.currentNextTwoDay = moment(this.today).add(2, 'days').isoWeekday();
+    console.log('currentNext2Day' + this.currentNextTwoDay);
+    this.currentNextTwoDate = moment(this.today).add(2, 'days').format('DD');
+    this.currentNextTwoMonth = this.monthList[parseInt(moment(this.today).add(2, 'days').format('M')) - 1];
+    console.log(typeof this.currentNextTwoMonth);
 
     /*DatTC - Ngày chiếu phim ngày mai & ngày kia theo string YYYY-MM-DD*/
     this.currentDateFull = new Date().toISOString().slice(0, 10);

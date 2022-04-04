@@ -59,8 +59,8 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"
                   style="top: 100% !important;right: 0 !important; margin-top: 0 !important; border-radius: 8px">
-                <li *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1"><a class="dropdown-item" routerLink="/statistical/common">Quản lý</a></li>
-                <li><a class="dropdown-item" (click)="logOut()">Đăng xuất</a></li>
+                <li *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1"><a class="dropdown-item" routerLink="/statistical/common" style="cursor: pointer">Quản lý</a></li>
+                <li><a class="dropdown-item" (click)="logOut()" style="cursor: pointer">Đăng xuất</a></li>
               </ul>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import {Component, OnChanges, OnInit, Renderer2} from '@angular/core';
 import {SharingDataService} from '../sharing-data.service';
-import {Showtime} from '../../model/showtime';
+import {ShowTime} from '../../model/showtime';
 import {SelectedSeatService} from '../../service/buy-ticket/selected-seat.service';
 import {SelectedSeat} from '../../model/selected-seat';
 import {ActivatedRoute} from '@angular/router';
@@ -13,7 +13,7 @@ import {TokenStorageService} from '../../service/security/token-storage.service'
   styleUrls: ['./seat-selection.component.css']
 })
 export class SeatSelectionComponent implements OnInit, OnChanges {
-  currentShowTimeChooseObj: Showtime;
+  currentShowTimeChooseObj: ShowTime;
   selectedSeatList: SelectedSeat[] = [];
   seatList = [];
   // seatChoose: any;
@@ -87,36 +87,41 @@ export class SeatSelectionComponent implements OnInit, OnChanges {
   }
 
   getSeat(seatObj: any) {
-    console.log(this.count);
+    const nonActive = this.count < this.orderDetailSeatNumber && !seatObj.active;
+    const active = this.count <= this.orderDetailSeatNumber && seatObj.active;
     if (!seatObj.status) {
-      if (this.count < this.orderDetailSeatNumber) {
+      if (nonActive || active) {
+        if (nonActive) {
+          this.count++;
+        } else {
+          this.count--;
+        }
+        seatObj.active = !seatObj.active;
+        if (seatObj.active) {
+          this.seatChoosenList.push(seatObj.id);
+          if (seatObj.id <= 20) {
+            this.totalPayment += 65000;
+          }
+          if (seatObj.id > 20 && seatObj.id <= 40) {
+            this.totalPayment += 75000;
+          }
+          if (seatObj.id > 40 && seatObj.id <= 50) {
+            this.totalPayment += 85000;
+          }
+        } else {
+          this.seatChoosenList.splice(this.seatChoosenList.indexOf(seatObj.id), 1);
+          if (seatObj.id <= 20) {
+            this.totalPayment -= 65000;
+          }
+          if (seatObj.id > 20 && seatObj.id <= 40) {
+            this.totalPayment -= 75000;
+          }
+          if (seatObj.id > 40 && seatObj.id <= 50) {
+            this.totalPayment -= 85000;
+          }
+        }
+        console.log(this.seatChoosenList);
       }
-      seatObj.active = !seatObj.active;
-      this.count++;
-      if (seatObj.active) {
-        this.seatChoosenList.push(seatObj.id);
-        if (seatObj.id <= 20) {
-          this.totalPayment += 65000;
-        }
-        if (seatObj.id > 20 && seatObj.id <= 40) {
-          this.totalPayment += 75000;
-        }
-        if (seatObj.id > 40 && seatObj.id <= 50) {
-          this.totalPayment += 85000;
-        }
-      } else {
-        this.seatChoosenList.splice(this.seatChoosenList.indexOf(seatObj.id), 1);
-        if (seatObj.id <= 20) {
-          this.totalPayment -= 65000;
-        }
-        if (seatObj.id > 20 && seatObj.id <= 40) {
-          this.totalPayment -= 75000;
-        }
-        if (seatObj.id > 40 && seatObj.id <= 50) {
-          this.totalPayment -= 85000;
-        }
-      }
-      console.log(this.seatChoosenList);
     }
   }
 

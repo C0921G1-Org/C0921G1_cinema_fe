@@ -11,6 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxPayPalModule} from "ngx-paypal";
+
 
 
 
@@ -26,6 +28,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgxPayPalModule,
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

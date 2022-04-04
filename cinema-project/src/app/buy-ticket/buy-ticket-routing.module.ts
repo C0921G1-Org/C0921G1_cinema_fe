@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '', component: FilmSelectionComponent
   },
   {
-    path: 'seat-selection/:id', component: SeatSelectionComponent, canActivate: [RoleAdminGuard]
+    path: 'seat-selection/:id', component: SeatSelectionComponent, canActivate: [RoleUserGuard]
   }
 ];
 
