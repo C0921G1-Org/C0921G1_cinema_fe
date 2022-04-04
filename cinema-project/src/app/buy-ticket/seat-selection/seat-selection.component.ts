@@ -1,11 +1,11 @@
 import {Component, OnChanges, OnInit, Renderer2} from '@angular/core';
 import {SharingDataService} from '../sharing-data.service';
-import {ShowTime} from '../../model/showtime';
 import {SelectedSeatService} from '../../service/buy-ticket/selected-seat.service';
 import {SelectedSeat} from '../../model/selected-seat';
 import {ActivatedRoute} from '@angular/router';
 import {ShowtimeService} from '../../service/buy-ticket/showtime.service';
 import {TokenStorageService} from '../../service/security/token-storage.service';
+import {ShowTime} from "../../model/ShowTime";
 
 @Component({
   selector: 'app-seat-selection',

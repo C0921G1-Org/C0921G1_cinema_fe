@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ShowTime} from '../../model/showtime';
 import {SharingDataService} from '../sharing-data.service';
+import {ShowTime} from "../../model/ShowTime";
 
 @Component({
   selector: 'app-temp',

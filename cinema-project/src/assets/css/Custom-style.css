@@ -214,7 +214,7 @@
 
 .custom-img-fluid {
   width: 100% !important;
-  height: 450px !important;
+  height: 300px !important;
 }
 
 .custom-carousel{
@@ -245,6 +245,21 @@ a{
   font-size: 1rem !important;
   font-weight: 400 !important;
   line-height: 1.5 !important;
+}
+
+.custom-film-name{
+  min-height: 72px !important;
+}
+
+.custom-detail-btn1{
+  background-color: #212529 !important;
+  border-color: #212529 !important;
+}
+
+.custom-detail-btn1:hover{
+  background-color: #474242 !important;
+  border-color: #474242 !important;
+
 }
 
 

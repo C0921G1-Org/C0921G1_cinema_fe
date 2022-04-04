@@ -11,9 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MemberManagementModule} from "./member-management/member-management.module";
 import {NgxPayPalModule} from "ngx-paypal";
-
-
 
 
 @NgModule({
@@ -23,6 +22,7 @@ import {NgxPayPalModule} from "ngx-paypal";
     FooterComponent,
     HomeComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,7 +32,9 @@ import {NgxPayPalModule} from "ngx-paypal";
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+  MemberManagementModule
   ],
+
   providers: [
     LoadCssService
   ],

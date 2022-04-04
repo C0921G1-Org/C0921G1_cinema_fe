@@ -8,7 +8,8 @@ export class Transaction {
   ticketStatus?: string;
   showTime?: ShowTime;
   member?: Member;
- checkAcceptTicket?:number;
- pointGained?:number;
-pointUsed?:number;
+  checkAcceptTicket?: number;
+  pointGained?: number;
+  pointUsed?: number;
 }
+

@@ -7,14 +7,26 @@ import { MemberPointHistoryManagementComponent } from './member-point-history-ma
 import { MemberListComponent } from './member-list/member-list.component';
 import { MemberAccountEditComponent } from './member-account-edit/member-account-edit.component';
 import {MemberManagementRoutingModule} from "./member-management-routing.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {NgxPaginationModule} from "ngx-pagination";
+import {RouterModule} from "@angular/router";
 
 
 
 @NgModule({
   declarations: [MemberAccountRegistrationComponent, MemberBookingTicketManagementComponent, MemberInformationManagementComponent, MemberPointHistoryManagementComponent, MemberListComponent, MemberAccountEditComponent],
-  imports: [
-    CommonModule,
-    MemberManagementRoutingModule
-  ]
+  exports: [
+    MemberListComponent
+  ],
+    imports: [
+        CommonModule,
+        MemberManagementRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NgxPaginationModule,
+        RouterModule,
+        FormsModule
+    ]
 })
 export class MemberManagementModule { }

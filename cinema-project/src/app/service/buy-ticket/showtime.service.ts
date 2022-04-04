@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ShowTime} from '../../model/showtime';
-import {TokenStorageService} from "../security/token-storage.service";
 
+import {TokenStorageService} from '../security/token-storage.service';
+import {ShowTime} from "../../model/ShowTime";
 
 @Injectable({
   providedIn: 'root'

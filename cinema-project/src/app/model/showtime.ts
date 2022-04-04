@@ -1,5 +1,6 @@
-import {Screen} from './Screen';
+
 import {Film} from './film';
+import {Screen} from "./screen";
 
 export class ShowTime {
   id?: number;

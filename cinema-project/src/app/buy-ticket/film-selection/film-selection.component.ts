@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Film} from '../../model/film';
 import {FilmServiceService} from '../../service/film/film-service.service';
 import {ShowtimeService} from '../../service/buy-ticket/showtime.service';
-import {ShowTime} from '../../model/showtime';
 import {SharingDataService} from '../sharing-data.service';
 import * as moment from 'moment';
+import {ShowTime} from "../../model/ShowTime";
 
 @Component({
   selector: 'app-film-selection',
