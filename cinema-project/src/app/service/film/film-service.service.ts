@@ -38,8 +38,8 @@ export class FilmServiceService {
     return this.httpClient.get<Film[]>(this.API_URL_LIST + '/filmList', this.getHttpOptions());
   }
 
-  public findById(id: number): Observable<Film> {
-    return this.httpClient.get<Film>(this.API_URL_LIST + '/filmList/' + id);
+  public findById(id: number): Observable<any> {
+    return this.httpClient.get<Film>(this.API_URL_LIST + '/filmList/' + id, this.getHttpOptions());
   }
 
 }
