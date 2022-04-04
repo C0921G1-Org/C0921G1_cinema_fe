@@ -9,12 +9,12 @@ import {FilmType} from "../../model/Film-type";
 })
 export class TypeFilmServiceService {
   filmType: FilmType;
-  API_URL_LIST = 'http://localhost:8080/film-type';
+  API_URL_LIST = 'http://localhost:8080/c09/public/film-type/';
 
   constructor(private httpClient: HttpClient) {
   }
 
   public getListFilmTypeClient(): Observable<Film[]> {
-    return this.httpClient.get<Film[]>(this.API_URL_LIST + '/list');
+    return this.httpClient.get<Film[]>(this.API_URL_LIST + 'list');
   }
 }

@@ -14,6 +14,7 @@ export class Film {
   trailer: string;
   version: string;
   flagDelete: number;
+  filmTypeNew : string;
   filmType: FilmType;
   showTime: ShowTime;
 

@@ -39,10 +39,10 @@
         </div>
         <div class="col-lg-5 text-end custom-p-header">
           <div class="d-inline-flex align-items-center py-2">
-            <a href="#"
+            <a [routerLink]="['/member/registration-account']"
                class="btn  rounded-1 d-none d-lg-block me-2 custom-background-btn-bold custom-login-register">đăng
               ký</a>
-            <a href="#"
+            <a [routerLink]="['/login']"
                class="btn  rounded-1 d-none d-lg-block me-2 custom-background-btn-bold custom-login-register">Đăng
               nhập</a>
           </div>
@@ -61,8 +61,8 @@
             <div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle custom-mua-ve" data-bs-toggle="dropdown">PHIM</a>
               <div class="dropdown-menu rounded-0 m-0 custom-background-navbar ">
-                <a href="#" class="dropdown-item custom-text-color">PHIM ĐANG CHIẾU</a>
-                <a href="#" class="dropdown-item custom-text-color">PHIM SẮP CHIẾU</a>
+                <a [routerLink]="['/home/2']" class="dropdown-item custom-text-color">PHIM ĐANG CHIẾU</a>
+                <a [routerLink]="['/home/1']" class="dropdown-item custom-text-color">PHIM SẮP CHIẾU</a>
               </div>
             </div>
             <div class="nav-item dropdown">
@@ -98,13 +98,6 @@
                 <a href="#" class="dropdown-item custom-text-color">GIÁ VÉ CHI TIẾT</a>
               </div>
             </div>
-<!--            <div class="nav-item dropdown">-->
-<!--              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">SỰ KIỆN</a>-->
-<!--              <div class="dropdown-menu rounded-0 m-0 custom-background-navbar custom-size-navbar">-->
-<!--                <a href="#" class="dropdown-item custom-text-color">KHUYẾN MÃI</a>-->
-<!--                <a href="#" class="dropdown-item custom-text-color">PHIM HAY THÁNG</a>-->
-<!--              </div>-->
-<!--            </div>-->
             <div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle custom-mua-ve" data-bs-toggle="dropdown">HỖ TRỢ</a>
               <div class="dropdown-menu rounded-0 m-0 custom-background-navbar ">

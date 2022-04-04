@@ -6,7 +6,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // router nhiều chỗ còn thiếu tham số, ai cần gì thì tự thêm vô rồi làm nhé(trong routing của module con ấy)
 const routes: Routes = [
   {
-    path: '',
+    path: '', redirectTo: 'home', pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'home/:status',
     component: HomeComponent
   },
   {
