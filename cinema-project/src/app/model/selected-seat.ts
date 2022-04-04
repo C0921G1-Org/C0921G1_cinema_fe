@@ -1,5 +1,6 @@
 import {SeatType} from './seat-type';
-import {ShowTime} from './ShowTime';
+import {ShowTime} from './showtime';
+
 
 export class SelectedSeat {
   id: number;

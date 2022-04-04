@@ -40,7 +40,8 @@ export class FilmServiceService {
   }
 
   public findById(id: number): Observable<any> {
-    console.log(this.httpOptions);
+    // return this.httpClient.get<Film>(this.API_URL_LIST + '/filmList/' + id, this.getHttpOptions());
+    //
     return this.httpClient.get<Film>(this.API_URL_LIST + '/filmList/' + id);
   }
 

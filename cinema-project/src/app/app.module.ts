@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './layout/home/home.component';
-import {BookingManagementModule} from './booking-management/booking-management.module';
-
 import {LoadCssService} from './loadCss/load-css-service.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -30,7 +28,7 @@ import {NgxPayPalModule} from "ngx-paypal";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
- NgxPayPalModule,
+    NgxPayPalModule,
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

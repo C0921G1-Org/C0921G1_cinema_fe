@@ -1,11 +1,5 @@
 import {Member} from './Member';
-
-import {Film} from './Film';
-import {FilmType} from './Film-type';
-import {SelectedSeat} from './SelectedSeat';
-import {ShowTime} from "./ShowTime";
-
-
+import {ShowTime} from './showtime';
 
 export class Transaction {
   id?: number;
@@ -14,8 +8,8 @@ export class Transaction {
   ticketStatus?: string;
   showTime?: ShowTime;
   member?: Member;
- checkAcceptTicket?:number;
- pointGained?:number;
-pointUsed?:number;
+  checkAcceptTicket?: number;
+  pointGained?: number;
+  pointUsed?: number;
 }
 

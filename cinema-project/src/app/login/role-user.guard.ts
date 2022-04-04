@@ -17,8 +17,8 @@ export class RoleUserGuard implements CanActivate {
   private role: string;
 
   constructor(private tokenStorageService: TokenStorageService,
-              private dialog: MatDialog,
-              private router: Router) {
+              private router: Router,
+              private dialog: MatDialog) {
   }
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -26,8 +26,6 @@ export class RoleUserGuard implements CanActivate {
     if (this.tokenStorageService.getToken()){
       return true;
     }
-
-    // this.router.navigateByUrl("/")
 
     this.router.navigate(['/'], {
       queryParams: { returnUrl: state.url }
@@ -48,18 +46,12 @@ export class RoleUserGuard implements CanActivate {
     setTimeout(() => {
       this.openDialog();
     }, 200);
-    // this.router.navigateByUrl("/");
-    // this.openDialog();
-    // test;
-
-
     return false;
   }
-
-  openDialog() {
+  openDialog(){
     const dialogRef = this.dialog.open(LoginComponent, {
       width: 'max-content',
-      height: 'max-content',
+      height: 'max-content'
     });
   }
 

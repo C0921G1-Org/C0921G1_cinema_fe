@@ -6,15 +6,10 @@
         <h2>ĐĂNG NHẬP</h2>
       </div>
 
-      <form [formGroup]="formGroup"  (ngSubmit)="onSubmit()">
-        <div class="text-danger"
-             *ngIf="errorMessage">
-          <p>Sai thông tin đăng nhập. Vui lòng đăng nhập lại</p>
-        </div>
+      <form focusInvalidInput [formGroup]="formGroup"  (ngSubmit)="onSubmit()">
         <div class="input_field"><span><i aria-hidden="true" class="bi bi-file-lock-fill"></i></span>
           <input type="text" formControlName="username" placeholder="Tên đăng nhập" required/>
         </div>
-        <p></p>
 
         <div class="input_field"><span> <i aria-hidden="true" class="bi bi-key-fill"></i></span>
           <input type="password" formControlName="password" placeholder="Mật khẩu" required/>
