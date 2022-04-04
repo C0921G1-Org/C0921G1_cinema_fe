@@ -39,7 +39,7 @@
 
 /*** Button ***/
 .btn {
-    font-weight: 500;
+    font-weight: 300;
     text-transform: uppercase;
     transition: .5s;
 }
@@ -87,7 +87,7 @@
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link.active {
+.navbar-dark .navbar-nav .nav-link.DatTC_active {
     color: var(--primary);
 }
 
@@ -231,7 +231,7 @@
     position: relative;
     height: 100%;
     min-height: 500px;
-    background: linear-gradient(rgba(15, 23, 43, .1), rgba(15, 23, 43, .1)), url(../img/anh-phim-bo-cu.jpg);
+    background: linear-gradient(rgba(15, 23, 43, .1), rgba(15, 23, 43, .1)), url(../img/anh-video-spiderman.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

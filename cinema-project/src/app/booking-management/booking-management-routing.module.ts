@@ -6,20 +6,25 @@ import {BookingConfirmInformationBookingComponent} from "./booking-confirm-infor
 import {BookingSeatSelectionComponent} from "./booking-seat-selection/booking-seat-selection.component";
 import {BookingInformationBookingTicketComponent} from "./booking-information-booking-ticket/booking-information-booking-ticket.component";
 import {BookingTicketSelectionComponent} from "./booking-ticket-selection/booking-ticket-selection.component";
+import {RoleAdminGuard} from "../login/role-admin.guard";
+import {RoleUserGuard} from '../login/role-user.guard';
 
 
 const routes: Routes = [
   {
-    path: 'list', component: BookingBookingTicketListComponent
+    path: 'list', component: BookingBookingTicketListComponent,canActivate: [RoleUserGuard]
   },
+
+
   {
-    path: 'confirm-booking', component: BookingConfirmBookingTicketComponent
+
+    path: 'confirm-booking', component: BookingConfirmBookingTicketComponent, canActivate: [RoleAdminGuard]
   },
   {
     path: 'confirm-info-booking', component: BookingConfirmInformationBookingComponent
   },
   {
-    path: 'info-booking', component: BookingInformationBookingTicketComponent
+    path: 'info-booking', component: BookingInformationBookingTicketComponent,canActivate: [RoleUserGuard]
   },
   {
     path: 'booking-ticket/:id', component: BookingTicketSelectionComponent
