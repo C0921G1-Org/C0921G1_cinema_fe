@@ -12,7 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgxPayPalModule} from 'ngx-paypal';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MemberManagementModule} from "./member-management/member-management.module";
+import {MemberManagementModule} from './member-management/member-management.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
@@ -33,7 +33,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatDialogModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-  MemberManagementModule
+    MemberManagementModule
   ],
 
   providers: [

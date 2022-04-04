@@ -43,8 +43,7 @@ export class FilmSelectionComponent implements OnInit {
   noShowTimeNextTwoDay: string;
 
   constructor(private filmServiceService: FilmServiceService,
-              private showtimeService: ShowtimeService,
-              private sharingDataService: SharingDataService) {
+              private showtimeService: ShowtimeService) {
   }
 
   ngOnInit(): void {
