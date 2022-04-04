@@ -34,7 +34,7 @@
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="name" class="col-form-label fw-bold" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Họ và tên: </label>
+            <label for="name" class="col-form-label fw-bold" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Họ và tên (*): </label>
           </div>
         </div>
       </div>
@@ -167,7 +167,7 @@
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="dateOfBirth" class="col-form-label fw-bold" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Ngày sinh: </label>
+            <label for="dateOfBirth" class="col-form-label fw-bold" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Ngày sinh (*): </label>
           </div>
         </div>
       </div>
@@ -227,7 +227,7 @@
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="phone" class="col-form-label fw-bold" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Số điện thoại: </label>
+            <label for="phone" class="col-form-label fw-bold" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Số điện thoại (*): </label>
           </div>
         </div>
       </div>
@@ -287,7 +287,7 @@
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="identityNumber" class="col-form-label fw-bold" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Số CMND: </label>
+            <label for="identityNumber" class="col-form-label fw-bold" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Số CMND (*): </label>
           </div>
         </div>
       </div>
@@ -399,7 +399,7 @@
       <div class="col-lg-2 col-xl-2">
         <div class="row">
           <div class="col-lg-12 col-xl-12">
-            <label for="address" class="col-form-label fw-bold" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Địa chỉ: </label>
+            <label for="address" class="col-form-label fw-bold" style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Địa chỉ (*): </label>
           </div>
         </div>
       </div>
@@ -494,10 +494,13 @@
         <button type="submit" class="btn khanh_btn_update" style="background: #f28123;font-family: 'Varela Round', sans-serif !important;
                              color: #fff; font-weight: bold; font-size: 0.9rem !important;">Cập nhật</button>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill ms-5" viewBox="0 0 16 16">
-          <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
-        </svg>
-        <a routerLink="/member/list" class="ms-1 text-decoration-none text-dark fw-bold" style="font-family: 'Varela Round', sans-serif !important">Quay lại trang thành viên!</a>
+
+        <a routerLink="/member/list" class="ms-1 text-decoration-none text-dark fw-bold" style="font-family: 'Varela Round', sans-serif !important">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill ms-5" viewBox="0 0 16 16">
+            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+          </svg>
+          Quay lại trang thành viên!
+        </a>
 
       </div>
 

@@ -5,6 +5,7 @@ import {MemberManagementService} from "../../service/member-management/member-ma
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {CityService} from "../../service/member-management/city.service";
 import {differenceInYears} from "date-fns";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-member-account-edit',
@@ -143,8 +144,16 @@ export class MemberAccountEditComponent implements OnInit {
       console.log('front-end valid / back-end-error');
 
       this.memberManagementService.updateMember(this.id,member).subscribe(() => {
-        console.log('update member successfully!');
-        this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
+        // console.log('update member successfully!');
+
+        this.router.navigateByUrl('/member/list').
+          then(r => Swal.fire(
+          '' + this.id,
+          'Cập nhật thành công!' ,
+          'success'
+        ));
+
+        // this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
 
       }, error => {
 
