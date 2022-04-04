@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {SharingDataService} from '../sharing-data.service';
-import {ShowTime} from '../../model/showtime';
 import {SelectedSeatService} from '../../service/buy-ticket/selected-seat.service';
 import {SelectedSeat} from '../../model/selected-seat';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -9,13 +8,16 @@ import {TokenStorageService} from '../../service/security/token-storage.service'
 import Swal from 'sweetalert2';
 import {SeatTypeService} from '../../service/buy-ticket/seat-type.service';
 import {SeatType} from '../../model/seat-type';
+import {ShowTime} from "../../model/ShowTime";
 
 @Component({
   selector: 'app-seat-selection',
   templateUrl: './seat-selection.component.html',
   styleUrls: ['./seat-selection.component.css']
 })
+
 export class SeatSelectionComponent implements OnInit {
+
   currentShowTimeChooseObj: ShowTime;
   selectedSeatList: SelectedSeat[] = [];
   seatList = [];

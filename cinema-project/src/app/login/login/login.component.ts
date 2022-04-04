@@ -1,10 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TokenStorageService} from "../../service/security/token-storage.service";
 import {AuthService} from "../../service/security/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ShareService} from "../../service/security/share.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import Swal from "sweetalert2";
 
 /**
  *  TuNK
@@ -17,7 +18,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 export class LoginComponent implements OnInit {
   formGroup: FormGroup;
   username: string;
-  errorMessage = false;
   roles: string[] = [];
   returnUrl: string;
 
@@ -34,18 +34,11 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
 
     this.formGroup = this.formBuild.group({
-        username: [''],
-        password: [''],
+        username: ['', Validators.required],
+        password: ['', Validators.required],
         remember_me: ['']
       }
     );
-
-    // if (this.tokenStorageService.getToken()) {
-    //   const user = this.tokenStorageService.getUser();
-    //   this.authService.isLoggedIn = true;
-    //   this.roles = this.tokenStorageService.getUser().roles;
-    //   this.username = this.tokenStorageService.getUser().username;
-    // }
   }
 
   onSubmit() {
@@ -71,8 +64,36 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.authService.isLoggedIn = false;
-        this.errorMessage = true;
-        this.formGroup.reset();
+
+        if (this.formGroup.value.username == '' || this.formGroup.value.password == ''){
+          Swal.fire({
+            position: 'top',
+            background: '#f8f9fa',
+            width: 500,
+            heightAuto: true,
+            icon: 'error',
+            title: 'Tên đăng nhập và mật khẩu không được để trống.',
+            toast: true,
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }else {
+          Swal.fire({
+            position: 'top',
+            background: '#f8f9fa',
+            width: 400,
+            heightAuto: true,
+            icon: 'error',
+            title: 'Sai thông tin đăng nhập.\n' +
+              'Vui lòng đăng nhập lại.',
+
+            toast: true,
+            showConfirmButton: false,
+            timer: 3000,
+          });
+
+        }
+        // this.formGroup.reset();
       }
     );
   }

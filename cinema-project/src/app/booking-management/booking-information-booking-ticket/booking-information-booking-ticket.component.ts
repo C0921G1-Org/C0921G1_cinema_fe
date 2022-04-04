@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
 import {PaymentService} from '../../service/payment/payment.service';
 import {Transaction} from '../../model/Transaction';
@@ -11,8 +11,6 @@ import {ShowTime} from '../../model/showtime';
   styleUrls: ['./booking-information-booking-ticket.component.css']
 })
 export class BookingInformationBookingTicketComponent implements OnInit {
-  showTime : ShowTime ;
-
 
   constructor(private paymentService: PaymentService,
               private  sharingDataService: SharingDataService) {
@@ -23,8 +21,8 @@ export class BookingInformationBookingTicketComponent implements OnInit {
     code: '1',
     transactionalDate: '2000-22-09',
     ticketStatus: '1',
-    checkAcceptTicket : 0,
-    pointGained : 0.0,
+    checkAcceptTicket: 0,
+    pointGained: 0.0,
     pointUsed: 0.0
   };
 
@@ -32,7 +30,7 @@ export class BookingInformationBookingTicketComponent implements OnInit {
   receiveObj: any;
   public payPalConfig ?: IPayPalConfig;
   check = false;
-  sum : any;
+  sum: any;
 
   ngOnInit(): void {
     this.sharingDataService.obj.subscribe(value => {
@@ -44,8 +42,6 @@ export class BookingInformationBookingTicketComponent implements OnInit {
     });
 
   }
-
-
 
 
   private initConfig(): void {
@@ -100,10 +96,10 @@ export class BookingInformationBookingTicketComponent implements OnInit {
       onClientAuthorization: (data) => {
 
         //lấy thông tin showtime còn thông tin member nữa là xong
-     this.transaction.showTime =this.receiveObj['showtime'];
-     this.transaction.member =this.receiveObj['member'];
-     this.paymentService.payment(this.transaction).subscribe(value => {
-              this.transaction =value;
+        this.transaction.showTime = this.receiveObj['showtime'];
+        this.transaction.member = this.receiveObj['member'];
+        this.paymentService.payment(this.transaction).subscribe(value => {
+          this.transaction = value;
           console.log(this.transaction);
         });
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);

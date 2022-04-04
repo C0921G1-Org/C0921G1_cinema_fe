@@ -8,7 +8,7 @@ import {BookingConfirmInformationBookingComponent} from './booking-confirm-infor
 import {BookingManagementRoutingModule} from './booking-management-routing.module';
 import {BookingTicketSelectionComponent} from './booking-ticket-selection/booking-ticket-selection.component';
 import {NgxPayPalModule} from 'ngx-paypal';
-
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [BookingConfirmBookingTicketComponent, BookingInformationBookingTicketComponent, BookingSeatSelectionComponent, BookingBookingTicketListComponent, BookingConfirmInformationBookingComponent, BookingTicketSelectionComponent],
@@ -18,7 +18,9 @@ import {NgxPayPalModule} from 'ngx-paypal';
     BookingManagementRoutingModule,
     NgxPayPalModule,
     BookingManagementRoutingModule,
+    FormsModule
   ]
 })
+
 export class BookingManagementModule {
 }

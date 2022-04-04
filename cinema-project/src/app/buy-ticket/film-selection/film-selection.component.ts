@@ -7,6 +7,7 @@ import {SharingDataService} from '../sharing-data.service';
 import * as moment from 'moment';
 import Swal from "sweetalert2";
 
+
 @Component({
   selector: 'app-film-selection',
   templateUrl: './film-selection.component.html',
