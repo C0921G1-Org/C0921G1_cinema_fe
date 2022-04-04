@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Film} from "../../model/film";
+import {Film} from "../../model/Film";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class FilmServiceService {
   film: Film;
-  API_URL_LIST = 'http://localhost:8080/c09/user/film';
+  API_URL_LIST = 'http://localhost:8080/c09/public/film';
 
   constructor(private httpClient: HttpClient) {
   }

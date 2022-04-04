@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {LoadCssService} from '../../loadCss/load-css-service.service';
-import {Film} from "../../model/film";
+import {Film} from "../../model/Film";
 import {FilmServiceService} from "../../service/film/film-service.service";
-import {FilmType} from "../../model/film-type";
+import {FilmType} from "../../model/Film-type";
 import {TypeFilmServiceService} from "../../service/film-type/type-film-service.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
-import {isFakeMousedownFromScreenReader} from "@angular/cdk/a11y";
 
 @Component({
   selector: 'app-home',
@@ -76,7 +74,6 @@ export class HomeComponent implements OnInit {
 
   nextPage() {
     this.seeMore += 8;
-    console.log(this.seeMore);
     this.filmService.getListFilmClient(this.seeMore, this.page, this.actor, this.name, this.typeFilm, this.statusFilm).subscribe(data => {
       this.filmClientList = data['content'];
       this.totalPage = data['totalPages'];

@@ -9,6 +9,7 @@ import { HomeComponent } from './layout/home/home.component';
 import {LoadCssService} from "./loadCss/load-css-service.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {BookingManagementModule} from './booking-management/booking-management.module';
 
 
 @NgModule({
@@ -18,12 +19,13 @@ import {FormsModule} from "@angular/forms";
     FooterComponent,
     HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BookingManagementModule
+    ],
   providers: [
     LoadCssService
   ],
