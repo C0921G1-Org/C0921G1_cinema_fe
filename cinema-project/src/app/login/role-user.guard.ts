@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 import {TokenStorageService} from '../service/security/token-storage.service';
 import Swal from 'sweetalert2';
 import {LoginComponent} from './login/login.component';
@@ -20,16 +20,18 @@ export class RoleUserGuard implements CanActivate {
               private router: Router,
               private dialog: MatDialog) {
   }
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.tokenStorageService.getToken()){
+    if (this.tokenStorageService.getToken()) {
       return true;
     }
 
     this.router.navigate(['/'], {
-      queryParams: { returnUrl: state.url }
+      queryParams: {returnUrl: state.url}
     });
+
 
     Swal.fire({
       position: 'top',
@@ -43,9 +45,11 @@ export class RoleUserGuard implements CanActivate {
       showConfirmButton: false,
       timer: 3000,
     });
+
     setTimeout(() => {
       this.openDialog();
     }, 200);
+
     return false;
   }
   openDialog(){

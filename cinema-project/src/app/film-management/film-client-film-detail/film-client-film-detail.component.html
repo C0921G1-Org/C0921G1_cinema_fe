@@ -10,7 +10,7 @@
           <h1 style="padding-left: 10px"><b>{{film.name}}</b></h1>
           <h3 style="padding-left: 10px">Đạo diễn:{{film.director}}</h3>
           <span class="test_phim">{{film.version}}</span><span class="time_details"><i class="bi bi-alarm-fill"></i></span><span
-          class="time_details">{{film.duration}}</span>
+          class="time_details">{{film.duration}} Phút</span>
           <br>
           <br>
           <div class="details_test_one">
@@ -36,7 +36,7 @@
             </div>
             <div>
               <button type="button" class="btn_click" [routerLink]="['/']">Quay Lại</button>
-              <button type="button" class="btn_click">Đặt Vé</button>
+              <button type="button" class="btn_click"  [routerLink]="['/buy-ticket']" >Đặt Vé</button>
             </div>
           </div>
         </div>

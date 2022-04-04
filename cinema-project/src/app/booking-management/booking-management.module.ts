@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [BookingConfirmBookingTicketComponent, BookingInformationBookingTicketComponent, BookingSeatSelectionComponent, BookingBookingTicketListComponent, BookingConfirmInformationBookingComponent, BookingTicketSelectionComponent],
 
+
   imports: [
     CommonModule,
     BookingManagementRoutingModule,

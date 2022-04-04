@@ -3,6 +3,12 @@ import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
 import {PaymentService} from '../../service/payment/payment.service';
 import {Transaction} from '../../model/Transaction';
 import {SharingDataService} from '../../buy-ticket/sharing-data.service';
+import {Showtime} from '../../model/showtime';
+import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
+import {FormControl, FormGroup} from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-booking-information-booking-ticket',
@@ -12,7 +18,8 @@ import {SharingDataService} from '../../buy-ticket/sharing-data.service';
 export class BookingInformationBookingTicketComponent implements OnInit {
 
   constructor(private paymentService: PaymentService,
-              private  sharingDataService: SharingDataService) {
+              private  sharingDataService: SharingDataService,
+              private router: Router) {
   }
 
   transaction: Transaction
@@ -31,16 +38,20 @@ export class BookingInformationBookingTicketComponent implements OnInit {
   check = false;
   sum: any;
 
+
   ngOnInit(): void {
+
     this.sharingDataService.obj.subscribe(value => {
       this.receiveObj = value;
-      //Tổng tiền thành toán paypal
-      this.sum = this.receiveObj.totalPayment / 26000;
-      this.initConfig();
-
+      console.log(this.receiveObj);
+      if (this.receiveObj == null) {
+        this.router.navigateByUrl('/buy-ticket');
+      } else {
+        //Tổng tiền thành toán paypal
+        this.sum = this.receiveObj.totalPayment / 26000;
+        this.initConfig();
+      }
     });
-
-  }
 
 
   private initConfig(): void {
@@ -87,8 +98,7 @@ export class BookingInformationBookingTicketComponent implements OnInit {
 
       },
       onApprove: (data, actions) => {
-        console.log('onApprove - transaction was approved, but not authorized', data, actions);
-        actions.order.get().then(details => {
+      actions.order.get().then(details => {
           console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
       },
@@ -97,14 +107,45 @@ export class BookingInformationBookingTicketComponent implements OnInit {
         //lấy thông tin showtime còn thông tin member nữa là xong
         this.transaction.showTime = this.receiveObj['showtime'];
         this.transaction.member = this.receiveObj['member'];
+          this.paymentService.payment(this.transaction).subscribe(value => {
+            this.transaction = value;
+
+            Swal.fire({
+              position: 'center',
+              background: '#f8f9fa',
+              width: 400,
+              heightAuto: true,
+              icon: 'success',
+              title: 'Bạn đã thanh toán thành công',
+              toast: true,
+              showConfirmButton: false,
+              timer: 3000,
+            });
+
+          });
+        },
+
         this.paymentService.payment(this.transaction).subscribe(value => {
           this.transaction = value;
           console.log(this.transaction);
         });
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
       },
+
       onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
+        Swal.fire({
+          position: 'center',
+          background: '#f8f9fa',
+          width: 400,
+          heightAuto: true,
+          icon: 'error',
+          title: 'Bạn đã hủy thanh toán',
+          toast: true,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+
+
       },
       onError: err => {
         console.log('OnError', err);
@@ -117,5 +158,19 @@ export class BookingInformationBookingTicketComponent implements OnInit {
 
   show() {
     this.check = !this.check;
+  }
+
+  checkbox() {
+    Swal.fire({
+      position: 'center',
+      background: '#f8f9fa',
+      width: 400,
+      heightAuto: true,
+      icon: 'error',
+      title: 'Bạn đã hủy thanh toán',
+      toast: true,
+      showConfirmButton: false,
+      timer: 3000,
+    });
   }
 }
