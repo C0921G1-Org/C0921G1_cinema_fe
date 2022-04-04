@@ -1,5 +1,5 @@
 import {FilmType} from "./Film-type";
-import {ShowTime} from './ShowTime';
+import {ShowTime} from "./ShowTime";
 
 export class Film {
   id: number;
@@ -17,9 +17,6 @@ export class Film {
   filmTypeNew : string;
   filmType: FilmType;
   showTime: ShowTime;
-
-  constructor() {
-  }
 
 
 }

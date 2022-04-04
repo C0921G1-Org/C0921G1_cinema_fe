@@ -6,10 +6,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './layout/home/home.component';
-import {LoadCssService} from "./loadCss/load-css-service.service";
-import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
 import {BookingManagementModule} from './booking-management/booking-management.module';
+
+import {LoadCssService} from './loadCss/load-css-service.service';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MemberManagementModule} from "./member-management/member-management.module";
+import {NgxPayPalModule} from "ngx-paypal";
 
 
 @NgModule({
@@ -17,15 +22,21 @@ import {BookingManagementModule} from './booking-management/booking-management.m
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        BookingManagementModule
-    ],
+
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+ NgxPayPalModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+  MemberManagementModule
+  ],
+
   providers: [
     LoadCssService
   ],

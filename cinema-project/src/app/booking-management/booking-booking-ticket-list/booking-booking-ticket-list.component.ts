@@ -4,6 +4,7 @@ import {BookingManageService} from '../../service/booking-manage/booking-manage.
 import {Transaction} from '../../model/Transaction';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
+
 @Component({
   selector: 'app-booking-booking-ticket-list',
   templateUrl: './booking-booking-ticket-list.component.html',

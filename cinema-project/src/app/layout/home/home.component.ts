@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   status = '';
   flagStatusFilm = false;
 
+
   constructor(private filmService: FilmServiceService,
               private typeFilmServiceService: TypeFilmServiceService,
               private activatedRoute: ActivatedRoute) {
