@@ -1,7 +1,7 @@
 <!--NhanNt Quản lý đặt vé của tài khoản-->
 
 
-<div class="container" style="margin-bottom: 120px">
+<div class="container" style="margin-bottom: 130px">
 
   <!--history List-->
   <br/>
@@ -51,16 +51,16 @@
     </thead>
     <tbody>
     <tr *ngFor="let item of tradingHistoryList;index as i">
-      <td>{{i + 1}}</td>
-      <td>{{item.transactionalDate}}</td>
-      <td>{{item.code}}</td>
-      <td>{{item.screenName}}</td>
-      <td>{{item.filmName}}</td>
-      <td>{{item.ticketPrice|currency:'VND'}}</td>
+      <td >{{i + 1}}</td>
+      <td class="col-1 " style="width: 10%">{{item.transactionalDate}}</td>
+      <td class="col-1 " style="padding-left: 25px;width: 10%">{{item.code}}</td>
+      <td class="col-1 " style="padding-left: 45px;width: 10%">{{item.screenName}}</td>
+      <td class="col-1 " style="width: 33%">{{item.filmName}}</td>
+      <td class="col-1 " style="width: 13%">{{item.ticketPrice|currency:'VND'}}</td>
 <!--      <td *ngIf="">{{item.attachedPrice}}</td>-->
-      <td *ngIf="item.attachedPrice === null; else elseBlock">0</td>
+      <td class="col-1 " style="width: 13%" *ngIf="item.attachedPrice === null; else elseBlock">0</td>
       <ng-template #elseBlock>{{item.attachedPrice}}</ng-template>
-      <td>{{item.point}}</td>
+      <td class="col-1 " style="width: 11%">{{item.point}}</td>
 
     </tr>
 
@@ -71,18 +71,18 @@
 
   <div class=" row">
     <h2 *ngIf="totalElement == 0" class="hint-text" style="color: #f28123; text-align: center">Bạn hãy đặt vé xem phim ngay thôi!</h2>
-    <div class="col-lg-3">
+    <div class="col-lg-4">
       <div class="d-flex float-start">
-        <div *ngIf="totalElement > 0" class="hint-text">Tổng cộng danh sách có {{totalElement}} lịch sử xem phim</div>
+        <div *ngIf="totalElement > 0" class="hint-text">Tổng cộng danh sách có <small style="color: #f28123; font-weight: bold">{{totalElement}}</small> lịch sử xem phim</div>
 
       </div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-8">
       <div class="float-end">
         <ul class="d-flex " style="list-style: none;">
-          <li *ngIf="p !=0" class="page-item"><a (click)="previousPage()" class="page-link">Trước</a></li>
+          <li *ngIf="p !=0" class="page-item" style="cursor: pointer"><a (click)="previousPage()" class="page-link">Trước</a></li>
           <li *ngIf="totalPagination >0" class="page-item disabled page-link">{{p + 1}}/{{totalPagination}}</li>
-          <li *ngIf="p < totalPagination-1" class="page-item"><a (click)="nextPage()" class="page-link">Sau</a></li>
+          <li *ngIf="p < totalPagination-1" class="page-item" style="cursor: pointer"><a (click)="nextPage()" class="page-link">Sau</a></li>
         </ul>
       </div>
     </div>

@@ -72,6 +72,7 @@ export class MemberBookingTicketManagementComponent implements OnInit {
     }
   }
   search(){
+    this.p = 0;
     this.ngOnInit();
   }
 }

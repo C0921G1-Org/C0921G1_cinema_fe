@@ -10,10 +10,12 @@
         <!--img-->
 
         <div class="input_field">
-          <label for="image" style="font-weight: 500">Thêm ảnh đại diện</label>
-          <input id="image" type="file" class="form-control-file"  (change)="showPreview($event)" />
+          <img style="width: 200px;height: 200px" alt="avata" [src]="imageThis">
+          <label for="image" class="btn" style="font-weight: 500;text-decoration: underline">Thêm ảnh đại diện</label>
+
+          <input id="image" type="file" class="form-control-file" style="visibility:hidden;" (change)="showPreview($event)" />
           <div style="color: red"
-               *ngIf="memberForm.get('image').hasError('required') && submitted">Vui lòng thêm ảnh</div>
+               *ngIf="memberForm.get('image').hasError('required') && submitted">Ảnh không được bỏ trống.</div>
 <!--                    <div style="color: red">Vui lòng thêm ảnh</div>-->
         </div>
 
@@ -21,9 +23,13 @@
         <div class="input_field" >
           <label>Họ và Tên <span style="color: red">*</span></label>
 
-          <input type="text" name="name" placeholder="Họ và Tên" formControlName="name" required/>
+          <input type="text" name="name" placeholder="Họ và Tên" formControlName="name" ngModel maxlength="50" required/>
           <div style="color: red"
-               *ngIf="memberForm.get('name').hasError('required') && submitted">Bạn vui lòng không để trống mục tên</div>
+               *ngIf="memberForm.get('name').hasError('required') && submitted ">Bạn vui lòng không để trống mục tên.</div>
+          <div style="color: red"
+               *ngIf="memberForm.get('name').hasError('pattern') && submitted">Tên không được phép có số hoặc ký tự đặc biệt và phải viết hoa chữ cái đầu.</div>
+          <div style="color: red"
+               *ngIf="memberForm.get('name').hasError('maxLength') && submitted">Tối thiểu 1 ký tự và tối đa 50 ký tự.</div>
 <!--          <div style="color: red">Bạn vui lòng nhập tên theo đinh dạng: Nguyễn Văn A </div>-->
 <!--          <div style="color: red">Bạn vui lòng không để trống mục tên</div>-->
         </div>
@@ -39,9 +45,9 @@
               <input type="text" name="phone" placeholder="Số điện thoại" formControlName="phone"/>
             </div>
             <div style="color: red"
-                 *ngIf="memberForm.get('phone').hasError('pattern') && submitted">Bạn vui lòng nhập số điện thoại theo đúng đinh dạng: +84-xxxxxxxxx</div>
+                 *ngIf="memberForm.get('phone').hasError('pattern') && submitted">Bạn vui lòng nhập số điện thoại theo đúng đinh dạng: +84-xxxxxxxxx.</div>
             <div style="color: red"
-                 *ngIf="memberForm.get('phone').hasError('required') && submitted">Bạn vui lòng không để trống mục số điện thoại</div>
+                 *ngIf="memberForm.get('phone').hasError('required') && submitted">Bạn vui lòng không để trống mục số điện thoại.</div>
           </div>
           <div class="input_field select_option col_half">
             <label>Giới tính <span style="color: red">*</span></label>
@@ -51,7 +57,7 @@
               <option value="1">Nữ</option>
             </select>
             <div style="color: red"
-                 *ngIf="memberForm.get('gender').hasError('required') && submitted">Bạn vui lòng chọn giới tính</div>
+                 *ngIf="memberForm.get('gender').hasError('required') && submitted">Bạn vui lòng chọn giới tính.</div>
 <!--            <div style="color: red">Bạn vui lòng chọn giới tính</div>-->
           </div>
 
@@ -64,9 +70,9 @@
           <label>Email <span style="color: red">*</span></label>
           <input type="email" name="email" placeholder="Email" formControlName="email" required/>
           <div style="color: red"
-               *ngIf="memberForm.get('email').hasError('required') && submitted">Bạn vui lòng không để trống mục email</div>
-<!--          <div style="color: red"-->
-<!--               *ngIf="memberForm.get('email').hasError('existEmail') && submitted">Email đã tồn tại</div>-->
+               *ngIf="memberForm.get('email').hasError('required') && submitted">Bạn vui lòng không để trống mục email.</div>
+          <div style="color: red"
+               *ngIf="memberForm.get('email').hasError('pattern') && submitted">Email phải theo định dạng: email@mail.com.</div>
           <div style="color: red" id="email-duplicate"></div>
 <!--          <div style="color: red">Bạn vui lòng không để trống mục email</div>-->
 <!--          <div style="color: red">Bạn vui lòng theo định dạng: email@mail.com </div>-->
@@ -81,7 +87,9 @@
               <input type="password" name="password" placeholder="Mật Khẩu" formControlName="password" required/>
             </div>
             <div style="color: red"
-                 *ngIf="memberForm.get('passwordFormGroup').get('password').hasError('required') && submitted">Bạn vui lòng không để trống mục mật khẩu</div>
+                 *ngIf="memberForm.get('passwordFormGroup').get('password').hasError('required') && submitted">Bạn vui lòng không để trống mục mật khẩu.</div>
+            <div style="color: red"
+                 *ngIf="memberForm.get('passwordFormGroup').get('password').hasError('pattern') && submitted">Bạn vui nhập mật khẩu ít nhất 6 ký tự, ít nhất 1 ký tự chữu và 1 ký tự số.</div>
 <!--            <div style="color: red">Bạn vui lòng không để trống mục mật khẩu</div>-->
 <!--            <div style="color: red">Vui lòng điền mật khẩu ít nhất 6 ký tự</div>-->
           </div>
@@ -96,7 +104,6 @@
 <!--            <div style="color: red">Bạn vui lòng không để trống mục nhập lại mật khẩu</div>-->
             <div style="color: red" *ngIf="memberForm.hasError('notMatch',['passwordFormGroup']) && (submitted)">Vui lòng nhập đúng mật khẩu </div>
           </div>
-
 
         </div>
 
@@ -136,14 +143,14 @@
               <option *ngFor="let ward of wardList" [ngValue]="ward">{{ward.name}}</option>
             </select>
             <div style="color: red"
-                 *ngIf="memberForm.get('ward').hasError('required') && submitted">Bạn vui lòng không để trống mục Phường</div>
+                 *ngIf="memberForm.get('ward').hasError('required') && submitted">Bạn vui lòng không để trống mục Phường.</div>
 <!--            <div style="color: red">Bạn vui lòng chọn Xã / Phường</div>-->
           </div>
           <div class="input_field col_half">
             <label>Địa chỉ <span style="color: red">*</span></label>
             <input type="text" name="address" placeholder="Địa chỉ" formControlName="address" required/>
             <div style="color: red"
-                 *ngIf="memberForm.get('address').hasError('required') && submitted">Bạn vui lòng không để trống mục địa chỉ</div>
+                 *ngIf="memberForm.get('address').hasError('required') && submitted">Bạn vui lòng không để trống mục địa chỉ.</div>
 <!--            <div style="color: red">Vui lòng nhập địa chỉ</div>-->
           </div>
 
@@ -151,19 +158,12 @@
 
         <!--dayofbirth-->
 
-<!--        <div class="input_field">-->
-<!--          <label>Ngày Sinh <span style="color: red">*</span></label>-->
-<!--          <input type="date" name="dateOfBirth" placeholder="" formControlName="dateOfBirth" required/>-->
-<!--&lt;!&ndash;          <div style="color: red">Vui lòng chọn ngày sinh</div>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div style="color: red">Vui lòng chọn ngày sinh theo dạng (dd/mm/yyyy)</div>&ndash;&gt;-->
-<!--        </div>-->
-
         <div class="row clearfix">
           <div class="input_field col_half">
             <label>Ngày Sinh <span style="color: red">*</span></label>
             <input type="date" name="dateOfBirth" placeholder="" formControlName="dateOfBirth" required/>
             <div style="color: red"
-                 *ngIf="memberForm.get('dateOfBirth').hasError('required') && submitted">Bạn vui lòng không để trống mục số điện thoại</div>
+                 *ngIf="memberForm.get('dateOfBirth').hasError('required') && submitted">Bạn vui lòng không để trống mục ngày sinh.</div>
             <div style="color: red" id="checkAge"></div>
             <!--          <div style="color: red">Vui lòng chọn ngày sinh theo dạng (dd/mm/yyyy)</div>-->
           </div>
@@ -172,7 +172,7 @@
             <label>Chứng minh thư <span style="color: red">*</span></label>
             <input type="text" name="identityNumber" placeholder="Chứng minh thư" formControlName="identityNumber" required/>
             <div style="color: red"
-                 *ngIf="memberForm.get('identityNumber').hasError('required') && submitted">Bạn vui lòng không để trống mục số điện thoại</div>
+                 *ngIf="memberForm.get('identityNumber').hasError('required') && submitted">Bạn vui lòng không để trống mục chứng minh thư.</div>
             <!--            <div style="color: red">Vui lòng nhập địa chỉ</div>-->
           </div>
 
@@ -191,11 +191,17 @@
             <span class="checkmark"></span>
 
           </label>
-
         </div>
 
+        <div class="row">
+          <div class="col-md-12 col-lg-6">
+            <input class="button" type="button" [routerLink]="['']" value="Về trang chủ"/>
+          </div>
+          <div class="col-md-12 col-lg-6">
+            <input class="button" type="submit" value="Đăng Ký"/>
+          </div>
+        </div>
 
-        <input class="button" type="submit" value="Đăng Ký"/>
       </form>
     </div>
   </div>

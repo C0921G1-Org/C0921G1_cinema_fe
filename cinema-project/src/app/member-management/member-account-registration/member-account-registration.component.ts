@@ -32,7 +32,9 @@ export class MemberAccountRegistrationComponent implements OnInit {
   districtList: District[] = [];
   wardList: Ward[] = [];
   memberForm: FormGroup;
-  selectedImage: any = "";
+  selectedImage: any = ""; m
+  imageThis = '../assets/img/avatatest.jpg';
+
   cityObj: City;
   districtObj: District;
 
@@ -54,13 +56,14 @@ export class MemberAccountRegistrationComponent implements OnInit {
 
       this.memberForm = new FormGroup({
         image: new FormControl('', [Validators.required,]),
-        name: new FormControl('', [Validators.required,]),
+        name: new FormControl('', [Validators.required,Validators.pattern("^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$"),Validators.maxLength(50)]),
+        // name: new FormControl('', [Validators.required]),
         phone: new FormControl('', [Validators.required, Validators.pattern("\\(?(0[1-9]{2})\\)?([ .-]?)([0-9]{3})\\2([0-9]{4})")]),
         gender: new FormControl('', [Validators.required,]),
-        email: new FormControl('', [Validators.required]),
+        email: new FormControl('', [Validators.required,Validators.pattern("^[A-Za-z0-9._]+[@][A-Za-z0-9._]+[.][A-Za-z0-9._]+$")]),
 
         passwordFormGroup: new FormGroup({
-          password: new FormControl('', [Validators.required,]),
+          password: new FormControl('', [Validators.required,Validators.pattern("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$"),]),
           confirmPassword: new FormControl('', [Validators.required,]),
         }, this.comparePassword),
 
@@ -83,21 +86,7 @@ export class MemberAccountRegistrationComponent implements OnInit {
     return (validate.password === validate.confirmPassword) ? null : {notMatch: true};
   }
 
-  //NhanNT check exist
-  // checkExist(abstract: AbstractControl): any {
-  //
-  //   const validateExist = abstract.value;
-  //
-  //   this.memberService.checkExist(validateExist).subscribe(value => {
-  //     if (value === null) {
-  //       return null;
-  //     } else {
-  //       return {"existEmail": true};
-  //     }
-  //
-  //   })
-  //
-  // }
+
 
   //get city NhanNT
   getCityToDistrictNhanNT(event: number): any {
@@ -152,11 +141,7 @@ export class MemberAccountRegistrationComponent implements OnInit {
               // console.log(error);
               // console.log(error.error);
               this.errors = error.error;
-                // console.log(this.errors.get("emailDup"))
-                // if (this.errors.length===0){
-                //   document.getElementById("email-duplicate").textContent = "Tài khoản đã tồn tại";
-                // }
-                // else {
+
                   for (let i = 0; i < this.errors.length; i++) {
                     console.log("ok")
                     if (this.errors[i].field == "dateOfBirth") {
@@ -168,8 +153,6 @@ export class MemberAccountRegistrationComponent implements OnInit {
                     }
 
                   }
-                // }
-
             }
             );
           }
@@ -184,6 +167,13 @@ export class MemberAccountRegistrationComponent implements OnInit {
   // img support NhanNT
   showPreview(event: any) {
     this.selectedImage = event.target.files[0];
+    if (event.target.files) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any) => {
+        this.imageThis = event.target.result;
+      };
+    }
   }
 
   getCurrentDateTime(): string {
