@@ -6,6 +6,7 @@ import {SharingDataService} from '../../buy-ticket/sharing-data.service';
 import {Showtime} from '../../model/showtime';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
+import {FormControl, FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -14,8 +15,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./booking-information-booking-ticket.component.css']
 })
 export class BookingInformationBookingTicketComponent implements OnInit {
-  showTime: Showtime;
-
 
   constructor(private paymentService: PaymentService,
               private  sharingDataService: SharingDataService,
@@ -37,6 +36,7 @@ export class BookingInformationBookingTicketComponent implements OnInit {
   public payPalConfig ?: IPayPalConfig;
   check = false;
   sum: any;
+
 
   ngOnInit(): void {
 
@@ -100,8 +100,7 @@ export class BookingInformationBookingTicketComponent implements OnInit {
 
       },
       onApprove: (data, actions) => {
-        console.log('onApprove - transaction was approved, but not authorized', data, actions);
-        actions.order.get().then(details => {
+      actions.order.get().then(details => {
           console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
       },
@@ -110,24 +109,37 @@ export class BookingInformationBookingTicketComponent implements OnInit {
         //lấy thông tin showtime còn thông tin member nữa là xong
         this.transaction.showTime = this.receiveObj['showtime'];
         this.transaction.member = this.receiveObj['member'];
-        this.paymentService.payment(this.transaction).subscribe(value => {
-          this.transaction = value;
-          Swal.fire({
-            position: 'center',
-            background: '#f8f9fa',
-            width: 400,
-            heightAuto: true,
-            icon: 'success',
-            title: 'Bạn đã thanh toán thành công',
-            toast: true,
-            showConfirmButton: false,
-            timer: 3000,
+          this.paymentService.payment(this.transaction).subscribe(value => {
+            this.transaction = value;
+
+            Swal.fire({
+              position: 'center',
+              background: '#f8f9fa',
+              width: 400,
+              heightAuto: true,
+              icon: 'success',
+              title: 'Bạn đã thanh toán thành công',
+              toast: true,
+              showConfirmButton: false,
+              timer: 3000,
+            });
+
           });
-        });
-        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-      },
+        },
       onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
+        Swal.fire({
+          position: 'center',
+          background: '#f8f9fa',
+          width: 400,
+          heightAuto: true,
+          icon: 'error',
+          title: 'Bạn đã hủy thanh toán',
+          toast: true,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+
+
       },
       onError: err => {
         console.log('OnError', err);

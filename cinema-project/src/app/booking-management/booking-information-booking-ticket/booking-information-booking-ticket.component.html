@@ -5,21 +5,24 @@
 
       <div class="boder_test">
         <h1 class="test_h1">Vui Lòng Thanh Toán</h1>
-        <form class="form_test" >
+        <form class="form_test">
           <div class="row">
             <div class="col-md-3">
               <label class="control-label">Họ và Tên</label><span class="bat_buoc">(*)</span>
             </div>
             <div class="col-md-6">
-              <input id="name" [value]="receiveObj?.member.name" type="text" class="form-control">
+              <p class="chi-xem" id="name" >{{receiveObj?.member.name}}</p>
             </div>
           </div>
+
           <div class="row">
             <div class="col-md-3">
               <label class="control-label">Email</label><span class="bat_buoc">(*)</span>
             </div>
             <div class="col-md-6">
-              <input id="email" [value]="receiveObj?.member.email"  type="text" class="form-control">
+              <p class="chi-xem">{{receiveObj?.member.email}}</p>
+
+<!--              <input id="email" [value]="receiveObj?.member.email"  type="text" class="form-control">-->
             </div>
           </div>
           <div class="row">
@@ -27,7 +30,9 @@
               <label class="control-label">Số Điện Thoại</label><span class="bat_buoc">(*)</span>
             </div>
             <div class="col-md-6">
-              <input id="sdt" [value]="receiveObj?.member.phone" type="text" class="form-control">
+              <p class="chi-xem">{{receiveObj?.member.phone}}</p>
+
+<!--              <input id="sdt" [value]="receiveObj?.member.phone" type="text" class="form-control" >-->
             </div>
           </div>
 
@@ -36,7 +41,9 @@
               <label class="control-label">Ngày Sinh</label><span class="bat_buoc">(*)</span>
             </div>
             <div class="col-md-6">
-              <input id="ngaySinh" [value]="receiveObj?.member.dateOfBirth" type="date" class="form-control">
+              <p class="chi-xem">{{receiveObj?.member.dateOfBirth}}</p>
+
+<!--              <input id="ngaySinh" [value]="receiveObj?.member.dateOfBirth" type="date" class="form-control">-->
             </div>
           </div>
           <div class="row">

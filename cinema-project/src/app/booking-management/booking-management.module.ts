@@ -17,6 +17,7 @@ import {NgxPayPalModule} from 'ngx-paypal';
         CommonModule,
         BookingManagementRoutingModule,
         NgxPayPalModule
+
     ]
 
 })
