@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SharingDataService} from '../sharing-data.service';
-import {Showtime} from '../../model/showtime';
+import {ShowTime} from '../../model/showtime';
 import {SelectedSeatService} from '../../service/buy-ticket/selected-seat.service';
 import {SelectedSeat} from '../../model/selected-seat';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -16,7 +16,7 @@ import {SeatType} from '../../model/seat-type';
   styleUrls: ['./seat-selection.component.css']
 })
 export class SeatSelectionComponent implements OnInit {
-  currentShowTimeChooseObj: Showtime;
+  currentShowTimeChooseObj: ShowTime;
   selectedSeatList: SelectedSeat[] = [];
   seatList = [];
   seatMapRow = 10;

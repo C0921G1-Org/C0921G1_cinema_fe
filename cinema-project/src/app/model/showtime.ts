@@ -3,7 +3,7 @@ import {Film} from './film';
 
 
 
-export class Showtime {
+export class ShowTime {
   id?: number;
   date?: string;
   name?: string;
